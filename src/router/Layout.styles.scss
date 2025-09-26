@@ -1,0 +1,11 @@
+.Layout{
+background: var(--neutral-lightest);
+height: 100vh;
+    &__container {
+padding: 40px;
+display: flex;
+align-items: start;
+gap: 44px;
+height: 100%;
+    }
+}
