@@ -3,6 +3,7 @@ import { Tabs } from "../../shared/ui/Tabs"
 import './styles.scss';
 import { StudentTable } from "../StudentTable";
 import { TEST_CLASSMATES } from "../../mocks/data";
+import { Filter } from "../Filter";
 
 const TABS = [
     { id: 0, name: 'Успеваемость класса' },
@@ -25,6 +26,18 @@ export const ClassTable = () => {
                                 <circle cx="17" cy="17" r="3" transform="rotate(180 17 17)" stroke="#303030" stroke-width="2" />
                             </svg>
                         </button>
+                    </div>
+                    <div className="ClassTableFilters">
+                        <div className="ClassTableFilters__inner">
+                            <div className="ClassTableFilters__filters">
+                                <Filter type="time" />
+                                <Filter type="modules" />
+                                <Filter type="points" />
+                            </div>
+                            <button className="btn-reset ClassTableFilters__reset">
+                                Сбросить
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div className="ClassTable__content">
