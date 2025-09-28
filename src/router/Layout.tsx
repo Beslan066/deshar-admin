@@ -7,7 +7,9 @@ const Layout = () => {
     return (
         <div className="Layout">
             <div className="Layout__container">
-                <DashboardMenu />
+                <div className="DashboardWrapper">
+                    <DashboardMenu />
+                </div>
                 <Outlet />
             </div>
         </div>

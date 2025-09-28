@@ -3,7 +3,7 @@
 padding: 8px;
 width: 228px;
 height: 36px;
-&__link {
+
     display: flex;
     align-items: center;
     gap: 10px;
@@ -17,10 +17,9 @@ color: var(--neutral-medium);
         stroke: var(--neutral-medium);;
         fill: var(--neutral-medium);;
     }
-}
 &:hover {
     background: var(--neutral-light);
-    .DashboardMenuItem__link {
+    
         span {
           color: var(--neutral-darkest);
         }
@@ -28,6 +27,17 @@ color: var(--neutral-medium);
             stroke:var(--neutral-darkest);
             fill:var(--neutral-darkest);
         }
-    }
+    
+}
+&.active {
+      background: var(--neutral-light);
+    
+        span {
+          color: var(--neutral-darkest);
+        }
+        svg {
+            stroke:var(--neutral-darkest);
+            fill:var(--neutral-darkest);
+        }
 }
 }
