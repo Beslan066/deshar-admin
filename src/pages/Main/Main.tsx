@@ -1,4 +1,4 @@
-import { ClassCard } from "../../components/ClassCard";
+import { ClassCardMain } from "../../components/ClassCardMain";
 import { MainChart } from "../../components/MainChart"
 import { ResultsCard } from "../../components/ResultsCard"
 import { Selector } from "../../shared/ui/Selector"
@@ -70,7 +70,7 @@ export const Main = () => {
                     />
 
                 </div>
-                <ClassCard />
+                <ClassCardMain />
             </div>
         </main >
     )

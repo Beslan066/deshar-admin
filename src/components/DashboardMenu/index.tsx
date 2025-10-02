@@ -26,16 +26,16 @@ export const DashboardMenu = () => {
                     }>
                         <ul className="list-reset MenuAccordion__list">
                             <li className="MenuAccordion__item">
-                                <NavLink to="/1" className={({ isActive, isPending }) => `MenuAccordion__link ${isPending ? "pending" : isActive ? "active" : ""}`}>1</NavLink>
+                                <NavLink to="/class/1" className={({ isActive, isPending }) => `MenuAccordion__link ${isPending ? "pending" : isActive ? "active" : ""}`}>1</NavLink>
                             </li>
                             <li className="MenuAccordion__item">
-                                <NavLink to="/2" className={({ isActive, isPending }) => `MenuAccordion__link ${isPending ? "pending" : isActive ? "active" : ""}`}>2</NavLink>
+                                <NavLink to="/class/2" className={({ isActive, isPending }) => `MenuAccordion__link ${isPending ? "pending" : isActive ? "active" : ""}`}>2</NavLink>
                             </li>
                             <li className="MenuAccordion__item">
-                                <NavLink to="/3" className={({ isActive, isPending }) => `MenuAccordion__link ${isPending ? "pending" : isActive ? "active" : ""}`}>3</NavLink>
+                                <NavLink to="/class/3" className={({ isActive, isPending }) => `MenuAccordion__link ${isPending ? "pending" : isActive ? "active" : ""}`}>3</NavLink>
                             </li>
                             <li className="MenuAccordion__item">
-                                <NavLink to="/4" className={({ isActive, isPending }) => `MenuAccordion__link ${isPending ? "pending" : isActive ? "active" : ""}`}>4</NavLink>
+                                <NavLink to="/class/4" className={({ isActive, isPending }) => `MenuAccordion__link ${isPending ? "pending" : isActive ? "active" : ""}`}>4</NavLink>
                             </li>
                         </ul>
                     </MenuAccordion>

@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import { SignIn } from "../pages/SignIn/SignIn";
 import { Main } from "../pages/Main/Main";
 import { Class } from "../pages/Class/Class";
+import { StudentPage } from "../pages/Student/Student";
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
             {
                 path: '/class/:classId',
                 element: <Class />
+            },
+            {
+                path: '/class/:classId/student/:studentId',
+                element: <StudentPage />
             }
         ]
     },

@@ -1,14 +1,27 @@
 export type Student = {
+  id:number;
   placeNumber: number
   name: string
-  time: number // в минутах, как у вас и было
+  time: number 
   doneModules: number
   points: number
-  parallelClass?: string // опционально, как в вашем интерфейсе
+  parallelClass?: string 
 }
 
-// Тип для пропсов компонента, если он нужен elsewhere
+
 export type StudentTableProps = {
   data: Student[]
   type: 'parallel' | 'classmates'
+}
+
+export type Module = {
+  id:number;
+  moduleNumber:number;
+  moduleName:string;
+  allLessonsCount:number;
+  currentLessonsCount:number;
+  learningTime:number;
+  mistakesCount:number;
+  points:number;
+  attestationStatus:"accepted"|"not-completed"|"rejected"|"checking"
 }

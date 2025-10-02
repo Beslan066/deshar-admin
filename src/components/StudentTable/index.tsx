@@ -1,91 +1,163 @@
-import { useMemo, useState } from 'react'
-import {
-    useReactTable,
-    getCoreRowModel,
-    flexRender,
-    getSortedRowModel,
-    type SortingState
-} from '@tanstack/react-table'
-import type { StudentTableProps, Student } from '../../types/types'
-import { getColumns } from './columns'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useReactTable, getCoreRowModel, flexRender, createColumnHelper, type ColumnDef } from '@tanstack/react-table';
+import { ProgressBar } from '../ProgressBar';
+import { StateChip } from '../StateChip';
 import './styles.scss';
 
-export const StudentTable = ({ data, type }: StudentTableProps) => {
-    const columns = useMemo(() => getColumns(type), [type])
-    const [tableData] = useState<Student[]>(data)
+// Define the data type
+type Student = {
+    id: number;
+    module: string;
+    doneLessons: number;
+    maxLessons: number;
+    processLessons: number;
+    learningTime: string;
+    mistakes: number;
+    points: number;
+    attestationStatus: 'rejected' | 'accepted' | 'checking' | 'notCompleted'; // Adjust based on your StateChip states
+};
 
-    // Состояние для сортировки
-    const [sorting, setSorting] = useState<SortingState>([])
+// Sample data - replace with your actual data source
+const defaultData: Student[] = [
+    {
+        id: 1,
+        module: 'Алфавит',
+        doneLessons: 10,
+        maxLessons: 10,
+        processLessons: 0,
+        learningTime: '0ч 32м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'rejected',
+    },
+    {
+        id: 2,
+        module: 'Фонетика',
+        doneLessons: 0,
+        maxLessons: 14,
+        processLessons: 7,
+        learningTime: '0ч 24м',
+        mistakes: 0,
+        points: 0,
+        attestationStatus: 'notCompleted',
+    },
+    {
+        id: 3,
+        module: 'Лексикология',
+        doneLessons: 15,
+        maxLessons: 15,
+        processLessons: 0,
+        learningTime: '0ч 26м',
+        mistakes: 0,
+        points: 100,
+        attestationStatus: 'accepted',
+    },
+    {
+        id: 3,
+        module: 'Дошкхоллар',
+        doneLessons: 9,
+        maxLessons: 9,
+        processLessons: 0,
+        learningTime: '0ч 41м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'checking',
+    },
+    // Add more student data objects here as needed
+];
 
+const columnHelper = createColumnHelper<Student>();
+
+export const StudentTable = () => {
+    // Define columns
+    const columns: ColumnDef<Student, any>[] = [
+        columnHelper.accessor('id', {
+            header: '#',
+            cell: info => info.getValue(),
+        }),
+        columnHelper.accessor('module', {
+            header: 'Модуль',
+            cell: info => info.getValue(),
+        }),
+        columnHelper.accessor(row => row, {
+            id: 'lessons',
+            header: 'Уроки',
+            cell: info => (
+                <div>
+                    <ProgressBar
+                        doneLessons={info.row.original.doneLessons}
+                        maxLessons={info.row.original.maxLessons}
+                        processLessons={info.row.original.processLessons}
+                    />
+                </div>
+            ),
+        }),
+        columnHelper.accessor('learningTime', {
+            header: 'Время обучения',
+            cell: info => info.getValue(),
+        }),
+        columnHelper.accessor('mistakes', {
+            header: 'Ошибки',
+            cell: info => info.getValue(),
+        }),
+        columnHelper.accessor('points', {
+            header: 'Баллы',
+            cell: info => info.getValue(),
+        }),
+        columnHelper.accessor('attestationStatus', {
+            header: 'Аттестация',
+            cell: info => <div><StateChip state={info.getValue()} /></div>,
+        }),
+    ];
+
+    // Initialize the table
     const table = useReactTable({
-        data: tableData,
+        data: defaultData,
         columns,
-        state: {
-            sorting, // Передаем состояние сортировки
-        },
-        onSortingChange: setSorting, // Функция для обновления сортировки
         getCoreRowModel: getCoreRowModel(),
-        getSortedRowModel: getSortedRowModel(), // Модель для сортировки
-    })
+    });
 
     return (
-        <div className="ClassCard-table__scroll-container">
-
-            <table className="ClassCard__table ClassCard-table">
-                <thead>
+        <div className="StudentTable__container">
+            <table className="StudentTable">
+                <thead className="StudentTable__head">
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id} className="ClassCard-table__tr">
+                        <tr key={headerGroup.id}>
                             {headerGroup.headers.map(header => (
-                                <th
-                                    key={header.id}
-                                    className='ClassCard-table__th'
-                                    colSpan={header.colSpan}
-                                >
-                                    {header.isPlaceholder ? null : (
-                                        <div
-                                            {...{
-                                                className: header.column.getCanSort()
-                                                    ? 'cursor-pointer select-none'
-                                                    : '',
-                                                onClick: header.column.getToggleSortingHandler(),
-                                            }}
-                                        >
-                                            {flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext()
-                                            )}
-                                            {{
-                                                asc: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <g transform="rotate(180 10 10)">
-                                                        <path d="M15 10L10 15L5 10" stroke="#7D7979" stroke-width="1.5" />
-                                                        <path d="M10 15L10 5" stroke="#7D7979" stroke-width="1.4" />
-                                                    </g>
-                                                </svg>,
-                                                desc: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M15 10L10 15L5 10" stroke="#7D7979" stroke-width="1.5" />
-                                                    <path d="M10 15L10 5" stroke="#7D7979" stroke-width="1.4" />
-                                                </svg>,
-                                            }[header.column.getIsSorted() as string] ?? null}
-                                        </div>
-                                    )}
+                                <th key={header.id} className={`StudentTable__head_${header.id}`}>
+                                    {header.isPlaceholder
+                                        ? null
+                                        : flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext()
+                                        )}
                                 </th>
                             ))}
                         </tr>
                     ))}
                 </thead>
-
                 <tbody>
                     {table.getRowModel().rows.map(row => (
-                        <tr key={row.id} className="tableItem">
+                        <tr key={row.id} className='StudentTableItem'>
                             {row.getVisibleCells().map(cell => (
-                                <td key={cell.id}>
+                                <td
+                                    key={cell.id}
+                                    className={`StudentTableItem__${cell.column.id}`}
+                                >
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </td>
                             ))}
+                            <td className="StudentTableItem__btn">
+                                <button className='btn-reset StudentTableItem__btn_more'>
+                                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13 1L7 7L1 0.999999" stroke="#7D7979" stroke-width="1.5" />
+                                    </svg>
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
         </div>
-    )
-}
+    );
+};

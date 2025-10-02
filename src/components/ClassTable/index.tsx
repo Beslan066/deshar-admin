@@ -1,55 +1,95 @@
-import { useState } from "react"
-import { Tabs } from "../../shared/ui/Tabs"
+import { useMemo, useState } from 'react'
+import {
+    useReactTable,
+    getCoreRowModel,
+    flexRender,
+    getSortedRowModel,
+    type SortingState
+} from '@tanstack/react-table'
+import type { StudentTableProps, Student } from '../../types/types'
+import { getColumns } from './columns'
 import './styles.scss';
-import { StudentTable } from "../StudentTable";
-import { TEST_CLASSMATES } from "../../mocks/data";
-import { Filter } from "../Filter";
+import { useNavigate } from 'react-router-dom';
+export const ClassTable = ({ data, type }: StudentTableProps) => {
+    const columns = useMemo(() => getColumns(type), [type])
+    const [tableData] = useState<Student[]>(data)
+    const navigate = useNavigate();
+    // const { classId } = useParams();
+    // Состояние для сортировки
+    const [sorting, setSorting] = useState<SortingState>([])
 
-const TABS = [
-    { id: 0, name: 'Успеваемость класса' },
-    { id: 1, name: 'Успеваемость потока' },
-]
-export const ClassTable = () => {
-    const [activeTab, setActiveTab] = useState(0)
+    const table = useReactTable({
+        data: tableData,
+        columns,
+        state: {
+            sorting, // Передаем состояние сортировки
+        },
+        onSortingChange: setSorting, // Функция для обновления сортировки
+        getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel(), // Модель для сортировки
+    })
+    const redirectOnStudentItemClick = (id: number) => {
+        console.log(id);
+        navigate(`student/${id}`)
+    }
     return (
-        <div className="ClassTable">
-            <div className="ClassTable__inner">
-                <div className="ClassTable__header">
-                    <h2 className="ClassTable__title">Класс 5 “А”</h2>
-                    <div className="ClassTable__controls">
-                        <Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={TABS} />
-                        <button className="btn-reset">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 7L20 7" stroke="#303030" stroke-width="2" stroke-linecap="round" />
-                                <path d="M14 17H4" stroke="#303030" stroke-width="2" stroke-linecap="round" />
-                                <circle cx="7" cy="7" r="3" stroke="#303030" stroke-width="2" />
-                                <circle cx="17" cy="17" r="3" transform="rotate(180 17 17)" stroke="#303030" stroke-width="2" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div className="ClassTableFilters">
-                        <div className="ClassTableFilters__inner">
-                            <div className="ClassTableFilters__filters">
-                                <Filter type="time" />
-                                <Filter type="modules" />
-                                <Filter type="points" />
-                            </div>
-                            <button className="btn-reset ClassTableFilters__reset">
-                                Сбросить
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className="ClassTable__content">
-                    <StudentTable data={TEST_CLASSMATES} type='classmates' />
-                </div>
-                <div className="ClassTable__footer">
-                    <div className="ClassTable__footer_inner">
-                        <span className="ClassTable__students_count">28 учеников</span>
-                        <span className="ClassTable__points_count">1 384 баллов</span>
-                    </div>
-                </div>
-            </div>
+        <div className="ClassTable__scroll-container">
+
+            <table className="ClassCard__table ClassTable">
+                <thead>
+                    {table.getHeaderGroups().map(headerGroup => (
+                        <tr key={headerGroup.id} className="ClassTable__tr">
+                            {headerGroup.headers.map(header => (
+                                <th
+                                    key={header.id}
+                                    className='ClassTable__th'
+                                    colSpan={header.colSpan}
+                                >
+                                    {header.isPlaceholder ? null : (
+                                        <div
+                                            {...{
+                                                className: header.column.getCanSort()
+                                                    ? 'cursor-pointer select-none'
+                                                    : '',
+                                                onClick: header.column.getToggleSortingHandler(),
+                                            }}
+                                        >
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext()
+                                            )}
+                                            {{
+                                                asc: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g transform="rotate(180 10 10)">
+                                                        <path d="M15 10L10 15L5 10" stroke="#7D7979" stroke-width="1.5" />
+                                                        <path d="M10 15L10 5" stroke="#7D7979" stroke-width="1.4" />
+                                                    </g>
+                                                </svg>,
+                                                desc: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M15 10L10 15L5 10" stroke="#7D7979" stroke-width="1.5" />
+                                                    <path d="M10 15L10 5" stroke="#7D7979" stroke-width="1.4" />
+                                                </svg>,
+                                            }[header.column.getIsSorted() as string] ?? null}
+                                        </div>
+                                    )}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+
+                <tbody>
+                    {table.getRowModel().rows.map(row => (
+                        <tr key={row.id} className="tableItem" onClick={() => redirectOnStudentItemClick(row.original.id)}>
+                            {row.getVisibleCells().map(cell => (
+                                <td key={cell.id}>
+                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     )
 }

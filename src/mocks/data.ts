@@ -33,7 +33,7 @@ export const barChartMockData = [
 ]
 export const TEST_CLASSMATES= [
 	{
-		id: 1,
+		id: 99,
 		type: 'classmates',
 		class: '7 "Б"',
 		name: 'Дзауров Ахмед',
@@ -43,7 +43,7 @@ export const TEST_CLASSMATES= [
 		time: 157,
 	},
 	{
-		id: 2,
+		id: 77,
 		type: 'classmates',
 		class: '7 "Б"',
 		name: 'Кодзоева Мадина',
