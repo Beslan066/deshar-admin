@@ -3,9 +3,10 @@ import { useReactTable, getCoreRowModel, flexRender, createColumnHelper, type Co
 import { ProgressBar } from '../ProgressBar';
 import { StateChip } from '../StateChip';
 import './styles.scss';
+import { StudentTableItem } from './StudentTableItem';
 
 // Define the data type
-type Student = {
+export type Student = {
     id: number;
     module: string;
     doneLessons: number;
@@ -63,6 +64,117 @@ const defaultData: Student[] = [
         points: 97,
         attestationStatus: 'checking',
     },
+    {
+        id: 3,
+        module: 'Дошкхоллар',
+        doneLessons: 9,
+        maxLessons: 9,
+        processLessons: 0,
+        learningTime: '0ч 41м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'checking',
+    },
+    {
+        id: 3,
+        module: 'Дошкхоллар',
+        doneLessons: 9,
+        maxLessons: 9,
+        processLessons: 0,
+        learningTime: '0ч 41м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'checking',
+    },
+    {
+        id: 3,
+        module: 'Дошкхоллар',
+        doneLessons: 9,
+        maxLessons: 9,
+        processLessons: 0,
+        learningTime: '0ч 41м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'checking',
+    },
+    {
+        id: 3,
+        module: 'Дошкхоллар',
+        doneLessons: 9,
+        maxLessons: 9,
+        processLessons: 0,
+        learningTime: '0ч 41м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'checking',
+    },
+    {
+        id: 3,
+        module: 'Дошкхоллар',
+        doneLessons: 9,
+        maxLessons: 9,
+        processLessons: 0,
+        learningTime: '0ч 41м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'checking',
+    },
+    {
+        id: 3,
+        module: 'Дошкхоллар',
+        doneLessons: 9,
+        maxLessons: 9,
+        processLessons: 0,
+        learningTime: '0ч 41м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'checking',
+    },
+    {
+        id: 3,
+        module: 'Дошкхоллар',
+        doneLessons: 9,
+        maxLessons: 9,
+        processLessons: 0,
+        learningTime: '0ч 41м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'checking',
+    },
+    {
+        id: 3,
+        module: 'Дошкхоллар',
+        doneLessons: 9,
+        maxLessons: 9,
+        processLessons: 0,
+        learningTime: '0ч 41м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'checking',
+    },
+    {
+        id: 3,
+        module: 'Дошкхоллар',
+        doneLessons: 9,
+        maxLessons: 9,
+        processLessons: 0,
+        learningTime: '0ч 41м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'checking',
+    },
+    {
+        id: 3,
+        module: 'Дошкхоллар',
+        doneLessons: 9,
+        maxLessons: 9,
+        processLessons: 0,
+        learningTime: '0ч 41м',
+        mistakes: 3,
+        points: 97,
+        attestationStatus: 'checking',
+    },
+
     // Add more student data objects here as needed
 ];
 
@@ -138,26 +250,32 @@ export const StudentTable = () => {
                 </thead>
                 <tbody>
                     {table.getRowModel().rows.map(row => (
-                        <tr key={row.id} className='StudentTableItem'>
-                            {row.getVisibleCells().map(cell => (
-                                <td
-                                    key={cell.id}
-                                    className={`StudentTableItem__${cell.column.id}`}
-                                >
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                </td>
-                            ))}
-                            <td className="StudentTableItem__btn">
-                                <button className='btn-reset StudentTableItem__btn_more'>
-                                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13 1L7 7L1 0.999999" stroke="#7D7979" stroke-width="1.5" />
-                                    </svg>
-                                </button>
-                            </td>
-                        </tr>
+                        <StudentTableItem key={row.id} row={row} />
                     ))}
+
                 </tbody>
             </table>
         </div>
     );
 };
+
+{/* <table className='StudentTableItem__attestationTable AttestationTable'>
+<thead className="AttestationTable__head">
+    <tr>
+        <th>Задание</th>
+        <th>Время (мм:сс)</th>
+        <th>Ошибки</th>
+        <th>Баллы</th>
+    </tr>
+</thead>
+<tbody className='AttestationTable__body'>
+    <tr className='AttestationTable__item'>
+        <th>
+            1
+        </th>
+        <th>0:21</th>
+        <th>0</th>
+        <th>11</th>
+    </tr>
+</tbody>
+</table> */}
