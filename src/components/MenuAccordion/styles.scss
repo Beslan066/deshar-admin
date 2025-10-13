@@ -34,8 +34,17 @@
             }
 
             svg {
-                fill: var(--neutral-medium);
-                stroke: var(--neutral-medium);
+                circle{
+
+                    fill: var(--neutral-medium);
+                }
+                rect {
+
+                    stroke: var(--neutral-medium);
+                }
+                path {
+                    stroke: var(--neutral-medium);
+                }
             }
         }
 
@@ -46,8 +55,16 @@
                 }
 
                 svg {
-                    fill: var(--neutral-darkest);
+                   circle {
+                     fill: var(--neutral-darkest);
+                    
+                   }
+                   rect {
+                    stroke:var(--neutral-darkest);
+                   }
+                   path {
                     stroke: var(--neutral-darkest);
+                   }
                 }
             }
         }
