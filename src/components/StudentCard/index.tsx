@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Tabs } from "../../shared/ui/Tabs";
-import { Filter } from "../Filter";
 import './styles.scss';
 import { StudentTable } from "../StudentTable";
+import { Filters, type FilterConfig } from "../Filters";
 const TABS = [
     { id: 0, name: 'Ингушский язык' },
     { id: 1, name: 'Математика' },
@@ -27,6 +27,40 @@ export const StudentCard = () => {
         setPointsFrom('');
         setPointsTo('');
     }
+    const filterConfigs: FilterConfig[] = [
+        {
+            type: 'time',
+            fromValue: timeFrom,
+            onFromChange: setTimeFrom,
+            toValue: timeTo,
+            onToChange: setTimeTo,
+            component: "input"
+        },
+        {
+            type: 'modules',
+            fromValue: modulesFrom,
+            onFromChange: setModulesFrom,
+            toValue: modulesTo,
+            onToChange: setModulesTo,
+            component: "input"
+        },
+        {
+            type: 'points',
+            fromValue: pointsFrom,
+            onFromChange: setPointsFrom,
+            toValue: pointsTo,
+            onToChange: setPointsTo,
+            component: 'input'
+        },
+        // {
+        //     type: 'points',
+        //     fromValue: pointsFrom,
+        //     onFromChange: setPointsFrom,
+        //     toValue: pointsTo,
+        //     onToChange: setPointsTo,
+        //     component: 'select'
+        // },
+    ];
     return (
         <div className="StudentCard">
             <div className="StudentCard__inner">
@@ -52,33 +86,7 @@ export const StudentCard = () => {
                             </svg>
                         </button>
                     </div>
-                    {showFilters && <div className="ClassCardClassFilters">
-                        <div className="ClassCardClassFilters__inner">
-                            <div className="ClassCardClassFilters__filters">
-                                <Filter
-                                    type="time"
-                                    fromValue={timeFrom}
-                                    onFromChange={setTimeFrom}
-                                    toValue={timeTo}
-                                    onToChange={setTimeTo} />
-                                <Filter
-                                    type="modules"
-                                    fromValue={modulesFrom}
-                                    onFromChange={setModulesFrom}
-                                    toValue={modulesTo}
-                                    onToChange={setModulesTo} />
-                                <Filter
-                                    type="points"
-                                    fromValue={pointsFrom}
-                                    onFromChange={setPointsFrom}
-                                    toValue={pointsTo}
-                                    onToChange={setPointsTo} />
-                            </div>
-                            <button className="btn-reset ClassCardClassFilters__reset" onClick={resetFilters}>
-                                Сбросить
-                            </button>
-                        </div>
-                    </div>}
+                    {showFilters && <Filters filters={filterConfigs} handleReset={resetFilters} />}
                 </div>
                 <div className="StudentCard__content">
                     <StudentTable />

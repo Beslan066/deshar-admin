@@ -1,7 +1,7 @@
 import './styles.scss';
 import { useState } from 'react';
 
-interface IFilter {
+export interface IFilter {
     type: "time" | "modules" | "points";
     fromValue?: string;
     toValue?: string;

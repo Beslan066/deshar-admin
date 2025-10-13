@@ -3,7 +3,7 @@ import { Tabs } from "../../shared/ui/Tabs"
 import './styles.scss';
 import { ClassTable } from "../ClassTable";
 import { TEST_CLASSMATES } from "../../mocks/data";
-import { Filter } from "../Filter";
+import { Filter } from "../Filters/Filter";
 
 const TABS = [
     { id: 0, name: 'Успеваемость класса' },
