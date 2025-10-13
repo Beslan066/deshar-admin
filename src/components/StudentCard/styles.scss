@@ -7,6 +7,10 @@ background: var(--neutral-white);
 &__inner, &__content {
     height: calc(100% - 100px);
 }
+&__content {
+    margin-top: 24px;
+    padding-left: 10px;
+}
 &__header {
     &_top {
         display: flex;
