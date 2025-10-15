@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import cn from 'classnames';
 import './styles.scss';
+import type { Role } from '../../../types/auth';
 
 interface AvatarProps {
     src?: string;
     name?: string;
     size?: 'small' | 'medium' | 'large';
     className?: string;
-    role?: string;
+    role?: Role;
 }
 
-export const Avatar = ({ src = '/img/Avatar.png', name = 'Ислам Парчиев', size = 'medium', className, role = "testRole" }: AvatarProps) => {
+export const Avatar = ({ src = '/img/Avatar.png', name = 'Ислам Парчиев', size = 'medium', className, role = "admin" }: AvatarProps) => {
     const [imageError, setImageError] = useState(false);
 
     const getInitials = () => {

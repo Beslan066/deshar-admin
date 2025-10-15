@@ -4,7 +4,9 @@ import { NavLink } from "react-router-dom";
 import { MenuAccordion } from '../MenuAccordion';
 import { DashboardMenuItem } from '../MenuItem';
 import './styles.scss';
+import useRole from '../../shared/hooks/useRole';
 export const DashboardMenu = () => {
+    const { role } = useRole();
     return (<aside className="DashboardMenu">
         <div className="DashboardMenu__inner">
             <div className="DashboardMenu__top">
@@ -54,7 +56,7 @@ export const DashboardMenu = () => {
                 </div>
             </div>
             <div className="DashboardMenu__avatar_wrapper">
-                <Avatar className='DashboardMenu__avatar' />
+                <Avatar className='DashboardMenu__avatar' role={role} />
             </div>
         </div>
     </aside>)

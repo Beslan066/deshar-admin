@@ -2,8 +2,14 @@
 import { RouterProvider } from 'react-router-dom';
 import './App.scss'
 import { router } from './router/Router';
-function App() {
+import { useEffect } from 'react';
+import useRole from './shared/hooks/useRole';
 
+function App() {
+  const { setRole } = useRole();
+  useEffect(() => {
+    setRole("teacher");
+  }, []);
 
   return <RouterProvider router={router} />
 }
