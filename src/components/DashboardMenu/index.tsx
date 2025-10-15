@@ -6,7 +6,7 @@ import { DashboardMenuItem } from '../MenuItem';
 import './styles.scss';
 import useRole from '../../shared/hooks/useRole';
 export const DashboardMenu = () => {
-    const { role } = useRole();
+    const { role, hasRole } = useRole();
     return (<aside className="DashboardMenu">
         <div className="DashboardMenu__inner">
             <div className="DashboardMenu__top">
@@ -14,9 +14,18 @@ export const DashboardMenu = () => {
                     <Logo className="DashboardMenu__logo" />
                 </div>
                 <div className="DashboardMenu__content">
-                    <ul className="list-reset">
-                        <DashboardMenuItem title="Статистика" href="/" />
-                    </ul>
+
+                    <DashboardMenuItem title="Статистика" href="/" />
+                    {hasRole(["vicePrincipal", "department", "ministry"]) &&
+                        <DashboardMenuItem
+                            title="Аттестации"
+                            href="/attestations"
+                            icon={<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ fill: "transparent" }}>
+                                <path d="M10.5 17H8C5.23858 17 3 14.7614 3 12V8C3 5.23858 5.23858 3 8 3H12C14.7614 3 17 5.23858 17 8V9.5" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M7 8L13 8" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M7 12H10" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M13 14.5L14.5 16L17.5 13" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>} />}
                     <MenuAccordion title='Мои классы' icon={
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="15" cy="16" r="2" fill="#7D7979" />
@@ -41,7 +50,7 @@ export const DashboardMenu = () => {
                             </li>
                         </ul>
                     </MenuAccordion>
-                    <MenuAccordion title='Параллели' icon={<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {hasRole("teacher") && <MenuAccordion title='Параллели' icon={<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="15" cy="16" r="2" fill="#7D7979" />
                         <circle cx="10" cy="16" r="2" fill="#7D7979" />
                         <circle cx="5" cy="16" r="2" fill="#7D7979" />
@@ -50,7 +59,7 @@ export const DashboardMenu = () => {
                         <div>
                             test
                         </div>
-                    </MenuAccordion>
+                    </MenuAccordion>}
                     {/* <Selector /> */}
                 </div>
             </div>

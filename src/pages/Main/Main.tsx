@@ -1,9 +1,19 @@
 import { ClassCardMain } from "../../components/ClassCardMain";
 import { MainChart } from "../../components/MainChart"
 import { ResultsCard } from "../../components/ResultsCard"
+import useRole from "../../shared/hooks/useRole";
 import { Selector } from "../../shared/ui/Selector"
+
 import './Main.scss';
-const testOptions = [
+const testOptionsTeacher = [
+    { id: '1', label: "Класс 5-А" },
+    { id: '2', label: "Класс 6-В" },
+    { id: '3', label: "Класс 6-Д" },
+    { id: '4', label: "Класс 7-Б" },
+    { id: '5', label: "Класс 7-Г" },
+]
+const testOptionsVicePrincipal = [
+    { id: '0', label: "Все классы" },
     { id: '1', label: "Класс 5-А" },
     { id: '2', label: "Класс 6-В" },
     { id: '3', label: "Класс 6-Д" },
@@ -11,12 +21,14 @@ const testOptions = [
     { id: '5', label: "Класс 7-Г" },
 ]
 export const Main = () => {
+    const { hasRole } = useRole();
+    const options = hasRole("teacher") ? testOptionsTeacher : testOptionsVicePrincipal;
     return (
         <main className="Main">
             <div className="Main__inner">
                 <div className="Main__head">
                     <h1 className="Main__title">Общая статистика</h1>
-                    <Selector className="Main__selector" options={testOptions} />
+                    <Selector className="Main__selector" options={options} />
                 </div>
                 <MainChart />
                 <div className="Main__result_cards">
