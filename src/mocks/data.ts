@@ -243,7 +243,17 @@ export const studentTableMockData: StudentTableItemType[] = [
 		points: 100,
 		attestationStatus: 'accepted',
 	},
-	
+	{
+		id: 4,
+		module: 'Лексикологияw',
+		doneLessons: 15,
+		maxLessons: 15,
+		processLessons: 0,
+		learningTime: '0ч 26м',
+		mistakes: 0,
+		points: 100,
+		attestationStatus: 'checking',
+	},
 
 	// Add more student data objects here as needed
 ]

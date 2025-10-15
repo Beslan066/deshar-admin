@@ -4,6 +4,8 @@ import './styles.scss';
 import { ClassTable } from "../ClassTable";
 import { TEST_CLASSMATES } from "../../mocks/data";
 import { Filter } from "../Filters/Filter";
+import useRole from "../../shared/hooks/useRole";
+import { TeacherItem } from "../../shared/ui/TeacherItem";
 
 const TABS = [
     { id: 0, name: 'Успеваемость класса' },
@@ -19,7 +21,8 @@ export const ClassCardClass = () => {
     const [modulesFrom, setModulesFrom] = useState<string>('')
     const [modulesTo, setModulesTo] = useState<string>('')
     const [pointsFrom, setPointsFrom] = useState<string>('')
-    const [pointsTo, setPointsTo] = useState<string>('')
+    const [pointsTo, setPointsTo] = useState<string>('');
+    const { hasRole } = useRole();
     const resetFilters = () => {
         setTimeFrom('');
         setTimeTo('');
@@ -32,7 +35,10 @@ export const ClassCardClass = () => {
         <div className="ClassCardClass">
             <div className="ClassCardClass__inner">
                 <div className="ClassCardClass__header">
-                    <h2 className="ClassCardClass__title">Класс 5 “А”</h2>
+                    <div className="ClassCardClass__header_top">
+                        <h2 className="ClassCardClass__title">Класс 5 “А”</h2>
+                        {hasRole(["vicePrincipal", "department", "ministry"]) && <TeacherItem name="Татриева Зарема"/>}
+                    </div>
                     <div className="ClassCardClass__controls">
                         <Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={TABS} />
                         <button className="btn-reset ClassCardClass__filters_btn" onClick={() => setShowFilters(prev => !prev)}>

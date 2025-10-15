@@ -4,13 +4,14 @@
 		border-radius: 20px;
 		padding: 16px 32px 0px;
 		width: 100%;
-		height: 408px;
+		min-height: 408px;
 		background: var(--neutral-lightest);
 		&--noData {
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			height: 116px;
+			min-height: 116px;
 			span {
 				font-family: var(--font-family);
 				font-weight: 400;
@@ -77,16 +78,38 @@
 	}
 	&__footer {
 		display: flex;
-		justify-content: start;
+		justify-content: space-between;
 		align-items: center;
 		border-top: 1px solid var(--neutral-light);
 		padding-top: 16px;
-		span {
+		padding-bottom: 20px;
+	}
+	&__controls {
+		button {
+			padding: 11px 15px;
+		}
+	}
+	&__status {
+		&_wrapper {
+			display: flex;
+			flex-direction: column;
+			align-items: start;
+			gap: 5px;
+		}
+		&_text {
 			font-family: var(--font-family);
 			font-weight: 400;
 			font-size: 14px;
 			line-height: 143%;
-			color: var(--neutral-medium);
+			&--notCompleted {
+				color: var(--neutral-medium);
+			}
+			&--rejected {
+				color: var(--negative-medium);
+			}
+			&--accepted {
+				color: var(--primary-medium);
+			}
 		}
 	}
 }

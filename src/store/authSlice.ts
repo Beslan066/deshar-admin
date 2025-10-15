@@ -43,7 +43,7 @@ export const setRoleAsync = (newRole: Role) => async (dispatch: any) => {
 		dispatch(setRoleStart())
 
 		// Имитация API вызова
-		await new Promise(resolve => setTimeout(resolve, 1000))
+		// await new Promise(resolve => setTimeout(resolve, 1000))
 
 		// Здесь может быть реальный API вызов
 		// const response = await api.setUserRole(newRole);
