@@ -91,14 +91,14 @@ export const StudentCard = () => {
                 <div className="StudentCard__content">
                     <StudentTable />
                 </div>
-                <div className="StudentCard__footer">
-                    <span>
-                        17 модулей
-                    </span>
-                    <span>
-                        964 баллов
-                    </span>
-                </div>
+            </div>
+            <div className="StudentCard__footer">
+                <span>
+                    17 модулей
+                </span>
+                <span>
+                    964 баллов
+                </span>
             </div>
         </div>
     )
