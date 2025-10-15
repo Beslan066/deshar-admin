@@ -1,15 +1,17 @@
 
 import { flexRender, type Row } from '@tanstack/react-table';
-import { type Student } from './index';
+import { type StudentTableItemType } from './index';
 import './styles.scss';
 import './attestationResults.scss';
 import { useState } from 'react';
+import type { AttestationStatus } from '../../types/types';
 
 interface StudentTableItemProps {
-    row: Row<Student>;
+    row: Row<StudentTableItemType>;
+    status: AttestationStatus;
 }
 
-export const StudentTableItem = ({ row }: StudentTableItemProps) => {
+export const StudentTableItem = ({ row, status }: StudentTableItemProps) => {
     const [isExpired, setIsExpired] = useState(false);
     return (
         <>
@@ -30,7 +32,7 @@ export const StudentTableItem = ({ row }: StudentTableItemProps) => {
                     </button>
                 </td>
             </tr>
-            {isExpired && <tr>
+            {isExpired && (status !== "notCompleted" ? <tr>
                 <td colSpan={8}>
                     <div className='attestationResults__wrapper'>
                         <div className="attestationResults__container">
@@ -150,7 +152,14 @@ export const StudentTableItem = ({ row }: StudentTableItemProps) => {
                         </div>
                     </div>
                 </td>
-            </tr>}
+            </tr> : <tr>
+                <td colSpan={8}>
+
+                    <div className='attestationResults__wrapper attestationResults__wrapper--noData'>
+                        <span>Аттестация еще не пройдена</span>
+                    </div>
+                </td>
+            </tr>)}
         </>
     );
 };

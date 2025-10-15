@@ -1,12 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useReactTable, getCoreRowModel, flexRender, createColumnHelper, type ColumnDef } from '@tanstack/react-table';
-import { ProgressBar } from '../ProgressBar';
-import { StateChip } from '../StateChip';
+
+import { useReactTable, getCoreRowModel, flexRender, type SortingState, getSortedRowModel } from '@tanstack/react-table';
+
 import './styles.scss';
 import { StudentTableItem } from './StudentTableItem';
+import type { AttestationStatus } from '../../types/types';
+import { studentTableMockData } from '../../mocks/data';
+import { getStudentTableColumns } from './columns';
+import { useMemo, useState } from 'react';
 
-// Define the data type
-export type Student = {
+export type StudentTableItemType = {
     id: number;
     module: string;
     doneLessons: number;
@@ -15,218 +17,24 @@ export type Student = {
     learningTime: string;
     mistakes: number;
     points: number;
-    attestationStatus: 'rejected' | 'accepted' | 'checking' | 'notCompleted'; // Adjust based on your StateChip states
+    attestationStatus: AttestationStatus;
 };
 
-// Sample data - replace with your actual data source
-const defaultData: Student[] = [
-    {
-        id: 1,
-        module: 'Алфавит',
-        doneLessons: 10,
-        maxLessons: 10,
-        processLessons: 0,
-        learningTime: '0ч 32м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'rejected',
-    },
-    {
-        id: 2,
-        module: 'Фонетика',
-        doneLessons: 0,
-        maxLessons: 14,
-        processLessons: 7,
-        learningTime: '0ч 24м',
-        mistakes: 0,
-        points: 0,
-        attestationStatus: 'notCompleted',
-    },
-    {
-        id: 3,
-        module: 'Лексикология',
-        doneLessons: 15,
-        maxLessons: 15,
-        processLessons: 0,
-        learningTime: '0ч 26м',
-        mistakes: 0,
-        points: 100,
-        attestationStatus: 'accepted',
-    },
-    {
-        id: 3,
-        module: 'Дошкхоллар',
-        doneLessons: 9,
-        maxLessons: 9,
-        processLessons: 0,
-        learningTime: '0ч 41м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'checking',
-    },
-    {
-        id: 3,
-        module: 'Дошкхоллар',
-        doneLessons: 9,
-        maxLessons: 9,
-        processLessons: 0,
-        learningTime: '0ч 41м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'checking',
-    },
-    {
-        id: 3,
-        module: 'Дошкхоллар',
-        doneLessons: 9,
-        maxLessons: 9,
-        processLessons: 0,
-        learningTime: '0ч 41м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'checking',
-    },
-    {
-        id: 3,
-        module: 'Дошкхоллар',
-        doneLessons: 9,
-        maxLessons: 9,
-        processLessons: 0,
-        learningTime: '0ч 41м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'checking',
-    },
-    {
-        id: 3,
-        module: 'Дошкхоллар',
-        doneLessons: 9,
-        maxLessons: 9,
-        processLessons: 0,
-        learningTime: '0ч 41м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'checking',
-    },
-    {
-        id: 3,
-        module: 'Дошкхоллар',
-        doneLessons: 9,
-        maxLessons: 9,
-        processLessons: 0,
-        learningTime: '0ч 41м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'checking',
-    },
-    {
-        id: 3,
-        module: 'Дошкхоллар',
-        doneLessons: 9,
-        maxLessons: 9,
-        processLessons: 0,
-        learningTime: '0ч 41м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'checking',
-    },
-    {
-        id: 3,
-        module: 'Дошкхоллар',
-        doneLessons: 9,
-        maxLessons: 9,
-        processLessons: 0,
-        learningTime: '0ч 41м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'checking',
-    },
-    {
-        id: 3,
-        module: 'Дошкхоллар',
-        doneLessons: 9,
-        maxLessons: 9,
-        processLessons: 0,
-        learningTime: '0ч 41м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'checking',
-    },
-    {
-        id: 3,
-        module: 'Дошкхоллар',
-        doneLessons: 9,
-        maxLessons: 9,
-        processLessons: 0,
-        learningTime: '0ч 41м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'checking',
-    },
-    {
-        id: 3,
-        module: 'Дошкхоллар',
-        doneLessons: 9,
-        maxLessons: 9,
-        processLessons: 0,
-        learningTime: '0ч 41м',
-        mistakes: 3,
-        points: 97,
-        attestationStatus: 'checking',
-    },
-
-    // Add more student data objects here as needed
-];
-
-const columnHelper = createColumnHelper<Student>();
 
 export const StudentTable = () => {
-    // Define columns
-    const columns: ColumnDef<Student, any>[] = [
-        columnHelper.accessor('id', {
-            header: '#',
-            cell: info => info.getValue(),
-        }),
-        columnHelper.accessor('module', {
-            header: 'Модуль',
-            cell: info => info.getValue(),
-        }),
-        columnHelper.accessor(row => row, {
-            id: 'lessons',
-            header: 'Уроки',
-            cell: info => (
-                <div>
-                    <ProgressBar
-                        doneLessons={info.row.original.doneLessons}
-                        maxLessons={info.row.original.maxLessons}
-                        processLessons={info.row.original.processLessons}
-                    />
-                </div>
-            ),
-        }),
-        columnHelper.accessor('learningTime', {
-            header: 'Время обучения',
-            cell: info => info.getValue(),
-        }),
-        columnHelper.accessor('mistakes', {
-            header: 'Ошибки',
-            cell: info => info.getValue(),
-        }),
-        columnHelper.accessor('points', {
-            header: 'Баллы',
-            cell: info => info.getValue(),
-        }),
-        columnHelper.accessor('attestationStatus', {
-            header: 'Аттестация',
-            cell: info => <div><StateChip state={info.getValue()} /></div>,
-        }),
-    ];
-
+    const columns = useMemo(() => getStudentTableColumns(), []);
+    const [tableData] = useState(studentTableMockData);
+    const [sorting, setSorting] = useState<SortingState>([]);
     // Initialize the table
     const table = useReactTable({
-        data: defaultData,
+        data: tableData,
         columns,
+        state: {
+            sorting,
+        },
+        onSortingChange: setSorting,
         getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel(),
     });
 
     return (
@@ -237,12 +45,33 @@ export const StudentTable = () => {
                         <tr key={headerGroup.id}>
                             {headerGroup.headers.map(header => (
                                 <th key={header.id} className={`StudentTable__head_${header.id}`}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext()
-                                        )}
+                                    {header.isPlaceholder ? null : (
+                                        <div
+                                            {...{
+                                                className: header.column.getCanSort()
+                                                    ? 'cursor-pointer select-none StudentTable__head_inner'
+                                                    : '',
+                                                onClick: header.column.getToggleSortingHandler(),
+                                            }}
+                                        >
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext()
+                                            )}
+                                            {{
+                                                asc: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g transform="rotate(180 10 10)">
+                                                        <path d="M15 10L10 15L5 10" stroke="#7D7979" stroke-width="1.5" />
+                                                        <path d="M10 15L10 5" stroke="#7D7979" stroke-width="1.4" />
+                                                    </g>
+                                                </svg>,
+                                                desc: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M15 10L10 15L5 10" stroke="#7D7979" stroke-width="1.5" />
+                                                    <path d="M10 15L10 5" stroke="#7D7979" stroke-width="1.4" />
+                                                </svg>,
+                                            }[header.column.getIsSorted() as string] ?? null}
+                                        </div>
+                                    )}
                                 </th>
                             ))}
                         </tr>
@@ -250,7 +79,7 @@ export const StudentTable = () => {
                 </thead>
                 <tbody>
                     {table.getRowModel().rows.map(row => (
-                        <StudentTableItem key={row.id} row={row} />
+                        <StudentTableItem key={row.id} row={row} status={row.original.attestationStatus} />
                     ))}
 
                 </tbody>

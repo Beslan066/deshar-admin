@@ -1,3 +1,5 @@
+import type { StudentTableItemType } from '../components/StudentTable'
+
 export const barChartMockData = [
 	{ date: new Date(2023, 9, 1), value: 150 },
 	{ date: new Date(2023, 9, 2), value: 85 },
@@ -31,7 +33,7 @@ export const barChartMockData = [
 	{ date: new Date(2023, 9, 16), value: 110 },
 	{ date: new Date(2023, 9, 17), value: 110 },
 ]
-export const TEST_CLASSMATES= [
+export const TEST_CLASSMATES = [
 	{
 		id: 99,
 		type: 'classmates',
@@ -165,7 +167,7 @@ export const TEST_CLASSMATES= [
 	},
 ]
 
-export const TEST_PARALLEL= [
+export const TEST_PARALLEL = [
 	{
 		id: 1,
 		type: 'parallel',
@@ -206,4 +208,63 @@ export const TEST_PARALLEL= [
 		points: 100,
 		time: 105,
 	},
+]
+export const studentTableMockData: StudentTableItemType[] = [
+	{
+		id: 1,
+		module: 'Алфавит',
+		doneLessons: 10,
+		maxLessons: 10,
+		processLessons: 0,
+		learningTime: '0ч 32м',
+		mistakes: 3,
+		points: 97,
+		attestationStatus: 'rejected',
+	},
+	{
+		id: 2,
+		module: 'Фонетика',
+		doneLessons: 0,
+		maxLessons: 14,
+		processLessons: 7,
+		learningTime: '0ч 24м',
+		mistakes: 0,
+		points: 0,
+		attestationStatus: 'notCompleted',
+	},
+	{
+		id: 3,
+		module: 'Лексикология',
+		doneLessons: 15,
+		maxLessons: 15,
+		processLessons: 0,
+		learningTime: '0ч 26м',
+		mistakes: 0,
+		points: 100,
+		attestationStatus: 'accepted',
+	},
+	{
+		id: 3,
+		module: 'Дошкхоллар',
+		doneLessons: 9,
+		maxLessons: 9,
+		processLessons: 0,
+		learningTime: '0ч 41м',
+		mistakes: 3,
+		points: 97,
+		attestationStatus: 'checking',
+	},
+	{
+		id: 3,
+		module: 'Дошкхоллар',
+		doneLessons: 9,
+		maxLessons: 9,
+		processLessons: 0,
+		learningTime: '0ч 41м',
+		mistakes: 3,
+		points: 97,
+		attestationStatus: 'checking',
+	},
+
+	// Add more student data objects here as needed
 ]

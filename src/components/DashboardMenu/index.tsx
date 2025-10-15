@@ -46,7 +46,6 @@ export const DashboardMenu = () => {
                         <circle cx="10" cy="16" r="2" fill="#7D7979" />
                         <circle cx="5" cy="16" r="2" fill="#7D7979" />
                         <rect x="2.75" y="2.75" width="14.5" height="8.5" rx="3.25" stroke="#7D7979" stroke-width="1.5" />
-                        <path d="M7.5 7.5L9 9L13 5" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>}>
                         <div>
                             test
