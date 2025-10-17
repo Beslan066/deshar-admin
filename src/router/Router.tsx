@@ -5,6 +5,7 @@ import { Main } from "../pages/Main/Main";
 import { Class } from "../pages/Class/Class";
 import { StudentPage } from "../pages/Student/Student";
 import { Attestations } from "../pages/Attestations/Attestations";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
     {
@@ -29,7 +30,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/attestations',
-                element: <Attestations />
+                element: <ProtectedRoute allowedRoles={["vicePrincipal"]} fallbackPath="/sign-in">
+                    <Attestations />
+                </ProtectedRoute>
             }
         ]
     },
