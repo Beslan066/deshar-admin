@@ -11,7 +11,7 @@ export const DashboardMenu = () => {
         <div className="DashboardMenu__inner">
             <div className="DashboardMenu__top">
                 <div className="DashboardMenu__logo_wrapper">
-                    <Logo className="DashboardMenu__logo" />
+                    <Logo className="DashboardMenu__logo" href='/' />
                 </div>
                 <div className="DashboardMenu__content">
 
