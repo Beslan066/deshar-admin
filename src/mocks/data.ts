@@ -272,6 +272,16 @@ export const mockAttestationData: AttestationsTableItemType[] = [
 	},
 	{
 		id: 2,
+		date: new Date('2024-02-15'),
+		studentName: 'Иванов Алексей Петрович',
+		subjectName: 'Математика',
+		module: 'Алгебра и начала анализа',
+		mistakes: 2,
+		points: 88,
+		attestationStatus: 'accepted',
+	},
+	{
+		id: 2,
 		date: new Date('2024-01-16'),
 		studentName: 'Петрова Мария Сергеевна',
 		subjectName: 'Русский язык',

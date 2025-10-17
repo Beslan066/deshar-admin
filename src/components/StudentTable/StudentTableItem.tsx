@@ -100,7 +100,68 @@ const AttestationResultsTable = () => {
     );
 };
 
+const AttestationResultsHeader = () => {
+    return <div className='AttestationResultsHeader'>
+        <div className="AttestationResultsHeader__inner">
+            <div className="AttestationResultsHeader__col">
+                <div className="AttestationResultsHeader__item">
+                    <span className="AttestationResultsHeader__item_title">
+                        Ученик
+                    </span>
+                    <span className='AttestationResultsHeader__item_content'>
+                        Евлоев Мурат
+                    </span>
+                </div>
+                <div className="AttestationResultsHeader__item">
+                    <span className="AttestationResultsHeader__item_title">
+                        Время аттестации
+                    </span>
+                    <time className='AttestationResultsHeader__item_content AttestationResultsHeader__item_content--time' dateTime='24.04.25 16:35'>
+                        24.04.25 16:35
+                    </time>
+                </div>
+            </div>
+            <div className="AttestationResultsHeader__col">
+                <div className="AttestationResultsHeader__item">
+                    <span className="AttestationResultsHeader__item_title">
+                        Класс
+                    </span>
+                    <span className='AttestationResultsHeader__item_content'>
+                        5 "A"
+                    </span>
+                </div>
+                <div className="AttestationResultsHeader__item">
+                    <span className="AttestationResultsHeader__item_title">
+                        Ошибки
+                    </span>
+                    <span className='AttestationResultsHeader__item_content'>
+                        4
+                    </span>
+                </div>
 
+            </div>
+            <div className="AttestationResultsHeader__col">
+                <div className="AttestationResultsHeader__item">
+                    <span className="AttestationResultsHeader__item_title">
+                        Учитель
+                    </span>
+                    <span className='AttestationResultsHeader__item_content'>
+                        Инаркиева Зарема
+                    </span>
+                </div>
+                <div className="AttestationResultsHeader__item">
+                    <span className="AttestationResultsHeader__item_title">
+                        Общий балл
+                    </span>
+                    <span className='AttestationResultsHeader__item_content'>
+                        96
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
 const AttestationResultsFooter = ({ status }: { status: AttestationResultsFooterStatus }) => {
     const { hasRole } = useRole();
     const canManageAttestation = hasRole(ROLE_TYPES);
@@ -147,12 +208,11 @@ const AttestationResultsFooter = ({ status }: { status: AttestationResultsFooter
     );
 };
 
-
 export const StudentTableItem = <TData,>({ row, status }: StudentTableItemProps<TData>) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleExpanded = () => setIsExpanded(prev => !prev);
-
+    const { hasRole } = useRole();
     const renderExpandedContent = () => {
         if (status === "notCompleted") {
             return (
@@ -170,6 +230,7 @@ export const StudentTableItem = <TData,>({ row, status }: StudentTableItemProps<
             <tr>
                 <td colSpan={8}>
                     <div className='attestationResults__wrapper'>
+                        {hasRole("vicePrincipal") && <AttestationResultsHeader />}
                         <div className="attestationResults__container">
                             <AttestationResultsTable />
                         </div>
