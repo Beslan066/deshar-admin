@@ -1,3 +1,4 @@
+import type { AttestationsTableItemType } from '../components/AttestationTable/columns'
 import type { StudentTableItemType } from '../components/StudentTable'
 
 export const barChartMockData = [
@@ -256,4 +257,107 @@ export const studentTableMockData: StudentTableItemType[] = [
 	},
 
 	// Add more student data objects here as needed
+]
+
+export const mockAttestationData: AttestationsTableItemType[] = [
+	{
+		id: 1,
+		date: new Date('2024-01-15'),
+		studentName: 'Иванов Алексей Петрович',
+		subjectName: 'Математика',
+		module: 'Алгебра и начала анализа',
+		mistakes: 2,
+		points: 88,
+		attestationStatus: 'accepted',
+	},
+	{
+		id: 2,
+		date: new Date('2024-01-16'),
+		studentName: 'Петрова Мария Сергеевна',
+		subjectName: 'Русский язык',
+		module: 'Синтаксис и пунктуация',
+		mistakes: 5,
+		points: 75,
+		attestationStatus: 'accepted',
+	},
+	{
+		id: 3,
+		date: new Date('2024-01-17'),
+		studentName: 'Сидоров Дмитрий Иванович',
+		subjectName: 'Физика',
+		module: 'Механика',
+		mistakes: 8,
+		points: 62,
+		attestationStatus: 'rejected',
+	},
+	{
+		id: 4,
+		date: new Date('2024-01-18'),
+		studentName: 'Козлова Анна Владимировна',
+		subjectName: 'Химия',
+		module: 'Органическая химия',
+		mistakes: 1,
+		points: 95,
+		attestationStatus: 'accepted',
+	},
+	{
+		id: 5,
+		date: new Date('2024-01-19'),
+		studentName: 'Федоров Сергей Николаевич',
+		subjectName: 'Биология',
+		module: 'Ботаника',
+		mistakes: 0,
+		points: 100,
+		attestationStatus: 'checking',
+	},
+	{
+		id: 6,
+		date: new Date('2024-01-20'),
+		studentName: 'Николаева Екатерина Олеговна',
+		subjectName: 'История',
+		module: 'Древний мир',
+		mistakes: 12,
+		points: 48,
+		attestationStatus: 'rejected',
+	},
+	{
+		id: 7,
+		date: new Date('2024-01-21'),
+		studentName: 'Васильев Павел Андреевич',
+		subjectName: 'География',
+		module: 'Физическая география России',
+		mistakes: 3,
+		points: 85,
+		attestationStatus: 'checking',
+	},
+	{
+		id: 8,
+		date: new Date('2024-01-22'),
+		studentName: 'Алексеева Ольга Дмитриевна',
+		subjectName: 'Литература',
+		module: 'Русская литература XIX века',
+		mistakes: 6,
+		points: 74,
+		attestationStatus: 'accepted',
+	},
+	{
+		id: 9,
+		date: new Date('2024-01-23'),
+		studentName: 'Григорьев Иван Петрович',
+		subjectName: 'Английский язык',
+		module: 'Грамматика времен',
+		mistakes: 15,
+		points: 35,
+		attestationStatus: 'notCompleted',
+	},
+	{
+		id: 10,
+		date: new Date('2024-01-24'),
+		studentName: 'Дмитриева Светлана Викторовна',
+		subjectName: 'Информатика',
+		module: 'Основы программирования',
+		mistakes: 4,
+		points: 82,
+		attestationStatus: 'accepted',
+	},
 ]

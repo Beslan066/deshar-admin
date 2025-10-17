@@ -2,7 +2,7 @@ import { createColumnHelper, type Column } from '@tanstack/react-table'
 import { type Student } from '../../types/types'
 import { minutesToHoursAndMinutes } from '../../shared/utils'
 import cn from 'classnames'
-import { SortableHeader } from './sortableHeader'
+import { SortableHeader } from '../SortableHeader/sortableHeader'
 
 const columnHelper = createColumnHelper<Student>()
 

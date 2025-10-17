@@ -1,5 +1,5 @@
 import { flexRender, type Row } from '@tanstack/react-table';
-import { type StudentTableItemType } from './index';
+
 import './styles.scss';
 import './attestationResults.scss';
 import { useState, useMemo } from 'react';
@@ -8,8 +8,8 @@ import { Button } from '../../shared/ui/Button';
 import useRole from '../../shared/hooks/useRole';
 import type { Role } from '../../types/auth';
 
-interface StudentTableItemProps {
-    row: Row<StudentTableItemType>;
+interface StudentTableItemProps<TData> {
+    row: Row<TData>;
     status: AttestationStatus;
 }
 const ROLE_TYPES: Role[] = ["vicePrincipal", "department", "ministry"];
@@ -148,7 +148,7 @@ const AttestationResultsFooter = ({ status }: { status: AttestationResultsFooter
 };
 
 
-export const StudentTableItem = ({ row, status }: StudentTableItemProps) => {
+export const StudentTableItem = <TData,>({ row, status }: StudentTableItemProps<TData>) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleExpanded = () => setIsExpanded(prev => !prev);

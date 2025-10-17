@@ -1,55 +1,58 @@
-
-import { useReactTable, getCoreRowModel, flexRender, type SortingState, getSortedRowModel } from '@tanstack/react-table';
-
+import { useMemo, useState } from 'react'
+import {
+    useReactTable,
+    getCoreRowModel,
+    flexRender,
+    getSortedRowModel,
+    type SortingState
+} from '@tanstack/react-table'
+import { getColumns, type AttestationsTableItemType } from './columns'
 import './styles.scss';
-import { StudentTableItem } from './StudentTableItem';
-import type { AttestationStatus } from '../../types/types';
-import { studentTableMockData } from '../../mocks/data';
-import { getStudentTableColumns } from './columns';
-import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { StudentTableItem } from '../StudentTable/StudentTableItem';
+interface AttestationsTableProps {
+    data: AttestationsTableItemType[];
+}
+export const AttestationsTable = ({ data }: AttestationsTableProps) => {
+    const columns = useMemo(() => getColumns(), [])
+    const [tableData] = useState<AttestationsTableItemType[]>(data)
+    const navigate = useNavigate();
+    // const { classId } = useParams();
+    // Состояние для сортировки
+    const [sorting, setSorting] = useState<SortingState>([])
 
-export type StudentTableItemType = {
-    id: number;
-    module: string;
-    doneLessons: number;
-    maxLessons: number;
-    processLessons: number;
-    learningTime: string;
-    mistakes: number;
-    points: number;
-    attestationStatus: AttestationStatus;
-};
-
-
-export const StudentTable = () => {
-    const columns = useMemo(() => getStudentTableColumns(), []);
-    const [tableData] = useState(studentTableMockData);
-    const [sorting, setSorting] = useState<SortingState>([]);
-    // Initialize the table
     const table = useReactTable({
         data: tableData,
         columns,
         state: {
-            sorting,
+            sorting, // Передаем состояние сортировки
         },
-        onSortingChange: setSorting,
+        onSortingChange: setSorting, // Функция для обновления сортировки
         getCoreRowModel: getCoreRowModel(),
-        getSortedRowModel: getSortedRowModel(),
-    });
-
+        getSortedRowModel: getSortedRowModel(), // Модель для сортировки
+    })
+    const redirectOnStudentItemClick = (id: number) => {
+        console.log(id);
+        navigate(`student/${id}`)
+    }
     return (
-        <div className="StudentTable__container">
-            <table className="StudentTable">
-                <thead className="StudentTable__head">
+        <div className="AttestationsTable__scroll-container">
+
+            <table className="AttestationsTable">
+                <thead>
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id}>
+                        <tr key={headerGroup.id} className="AttestationsTable__tr">
                             {headerGroup.headers.map(header => (
-                                <th key={header.id} className={`StudentTable__head_${header.id}`}>
+                                <th
+                                    key={header.id}
+                                    className='AttestationsTable__th'
+                                    colSpan={header.colSpan}
+                                >
                                     {header.isPlaceholder ? null : (
                                         <div
                                             {...{
                                                 className: header.column.getCanSort()
-                                                    ? 'cursor-pointer select-none StudentTable__head_inner'
+                                                    ? 'cursor-pointer select-none'
                                                     : '',
                                                 onClick: header.column.getToggleSortingHandler(),
                                             }}
@@ -77,34 +80,13 @@ export const StudentTable = () => {
                         </tr>
                     ))}
                 </thead>
+
                 <tbody>
                     {table.getRowModel().rows.map(row => (
-                        <StudentTableItem<StudentTableItemType> key={row.id} row={row} status={row.original.attestationStatus} />
+                        <StudentTableItem<AttestationsTableItemType> key={row.id} row={row} status={row.original.attestationStatus} />
                     ))}
-
                 </tbody>
             </table>
         </div>
-    );
-};
-
-{/* <table className='StudentTableItem__attestationTable AttestationTable'>
-<thead className="AttestationTable__head">
-    <tr>
-        <th>Задание</th>
-        <th>Время (мм:сс)</th>
-        <th>Ошибки</th>
-        <th>Баллы</th>
-    </tr>
-</thead>
-<tbody className='AttestationTable__body'>
-    <tr className='AttestationTable__item'>
-        <th>
-            1
-        </th>
-        <th>0:21</th>
-        <th>0</th>
-        <th>11</th>
-    </tr>
-</tbody>
-</table> */}
+    )
+}

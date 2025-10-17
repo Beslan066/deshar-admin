@@ -1,8 +1,8 @@
-import { createColumnHelper} from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 import type { StudentTableItemType } from ".";
 import { ProgressBar } from "../ProgressBar";
 import { StateChip } from "../StateChip";
-import { SortableHeader } from "../ClassTable/sortableHeader";
+import { SortableHeader } from "../SortableHeader/sortableHeader";
 const columnHelper = createColumnHelper<StudentTableItemType>();
 
 // Define columns

@@ -18,8 +18,12 @@
 		}
 	}
 	svg {
-		stroke: var(--neutral-medium);
-		fill: var(--neutral-medium);
+		rect {
+			stroke: var(--neutral-medium);
+		}
+		path {
+			stroke: var(--neutral-medium);
+		}
 	}
 	&:hover {
 		background: var(--neutral-light);
@@ -28,8 +32,13 @@
 				color: var(--neutral-darkest);
 			}
 			svg {
-				stroke: var(--neutral-darkest);
-				fill: var(--neutral-darkest);
+				rect {
+					stroke: var(--neutral-darkest);
+					fill: var(--neutral-darkest);
+				}
+				path {
+					stroke: var(--neutral-darkest);
+				}
 			}
 		}
 	}
@@ -42,8 +51,12 @@
 			}
 		}
 		svg {
-			stroke: var(--neutral-darkest);
-			fill: var(--neutral-darkest);
+			rect {
+				stroke: var(--neutral-darkest);
+			}
+			path {
+				fill: var(--neutral-darkest);
+			}
 		}
 	}
 }

@@ -4,11 +4,11 @@ import type { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import { Badge } from '../../shared/ui/Badge';
 const DefaultIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <rect x="3" y="3" width="5" height="5" rx="2" stroke-width="2" />
-        <rect x="3" y="12" width="5" height="5" rx="2" stroke-width="2" />
-        <rect x="12" y="3" width="5" height="5" rx="2" stroke-width="2" />
-        <rect x="12" y="12" width="5" height="5" rx="2" stroke-width="2" />
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2.75" y="2.75" width="5.5" height="5.5" rx="2.25" stroke-width="1.5" />
+        <rect x="2.75" y="11.75" width="5.5" height="5.5" rx="2.25" stroke-width="1.5" />
+        <rect x="11.75" y="2.75" width="5.5" height="5.5" rx="2.25" stroke-width="1.5" />
+        <rect x="11.75" y="11.75" width="5.5" height="5.5" rx="2.25" stroke-width="1.5" />
     </svg>
 )
 export const DashboardMenuItem = ({
