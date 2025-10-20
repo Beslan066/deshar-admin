@@ -3,7 +3,7 @@ import cn from 'classnames'
 import './styles.scss'
 
 interface TabsProps {
-    tabs: { id: number; name: string }[]
+    tabs: { id: number; title: string }[]
     activeTab: number
     handleTab: (id: number) => void
     maxWidth?: boolean
@@ -20,7 +20,7 @@ export const Tabs = ({ tabs, activeTab, handleTab, maxWidth }: TabsProps) => {
                     aria-selected={tab.id === activeTab}
                     aria-controls={`tabpanel-${tab.id}`}
                     tabIndex={tab.id === activeTab ? -1 : 0}>
-                    <span>{tab.name}</span>
+                    <span>{tab.title}</span>
                 </button>
             ))}
         </div>
