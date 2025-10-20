@@ -6,6 +6,7 @@ export type Student = {
 	doneModules: number
 	points: number
 	parallelClass?: string
+	class: string
 }
 
 export type StudentTableProps = {

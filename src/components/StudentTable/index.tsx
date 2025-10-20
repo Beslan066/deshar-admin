@@ -4,7 +4,6 @@ import { useReactTable, getCoreRowModel, flexRender, type SortingState, getSorte
 import './styles.scss';
 import { StudentTableItem } from './StudentTableItem';
 import type { AttestationStatus } from '../../types/types';
-import { studentTableMockData } from '../../mocks/data';
 import { getStudentTableColumns } from './columns';
 import { useMemo, useState } from 'react';
 
@@ -21,9 +20,9 @@ export type StudentTableItemType = {
 };
 
 
-export const StudentTable = () => {
+export const StudentTable = ({ data }: { data: StudentTableItemType[] }) => {
     const columns = useMemo(() => getStudentTableColumns(), []);
-    const [tableData] = useState(studentTableMockData);
+    const [tableData] = useState(data);
     const [sorting, setSorting] = useState<SortingState>([]);
     // Initialize the table
     const table = useReactTable({

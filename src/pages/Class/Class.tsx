@@ -3,7 +3,7 @@ import './styles.scss';
 import { Card } from '../../components/Card';
 import { useState } from 'react';
 import { ClassTable } from '../../components/ClassTable';
-import { TEST_CLASSMATES } from '../../mocks/data';
+import { TEST_CLASSMATES, TEST_FLOW } from '../../mocks/data';
 
 const TABS = [
     { id: 0, title: 'Успеваемость класса' },
@@ -17,6 +17,7 @@ export const Class = () => {
     const [modulesTo, setModulesTo] = useState<string>('')
     const [pointsFrom, setPointsFrom] = useState<string>('')
     const [pointsTo, setPointsTo] = useState<string>('');
+    const [activeTab, setActiveTab] = useState(0)
     const resetFilters = () => {
         setTimeFrom('');
         setTimeTo('');
@@ -57,8 +58,12 @@ export const Class = () => {
                 tabs={TABS}
                 key={"testCard123"}
                 valueFirst='28 чуваков'
-                valueSecond='1 384 баллов'>
-                <ClassTable data={TEST_CLASSMATES} type='classmates' />
+                valueSecond='1 384 баллов'
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+                parallel={true}
+            >
+                {activeTab === 0 ? <ClassTable data={TEST_CLASSMATES} type='classmates' /> : <ClassTable data={TEST_FLOW} type='parallel' />}
             </Card>
         </main>
     )
