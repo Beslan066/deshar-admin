@@ -20,20 +20,22 @@
 		}
 
 		&::-webkit-scrollbar-track {
-			background: transparent;
+			width: 100%;
+			background: var(--neutral-lightest);
+			margin: 16px 0;
+			cursor: pointer;
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background: #7d7979;
 			border-radius: 2px;
+			width: 100%;
+			background: var(--neutral-medium);
 
 			&:hover {
 				background: #5a5757;
 			}
 		}
 
-		scrollbar-width: initial;
-		scrollbar-color: #7d7979 transparent;
 	}
 	&__header {
 		&_top {

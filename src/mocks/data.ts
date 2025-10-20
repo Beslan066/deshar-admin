@@ -300,3 +300,74 @@ export const mockAttestationData: AttestationsTableItemType[] = [
 		attestationStatus: 'accepted',
 	},
 ]
+
+export const teacherMyClasses = [
+	{
+		id: 1,
+		title: '5 “А”',
+		classLevel: 5,
+		classLetter: 'А',
+	},
+	{
+		id: 2,
+		title: '5 “В”',
+		classLevel: 5,
+		classLetter: 'В',
+	},
+	{
+		id: 3,
+		title: '6 “В”',
+		classLevel: 6,
+		classLetter: 'В',
+	},
+	{
+		id: 4,
+		title: '6 “Д”',
+		classLevel: 6,
+		classLetter: 'Д',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+]
+export const teacherParallelClasses = [
+	{
+		id: 21,
+		title: '5 “Б”',
+		classLevel: 5,
+		classLetter: 'Б',
+	},
+	{
+		id: 22,
+		title: '5 “Г”',
+		classLevel: 5,
+		classLetter: 'Г',
+	},
+	{
+		id: 23,
+		title: '5 “Д”',
+		classLevel: 5,
+		classLetter: 'Д',
+	},
+	{
+		id: 24,
+		title: '6 “А”',
+		classLevel: 6,
+		classLetter: 'А',
+	},
+	{
+		id: 25,
+		title: '6 “Б”',
+		classLevel: 6,
+		classLetter: 'Б',
+	},
+	{
+		id: 26,
+		title: '6 “Г”',
+		classLevel: 6,
+		classLetter: 'Г',
+	},
+]
