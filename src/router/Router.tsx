@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/attestations',
-                element: <ProtectedRoute allowedRoles={["vicePrincipal"]} fallbackPath="/sign-in">
+                element: <ProtectedRoute allowedRoles={["vicePrincipal", "admin"]} fallbackPath="/sign-in">
                     <Attestations />
                 </ProtectedRoute>
             }

@@ -22,7 +22,7 @@ const testOptionsVicePrincipal = [
 ]
 export const Main = () => {
     const { hasRole } = useRole();
-    const options = hasRole("teacher") ? testOptionsTeacher : testOptionsVicePrincipal;
+    const options = hasRole(["teacher"]) ? testOptionsTeacher : testOptionsVicePrincipal;
     return (
         <main className="Main">
             <div className="Main__inner">

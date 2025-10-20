@@ -10,6 +10,7 @@ const TABS = [
     { id: 2, title: 'Литература' }
 ]
 export const StudentPage = () => {
+    const [activeTab, setActiveTab] = useState(0);
     const [timeFrom, setTimeFrom] = useState<string>('')
     const [timeTo, setTimeTo] = useState<string>('')
 
@@ -56,7 +57,10 @@ export const StudentPage = () => {
                 key={"testCard123"}
                 valueFirst='28 чуваков'
                 valueSecond='1 384 баллов'
-                type="student">
+                type="student"
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+            >
                 <StudentTable data={studentTableMockData} />
             </Card>
         </main>

@@ -17,7 +17,7 @@ export const DashboardMenu = () => {
                     </div>
                     <div className="DashboardMenu__content">
                         <DashboardMenuItem title="Статистика" href="/" />
-                        {hasRole(['vicePrincipal', 'department', 'ministry']) && (
+                        {hasRole(['vicePrincipal', 'department', 'ministry', 'admin']) && (
                             <DashboardMenuItem
                                 title="Аттестации"
                                 href="/attestations"
@@ -93,7 +93,7 @@ export const DashboardMenu = () => {
                                 ))}
                             </ul>
                         </MenuAccordion>
-                        {hasRole('teacher') && (
+                        {hasRole(['teacher', 'admin']) && (
                             <MenuAccordion
                                 title="Параллели"
                                 icon={

@@ -4,12 +4,14 @@ import { AttestationsTable } from "../../components/AttestationTable"
 import { Card } from "../../components/Card"
 import { mockAttestationData } from "../../mocks/data"
 const TABS = [
-    { id: 0, title: 'Успеваемость класса' },
-    { id: 1, title: 'Успеваемость потока' },
+    { id: 0, title: 'На проверку' },
+    { id: 1, title: 'Принятые' },
+    { id: 2, title: 'Отклоненные' },
 ]
 export const Attestations = () => {
     const [timeFrom, setTimeFrom] = useState<string>('')
     const [timeTo, setTimeTo] = useState<string>('')
+    const [activeTab, setActiveTab] = useState(0);
 
     const [modulesFrom, setModulesFrom] = useState<string>('')
     const [modulesTo, setModulesTo] = useState<string>('')
@@ -49,11 +51,15 @@ export const Attestations = () => {
             }
             ]}
             resetFilters={resetFilters}
-            classTitle='Класс 5 “А”'
+            classTitle='Аттестации учеников'
             tabs={TABS}
             key={"testCard123"}
-            valueFirst='28 чуваков'
-            valueSecond='1 384 баллов'>
+            valueFirst='147 аттестаций'
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+
+        >
+
             <AttestationsTable data={mockAttestationData} />
         </Card>
     </main>

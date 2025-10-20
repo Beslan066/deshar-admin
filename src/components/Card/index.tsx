@@ -23,11 +23,11 @@ interface CardProps {
     tabs?: Tab[]
     filters?: FilterType[]
     resetFilters: () => void
-    valueFirst: string;
-    valueSecond: string;
+    valueFirst?: string;
+    valueSecond?: string;
     children: ReactNode;
     type?: "student" | string;
-    parallel?: boolean;
+    isParallel?: boolean;
     activeTab: number;
     setActiveTab: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -40,26 +40,24 @@ const FilterIcon = () => (
         <circle cx="17" cy="17" r="3" transform="rotate(180 17 17)" stroke="#303030" strokeWidth="2" />
     </svg>
 )
-
 export const Card = ({
     classTitle = 'Название класса',
     resetFilters,
     filters = [],
     tabs = [],
-    valueFirst = "28 учеников",
-    valueSecond = "1 384 баллов",
+    valueFirst,
+    valueSecond,
     children,
     type,
     activeTab,
     setActiveTab,
-    parallel
+    isParallel
 }: CardProps) => {
     const [showFilters, setShowFilters] = useState(false)
     const { hasRole } = useRole()
-
     const hasFilters = filters.length > 0
     const shouldShowFilters = showFilters && hasFilters
-
+    console.log("isParallel:", isParallel);
     return (
         <div className="Card">
             <div className="Card__inner">
@@ -73,7 +71,7 @@ export const Card = ({
                             </button>}
                             <h2 className="Card__title">{classTitle}</h2>
                         </div>
-                        {hasRole(["vicePrincipal", "department", "ministry"]) || parallel && (
+                        {hasRole(["vicePrincipal", "department", "ministry", "admin"]) || isParallel && (
                             <TeacherItem name="Татриева Зарема" />
                         )}
                     </div>

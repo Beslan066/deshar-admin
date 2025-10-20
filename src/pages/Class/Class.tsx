@@ -4,12 +4,16 @@ import { Card } from '../../components/Card';
 import { useState } from 'react';
 import { ClassTable } from '../../components/ClassTable';
 import { TEST_CLASSMATES, TEST_FLOW } from '../../mocks/data';
+import { useParams } from 'react-router-dom';
 
 const TABS = [
     { id: 0, title: 'Успеваемость класса' },
     { id: 1, title: 'Успеваемость потока' },
 ]
+const myClassesIDs = [1, 2, 3, 4, 5];
 export const Class = () => {
+    const params = useParams<{ classId: string }>();
+    console.log(params);
     const [timeFrom, setTimeFrom] = useState<string>('')
     const [timeTo, setTimeTo] = useState<string>('')
 
@@ -26,7 +30,7 @@ export const Class = () => {
         setPointsFrom('');
         setPointsTo('');
     }
-
+    const isParallel = params.classId ? !myClassesIDs.includes(+params.classId) : true;
     return (
         <main className="ClassPage">
             {/* <ClassCardClass /> */}
@@ -61,7 +65,7 @@ export const Class = () => {
                 valueSecond='1 384 баллов'
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
-                parallel={true}
+                isParallel={isParallel}
             >
                 {activeTab === 0 ? <ClassTable data={TEST_CLASSMATES} type='classmates' /> : <ClassTable data={TEST_FLOW} type='parallel' />}
             </Card>

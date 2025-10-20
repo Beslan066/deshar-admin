@@ -12,7 +12,7 @@ interface StudentTableItemProps<TData> {
     row: Row<TData>;
     status: AttestationStatus;
 }
-const ROLE_TYPES: Role[] = ["vicePrincipal", "department", "ministry"];
+const ROLE_TYPES: Role[] = ["vicePrincipal", "department", "ministry", "admin"];
 const STATUS_CONFIG = {
     "checking": {
         text: 'Аттестация ожидает принятия',
@@ -230,7 +230,7 @@ export const StudentTableItem = <TData,>({ row, status }: StudentTableItemProps<
             <tr>
                 <td colSpan={8}>
                     <div className='attestationResults__wrapper'>
-                        {hasRole("vicePrincipal") && <AttestationResultsHeader />}
+                        {hasRole(["vicePrincipal", "admin"]) && <AttestationResultsHeader />}
                         <div className="attestationResults__container">
                             <AttestationResultsTable />
                         </div>
