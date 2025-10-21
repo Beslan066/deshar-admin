@@ -32,7 +32,7 @@ export const getColumns = (type: 'parallel' | 'classmates') => [
       header: ({ column }: { column: Column<Student, string> }) => <SortableHeader<Student, string> title="Класс" column={column} />,
       enableSorting: true,
       sortingFn: 'alphanumeric',
-      cell: info => <span title={info.getValue()} className='tableItem__name'>{info.getValue() || '—'}</span>
+      cell: info => <span title={info.getValue()} className='tableItem__class'>{info.getValue() || '—'}</span>
     })]
     : []),
   columnHelper.accessor('name', {
@@ -46,7 +46,7 @@ export const getColumns = (type: 'parallel' | 'classmates') => [
     header: ({ column }) => <SortableHeader title="Затрачено времени" column={column} />,
     enableSorting: true,
     sortingFn: 'basic',
-    cell: info => <span title={minutesToHoursAndMinutes(info.getValue())} className='tableItem__name'>{minutesToHoursAndMinutes(info.getValue())}</span>
+    cell: info => <span title={minutesToHoursAndMinutes(info.getValue())} className='tableItem__time'>{minutesToHoursAndMinutes(info.getValue())}</span>
   }),
   columnHelper.accessor('doneModules', {
     header: ({ column }) => <SortableHeader title="Выполнено модулей" column={column} />,

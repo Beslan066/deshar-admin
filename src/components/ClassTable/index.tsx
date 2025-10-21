@@ -6,20 +6,20 @@ import {
     getSortedRowModel,
     type SortingState
 } from '@tanstack/react-table'
-import type { StudentTableProps, Student } from '../../types/types'
+import type { StudentTableProps } from '../../types/types'
 import { getColumns } from './columns'
 import './styles.scss';
 import { useNavigate } from 'react-router-dom';
+import { teacherMyClasses } from '../../mocks/data';
 export const ClassTable = ({ data, type }: StudentTableProps) => {
     const columns = useMemo(() => getColumns(type), [type])
-    const [tableData] = useState<Student[]>(data)
     const navigate = useNavigate();
     // const { classId } = useParams();
     // Состояние для сортировки
     const [sorting, setSorting] = useState<SortingState>([])
 
     const table = useReactTable({
-        data: tableData,
+        data: data,
         columns,
         state: {
             sorting, // Передаем состояние сортировки
@@ -27,6 +27,7 @@ export const ClassTable = ({ data, type }: StudentTableProps) => {
         onSortingChange: setSorting, // Функция для обновления сортировки
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(), // Модель для сортировки
+
     })
     const redirectOnStudentItemClick = (id: number) => {
         console.log(id);
@@ -80,7 +81,7 @@ export const ClassTable = ({ data, type }: StudentTableProps) => {
 
                 <tbody>
                     {table.getRowModel().rows.map(row => (
-                        <tr key={row.id} className="tableItem" onClick={() => redirectOnStudentItemClick(row.original.id)}>
+                        <tr key={row.id} className={`tableItem ${teacherMyClasses.find(item => item.title === row.original.class) ? "tableItem--myStudent" : ""}`} onClick={() => redirectOnStudentItemClick(row.original.id)}>
                             {row.getVisibleCells().map(cell => (
                                 <td key={cell.id}>
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
