@@ -25,6 +25,7 @@ export const Attestations = () => {
         setPointsFrom('');
         setPointsTo('');
     }
+    const data = activeTab === 0 ? mockAttestationData.checking : activeTab === 1 ? mockAttestationData.accepted : mockAttestationData.rejected;
     return <main className="AttestationPage">
 
         <Card
@@ -60,7 +61,7 @@ export const Attestations = () => {
 
         >
 
-            <AttestationsTable data={mockAttestationData} />
+            <AttestationsTable data={data} />
         </Card>
     </main>
 }

@@ -15,14 +15,13 @@ interface AttestationsTableProps {
 }
 export const AttestationsTable = ({ data }: AttestationsTableProps) => {
     const columns = useMemo(() => getColumns(), [])
-    const [tableData] = useState<AttestationsTableItemType[]>(data)
     const navigate = useNavigate();
     // const { classId } = useParams();
     // Состояние для сортировки
     const [sorting, setSorting] = useState<SortingState>([])
 
     const table = useReactTable({
-        data: tableData,
+        data: data,
         columns,
         state: {
             sorting, // Передаем состояние сортировки
