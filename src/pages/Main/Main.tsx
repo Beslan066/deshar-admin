@@ -1,6 +1,7 @@
 import { ClassCardMain } from "../../components/ClassCardMain";
 import { MainChart } from "../../components/MainChart"
 import { ResultsCard } from "../../components/ResultsCard"
+import { StatisticsBlock } from "../../components/StatisticsBlock";
 import useRole from "../../shared/hooks/useRole";
 import { Selector } from "../../shared/ui/Selector"
 
@@ -29,6 +30,9 @@ export const Main = () => {
                 <div className="Main__head">
                     <h1 className="Main__title">Общая статистика</h1>
                     <Selector className="Main__selector" options={options} />
+                </div>
+                <div className="Main__statistic_cards">
+                    <StatisticsBlock />
                 </div>
                 <MainChart />
                 <div className="Main__result_cards">
