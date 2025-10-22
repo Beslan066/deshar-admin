@@ -17,7 +17,52 @@ export const DashboardMenu = () => {
                     </div>
                     <div className="DashboardMenu__content">
                         <DashboardMenuItem title="Статистика" href="/" />
-                        {hasRole(['vicePrincipal', 'department', 'ministry', 'admin']) && (
+                        {hasRole(['admin', 'department', 'ministry']) && <DashboardMenuItem title="Школы" href="/schools" icon={
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.09199 3.57254C9.20007 2.65928 10.7999 2.65928 11.908 3.57254L12.7865 4.2966C13.2478 4.67673 13.8269 4.88462 14.4245 4.88462C15.8469 4.88462 17 6.03769 17 7.46007V14C17 15.6569 15.6569 17 14 17H6C4.34315 17 3 15.6569 3 14V7.46007C3 6.03769 4.15307 4.88462 5.57546 4.88462C6.17315 4.88462 6.75223 4.67673 7.21346 4.2966L8.09199 3.57254Z" stroke="#7D7979" stroke-width="1.5" />
+                                <mask id="path-2-inside-1_4463_19629" fill="white">
+                                    <rect x="5" y="8" width="2" height="2" rx="0.5" />
+                                </mask>
+                                <rect x="5" y="8" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-2-inside-1_4463_19629)" />
+                                <mask id="path-3-inside-2_4463_19629" fill="white">
+                                    <rect x="13" y="8" width="2" height="2" rx="0.5" />
+                                </mask>
+                                <rect x="13" y="8" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-3-inside-2_4463_19629)" />
+                                <mask id="path-4-inside-3_4463_19629" fill="white">
+                                    <rect x="5" y="12" width="2" height="2" rx="0.5" />
+                                </mask>
+                                <rect x="5" y="12" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-4-inside-3_4463_19629)" />
+                                <mask id="path-5-inside-4_4463_19629" fill="white">
+                                    <rect x="9" y="12" width="2" height="2" rx="0.5" />
+                                </mask>
+                                <rect x="9" y="12" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-5-inside-4_4463_19629)" />
+                                <mask id="path-6-inside-5_4463_19629" fill="white">
+                                    <rect x="9" y="8" width="2" height="2" rx="0.5" />
+                                </mask>
+                                <rect x="9" y="8" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-6-inside-5_4463_19629)" />
+                                <mask id="path-7-inside-6_4463_19629" fill="white">
+                                    <rect x="13" y="12" width="2" height="2" rx="0.5" />
+                                </mask>
+                                <rect x="13" y="12" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-7-inside-6_4463_19629)" />
+                            </svg>
+                        } />}
+                        {hasRole(['admin', 'department', 'ministry']) && <DashboardMenuItem title="Учителя" href="/teachers" icon={
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 4H14C15.6569 4 17 5.34315 17 7V11C17 12.6569 15.6569 14 14 14H10" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" />
+                                <circle cx="5" cy="5" r="2" fill="#7D7979" />
+                                <path d="M6.56362 9H5C3.89543 9 3 9.89543 3 11V15C3 16.1046 3.89543 17 5 17H5.44444C6.54901 17 7.44444 16.1046 7.44444 15V11.8843C7.44444 11.3793 7.82091 10.9536 8.32208 10.8918L9.31262 10.7697C10.1062 10.6718 10.3765 9.65736 9.73685 9.17764C9.58311 9.06233 9.39612 9 9.20394 9H6.56362Z" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M14 7L12 9" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        } />}
+                        {hasRole(['admin', 'department', 'ministry']) && <DashboardMenuItem title="Аттестации" href="/attestations" icon={
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.5 17H8C5.23858 17 3 14.7614 3 12V8C3 5.23858 5.23858 3 8 3H12C14.7614 3 17 5.23858 17 8V9.5" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M7 8L13 8" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M7 12H10" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M13 14.5L14.5 16L17.5 13" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        } />}
+                        {hasRole(['vicePrincipal', 'admin']) && (
                             <DashboardMenuItem
                                 title="Аттестации"
                                 href="/attestations"
@@ -48,7 +93,7 @@ export const DashboardMenu = () => {
                             />
                         )}
 
-                        <MenuAccordion
+                        {hasRole(['teacher', 'vicePrincipal', 'admin']) && (<MenuAccordion
                             title="Мои классы"
                             icon={
                                 <svg
@@ -93,6 +138,7 @@ export const DashboardMenu = () => {
                                 ))}
                             </ul>
                         </MenuAccordion>
+                        )}
                         {hasRole(['teacher', 'admin']) && (
                             <MenuAccordion
                                 title="Параллели"
