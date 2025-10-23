@@ -1,8 +1,8 @@
 @use './../../shared/scss/breakpoint' as breakpoint;
 .Main {
-    &__result_cards {
-        margin-top: 32px;
-        display: grid;
+	&__result_cards {
+		margin-top: 32px;
+		display: grid;
 		grid-template-columns: repeat(3, auto);
 		column-gap: 2%;
 		@include breakpoint.pre-middle-tablet {
@@ -11,19 +11,23 @@
 		@include breakpoint.middle-mobile {
 			grid-template-columns: repeat(1, auto);
 		}
-        
-    }
-    &__head {
-        display: flex;
-        align-items: start;
-        justify-content: space-between;
-    }
-    &__title {
-        font-family: var(--font-family);
-font-weight: 700;
-font-size: 24px;
-line-height: 150%;
-text-align: center;
-color: var(--neutral-darkest);
-    }
+	}
+	&__head {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+	}
+	&__title {
+		font-family: var(--font-family);
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 150%;
+		text-align: center;
+		color: var(--neutral-darkest);
+	}
+	&__statistic_cards {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+	}
 }

@@ -2,25 +2,12 @@ import { ClassCardMain } from "../../components/ClassCardMain";
 import { MainChart } from "../../components/MainChart"
 import { ResultsCard } from "../../components/ResultsCard"
 import { StatisticsBlock } from "../../components/StatisticsBlock";
+import { defaultPieData, defaultPieTimeData, testOptionsTeacher, testOptionsVicePrincipal } from "../../mocks/data";
 import useRole from "../../shared/hooks/useRole";
 import { Selector } from "../../shared/ui/Selector"
 
 import './Main.scss';
-const testOptionsTeacher = [
-    { id: '1', label: "Класс 5-А" },
-    { id: '2', label: "Класс 6-В" },
-    { id: '3', label: "Класс 6-Д" },
-    { id: '4', label: "Класс 7-Б" },
-    { id: '5', label: "Класс 7-Г" },
-]
-const testOptionsVicePrincipal = [
-    { id: '0', label: "Все классы" },
-    { id: '1', label: "Класс 5-А" },
-    { id: '2', label: "Класс 6-В" },
-    { id: '3', label: "Класс 6-Д" },
-    { id: '4', label: "Класс 7-Б" },
-    { id: '5', label: "Класс 7-Г" },
-]
+
 export const Main = () => {
     const { hasRole } = useRole();
     const options = hasRole(["teacher"]) ? testOptionsTeacher : testOptionsVicePrincipal;
@@ -32,7 +19,8 @@ export const Main = () => {
                     <Selector className="Main__selector" options={options} />
                 </div>
                 <div className="Main__statistic_cards">
-                    <StatisticsBlock />
+                    <StatisticsBlock data={defaultPieData} centerLabel="баллов" />
+                    <StatisticsBlock data={defaultPieTimeData} centerLabel="часов" />
                 </div>
                 <MainChart />
                 <div className="Main__result_cards">

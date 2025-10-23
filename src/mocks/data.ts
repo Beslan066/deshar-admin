@@ -1,4 +1,5 @@
 import type { AttestationsTableItemType } from '../components/AttestationTable/columns'
+import { type PieDataItem, LegendMarkItem } from '../components/StatisticsBlock'
 import type { StudentTableItemType } from '../components/StudentTable'
 
 export const barChartMockData = [
@@ -463,5 +464,110 @@ export const teacherParallelClasses = [
 		title: '6 “Г”',
 		classLevel: 6,
 		classLetter: 'Г',
+	},
+]
+
+export const testOptionsTeacher = [
+	{ id: '1', label: 'Класс 5-А' },
+	{ id: '2', label: 'Класс 6-В' },
+	{ id: '3', label: 'Класс 6-Д' },
+	{ id: '4', label: 'Класс 7-Б' },
+	{ id: '5', label: 'Класс 7-Г' },
+]
+export const testOptionsVicePrincipal = [
+	{ id: '0', label: 'Все классы' },
+	{ id: '1', label: 'Класс 5-А' },
+	{ id: '2', label: 'Класс 6-В' },
+	{ id: '3', label: 'Класс 6-Д' },
+	{ id: '4', label: 'Класс 7-Б' },
+	{ id: '5', label: 'Класс 7-Г' },
+]
+// Default data fallback
+export const defaultPieData: PieDataItem[] = [
+	{
+		value: 3533,
+		color: '#1baa7d',
+		label: 'ГБОУ Центр образования г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 2125,
+		color: '#f1c515',
+		label: 'ГБОУ Лицей – детский сад г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 202,
+		color: '#ed6f09',
+		label: 'ГБОУ гимназия Марем г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 153,
+		color: '#f82754',
+		label: 'ГБОУ СОШ №2 г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 544,
+		color: '#ea20fd',
+		label: 'ГБОУ СОШ – Детский сад № 1 г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 5231,
+		color: '#1b8deb',
+		label: 'ГБОУ СОШ №5 г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 5033,
+		color: '#3fc8fa',
+		label: 'ГБОУ СОШ №8 г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+]
+export const defaultPieTimeData: PieDataItem[] = [
+	{
+		value: 11,
+		color: '#1baa7d',
+		label: 'ГБОУ Центр образования г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 12,
+		color: '#f1c515',
+		label: 'ГБОУ Лицей – детский сад г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 20,
+		color: '#ed6f09',
+		label: 'ГБОУ гимназия Марем г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 33,
+		color: '#f82754',
+		label: 'ГБОУ СОШ №2 г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 51,
+		color: '#ea20fd',
+		label: 'ГБОУ СОШ – Детский сад № 1 г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 55,
+		color: '#1b8deb',
+		label: 'ГБОУ СОШ №5 г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
+	},
+	{
+		value: 111,
+		color: '#3fc8fa',
+		label: 'ГБОУ СОШ №8 г. Магас',
+		labelMarkType: data => LegendMarkItem({ color: data.color }),
 	},
 ]
