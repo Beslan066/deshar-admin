@@ -2,11 +2,14 @@ import { ClassCardMain } from "../../components/ClassCardMain";
 import { MainChart } from "../../components/MainChart"
 import { ResultsCard } from "../../components/ResultsCard"
 import { StatisticsBlock } from "../../components/StatisticsBlock";
-import { defaultPieData, defaultPieTimeData, testOptionsTeacher, testOptionsVicePrincipal } from "../../mocks/data";
+import { defaultPieData, defaultPieTimeData, SchoolsMockData, testOptionsTeacher, testOptionsVicePrincipal } from "../../mocks/data";
 import useRole from "../../shared/hooks/useRole";
 import { Selector } from "../../shared/ui/Selector"
 
+import { TEST_CLASSMATES } from '../../mocks/data';
 import './Main.scss';
+import { ClassTable } from "../../components/ClassTable";
+import { SchoolsTable } from "../../components/SchoolsTable";
 
 export const Main = () => {
     const { hasRole } = useRole();
@@ -22,6 +25,9 @@ export const Main = () => {
                     <StatisticsBlock data={defaultPieData} centerLabel="баллов" />
                     <StatisticsBlock data={defaultPieTimeData} centerLabel="часов" />
                 </div>
+                <ClassCardMain title="Лучшие школы" linkText="Полный список" linkHref="/">
+                    <SchoolsTable data={SchoolsMockData} />
+                </ClassCardMain>
                 <MainChart />
                 <div className="Main__result_cards">
                     <ResultsCard
@@ -74,7 +80,9 @@ export const Main = () => {
                     />
 
                 </div>
-                <ClassCardMain />
+                <ClassCardMain title="Лучшие ученики класса" linkText="Полный список" linkHref="/">
+                    <ClassTable data={TEST_CLASSMATES} type='classmates' />
+                </ClassCardMain>
             </div>
         </main >
     )

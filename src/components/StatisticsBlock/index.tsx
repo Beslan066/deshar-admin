@@ -70,6 +70,7 @@ export const StatisticsBlock = ({
                         className="StatisticsBlock__selector"
                         options={selectorOptions}
                         defaultValue="Неделя"
+                        mini={true}
                     />
                 </div>
                 <div className="StatisticsBlock__body">

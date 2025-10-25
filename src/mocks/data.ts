@@ -571,3 +571,45 @@ export const defaultPieTimeData: PieDataItem[] = [
 		labelMarkType: data => LegendMarkItem({ color: data.color }),
 	},
 ]
+export const SchoolsMockData = [
+	{
+		id: 1,
+		place: 1,
+		schoolName: 'ГБОУ Центр образования г. Магас',
+		learningTime: 20187,
+		doneModules: 857,
+		points: 12580,
+	},
+	{
+		id: 2,
+		place: 2,
+		schoolName: 'ГБОУ Лицей – детский сад г. Магас',
+		learningTime: 20187,
+		doneModules: 579,
+		points: 12175,
+	},
+	{
+		id: 3,
+		place: 3,
+		schoolName: 'ГБОУ гимназия Марем г. Магас',
+		learningTime: 20187,
+		doneModules: 683,
+		points: 12144,
+	},
+	{
+		id: 4,
+		place: 4,
+		schoolName: 'ГБОУ СОШ №2 г. Магас',
+		learningTime: 20187,
+		doneModules: 742,
+		points: 12078,
+	},
+	{
+		id: 5,
+		place: 5,
+		schoolName: 'ГБОУ СОШ – Детский сад № 1 г. Магас',
+		learningTime: 20187,
+		doneModules: 891,
+		points: 11951,
+	},
+]
