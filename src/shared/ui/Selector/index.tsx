@@ -92,7 +92,7 @@ export const Selector = ({
             aria-controls={listboxId} // Связь с выпадающим списком
         >
             <div className="Selector__header">
-                <span>{getCurrentLabel()}</span>
+                <span title={getCurrentLabel()}>{getCurrentLabel()}</span>
                 <button
                     className={cn('btn-reset', 'Selector__btn')}
                     onClick={() => setIsOpen(!isOpen)}

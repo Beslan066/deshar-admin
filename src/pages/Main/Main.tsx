@@ -2,7 +2,7 @@ import { ClassCardMain } from "../../components/ClassCardMain";
 import { MainChart } from "../../components/MainChart"
 import { ResultsCard } from "../../components/ResultsCard"
 import { StatisticsBlock } from "../../components/StatisticsBlock";
-import { defaultPieData, defaultPieTimeData, SchoolsMockData, testOptionsTeacher, testOptionsVicePrincipal } from "../../mocks/data";
+import { defaultPieData, defaultPieTimeData, SchoolsMockData, testOptionsTeacher, testOptionsVicePrincipal, testOptionsDepartment } from "../../mocks/data";
 import useRole from "../../shared/hooks/useRole";
 import { Selector } from "../../shared/ui/Selector"
 
@@ -13,8 +13,22 @@ import { SchoolsTable } from "../../components/SchoolsTable";
 import { barChartMockData } from '../../mocks/data'
 
 export const Main = () => {
-    const { hasRole } = useRole();
-    const options = hasRole(["teacher"]) ? testOptionsTeacher : testOptionsVicePrincipal;
+    const { hasRole, role } = useRole();
+    let options;
+    switch (role) {
+        case "teacher":
+            options = testOptionsTeacher;
+            break;
+        case "vicePrincipal":
+            options = testOptionsVicePrincipal;
+            break;
+        case "department":
+            options = testOptionsDepartment;
+            break;
+        default:
+            options = testOptionsTeacher;
+            break;
+    }
     return (
         <main className="Main">
             <div className="Main__inner">

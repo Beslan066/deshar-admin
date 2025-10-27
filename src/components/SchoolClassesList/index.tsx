@@ -12,12 +12,15 @@ import { useNavigate } from 'react-router-dom';
 export interface SchoolItem {
     id: number;
     place: number;
-    schoolName: string;
+    className: string;
+    classLetter: string;
+    classLevel: number;
+    classTeacher: string;
     learningTime: number;
     doneModules: number;
     points: number;
 }
-export const SchoolsTable = ({ data, link = '/' }: { data: SchoolItem[]; link?: string; }) => {
+export const SchoolClassesList = ({ data, link = '/' }: { data: SchoolItem[]; link?: string; }) => {
     const columns = useMemo(() => getColumns(), [])
     const navigate = useNavigate();
     // const { classId } = useParams();
@@ -40,16 +43,16 @@ export const SchoolsTable = ({ data, link = '/' }: { data: SchoolItem[]; link?: 
         navigate(`${link}${id}`)
     }
     return (
-        <div className="SchoolsTable__scroll-container">
+        <div className="SchoolClassesList__scroll-container">
 
-            <table className="SchoolsTable">
+            <table className="SchoolClassesList">
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id} className="SchoolsTable__tr">
+                        <tr key={headerGroup.id} className="SchoolClassesList__tr">
                             {headerGroup.headers.map(header => (
                                 <th
                                     key={header.id}
-                                    className='SchoolsTable__th'
+                                    className='SchoolClassesList__th'
                                     colSpan={header.colSpan}
                                 >
                                     {header.isPlaceholder ? null : (
@@ -87,7 +90,7 @@ export const SchoolsTable = ({ data, link = '/' }: { data: SchoolItem[]; link?: 
 
                 <tbody>
                     {table.getRowModel().rows.map(row => (
-                        <tr key={row.id} className={"SchoolsTableItem"} onClick={() => redirectOnStudentItemClick(row.original.id)}>
+                        <tr key={row.id} className={"SchoolClassesListItem"} onClick={() => redirectOnStudentItemClick(row.original.id)}>
                             {row.getVisibleCells().map(cell => (
                                 <td key={cell.id}>
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

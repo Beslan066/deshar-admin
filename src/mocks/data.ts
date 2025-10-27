@@ -468,11 +468,11 @@ export const teacherParallelClasses = [
 ]
 
 export const testOptionsTeacher = [
-	{ id: '1', label: 'Класс 5-А' },
-	{ id: '2', label: 'Класс 6-В' },
-	{ id: '3', label: 'Класс 6-Д' },
-	{ id: '4', label: 'Класс 7-Б' },
-	{ id: '5', label: 'Класс 7-Г' },
+	{ id: '0', label: 'Класс 5-А' },
+	{ id: '1', label: 'Класс 6-В' },
+	{ id: '2', label: 'Класс 6-Д' },
+	{ id: '3', label: 'Класс 7-Б' },
+	{ id: '4', label: 'Класс 7-Г' },
 ]
 export const testOptionsVicePrincipal = [
 	{ id: '0', label: 'Все классы' },
@@ -481,6 +481,14 @@ export const testOptionsVicePrincipal = [
 	{ id: '3', label: 'Класс 6-Д' },
 	{ id: '4', label: 'Класс 7-Б' },
 	{ id: '5', label: 'Класс 7-Г' },
+]
+export const testOptionsDepartment = [
+	{ id: '0', label: 'Все школы' },
+	{ id: '1', label: 'ГБОУ Центр образования г. Магас' },
+	{ id: '2', label: 'ГБОУ Лицей – детский сад г. Магас' },
+	{ id: '3', label: 'ГБОУ гимназия Марем г. Магас' },
+	{ id: '4', label: 'ГБОУ СОШ №2 г. Магас' },
+	{ id: '5', label: 'ГБОУ СОШ – Детский сад № 1 г. Магас' },
 ]
 // Default data fallback
 export const defaultPieData: PieDataItem[] = [
@@ -611,5 +619,62 @@ export const SchoolsMockData = [
 		learningTime: 20187,
 		doneModules: 891,
 		points: 11951,
+	},
+]
+export const SchoolStatMockData = [
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+	{
+		id: 2,
+		place: 2,
+		className: '6 “Б”',
+		classLetter: 'Б',
+		classLevel: 6,
+		classTeacher: 'Лолохоева Амина',
+		learningTime: 2187,
+		doneModules: 175,
+		points: 1129,
+	},
+	{
+		id: 3,
+		place: 3,
+		className: '7 “В”',
+		classLetter: 'В',
+		classLevel: 7,
+		classTeacher: 'Парчиева Мадина',
+		learningTime: 2187,
+		doneModules: 218,
+		points: 948,
+	},
+	{
+		id: 4,
+		place: 4,
+		className: '5 “Г”',
+		classLetter: 'Г',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 136,
+		points: 901,
+	},
+	{
+		id: 5,
+		place: 5,
+		className: '7 “Д”',
+		classLetter: 'Д',
+		classLevel: 7,
+		classTeacher: 'Ганижев Заур',
+		learningTime: 2187,
+		doneModules: 136,
+		points: 842,
 	},
 ]

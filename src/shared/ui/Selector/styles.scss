@@ -45,6 +45,10 @@
 			font-size: 14px;
 			line-height: 143%;
 			color: #303030;
+			text-wrap: nowrap;
+			text-overflow: ellipsis;
+			width: 100%;
+			overflow: hidden;
 		}
 	}
 
@@ -92,7 +96,7 @@
 		display: flex;
 		align-items: start;
 		justify-content: start;
-		width: 160px;
+		min-width: max-content;
 		background-color: var(--neutral-white);
 		box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.1);
 		border-radius: 24px;

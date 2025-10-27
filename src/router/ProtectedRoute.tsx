@@ -16,11 +16,10 @@ export const ProtectedRoute = ({
     fallbackPath = '/',
     showLoader = false
 }: ProtectedRouteProps) => {
-    // const { role } = useRole();
-    const role = "admin";
+    const { role } = useRole();
     const location = useLocation();
 
-    if (role === undefined && showLoader) {
+    if (role === null && showLoader) {
         return <div>Loading...</div>;
     }
     console.log(role);
