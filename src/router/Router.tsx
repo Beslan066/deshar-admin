@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 import { SignIn } from "../pages/SignIn/SignIn";
-import { Main } from "../pages/Main/Main";
 import { Class } from "../pages/Class/Class";
 import { StudentPage } from "../pages/Student/Student";
 import { Attestations } from "../pages/Attestations/Attestations";
@@ -9,6 +8,9 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import { Schools } from "../pages/Schools/Schools";
 import { SchoolStat } from "../pages/SchoolStat/SchoolStat";
 import { Teachers } from "../pages/Teachers/Teachers";
+import { SchoolDashboard } from "../pages/SchoolDashboard/SchoolDashboard";
+import { StatisticLayout } from "./StatisticLayout/StatisticLayout";
+import { MainStatisticPageContent } from "../pages/MainStatistic/MainStatistic";
 
 export const router = createBrowserRouter([
     {
@@ -16,20 +18,23 @@ export const router = createBrowserRouter([
         element: <SignIn />
     },
     {
-        path: '/',
         element: <Layout />,
         children: [
             {
-                index: true,
+                path: '/',
                 element: <ProtectedRoute allowedRoles={["admin", "teacher", "department"]} fallbackPath="/sign-in" showLoader={true}>
-                    <Main />
-                </ProtectedRoute>
-            },
-            {
-                path: '/:schoolId',
-                element: <ProtectedRoute allowedRoles={["admin", "department"]} fallbackPath="/sign-in" showLoader={true}>
-                    <SchoolStat />
-                </ProtectedRoute>
+                    <StatisticLayout />
+                </ProtectedRoute>,
+                children: [
+                    {
+                        index: true,
+                        element: <MainStatisticPageContent />
+                    },
+                    {
+                        path: '/:schoolID',
+                        element: <SchoolDashboard />
+                    }
+                ]
             },
             {
                 path: '/class/:classId',

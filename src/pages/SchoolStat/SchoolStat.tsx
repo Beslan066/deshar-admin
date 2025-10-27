@@ -58,13 +58,14 @@ export const SchoolStat = () => {
             }
             ]}
             resetFilters={resetFilters}
-            title='Школы'
+            title='ГБОУ СОШ Детский сад № 1 г. Магас'
             tabs={TABS}
             key={"testCard123"}
-            valueFirst='45 школ'
-            valueSecond='487 585 баллов'
+            valueFirst='38 классов'
+            valueSecond='64 585 баллов'
             activeTab={activeTab}
             setActiveTab={setActiveTab}
+            onClickBackButton={() => console.log('back')}
         >
             <SchoolClassesList data={SchoolStatMockData} link="/class/" />
         </Card>

@@ -1,50 +1,16 @@
-import { ClassCardMain } from "../../components/ClassCardMain";
+import { ClassCardMain } from "../../components/ClassCardMain"
+import { ClassTable } from "../../components/ClassTable"
 import { MainChart } from "../../components/MainChart"
 import { ResultsCard } from "../../components/ResultsCard"
-import { StatisticsBlock } from "../../components/StatisticsBlock";
-import { defaultPieData, defaultPieTimeData, SchoolsMockData, testOptionsTeacher, testOptionsVicePrincipal, testOptionsDepartment } from "../../mocks/data";
-import useRole from "../../shared/hooks/useRole";
-import { Selector } from "../../shared/ui/Selector"
+import { barChartMockData, TEST_CLASSMATES } from "../../mocks/data"
+import './SchoolDashboard.scss';
 
-import { TEST_CLASSMATES } from '../../mocks/data';
-import './Main.scss';
-import { ClassTable } from "../../components/ClassTable";
-import { SchoolsTable } from "../../components/SchoolsTable";
-import { barChartMockData } from '../../mocks/data'
-
-export const Main = () => {
-    const { hasRole, role } = useRole();
-    let options;
-    switch (role) {
-        case "teacher":
-            options = testOptionsTeacher;
-            break;
-        case "vicePrincipal":
-            options = testOptionsVicePrincipal;
-            break;
-        case "department":
-            options = testOptionsDepartment;
-            break;
-        default:
-            options = testOptionsTeacher;
-            break;
-    }
+export const SchoolDashboard = () => {
     return (
-        <main className="Main">
-            <div className="Main__inner">
-                <div className="Main__head">
-                    <h1 className="Main__title">Общая статистика</h1>
-                    <Selector className="Main__selector" options={options} />
-                </div>
-                {hasRole(["admin", "department", "ministry"]) && <div className="Main__statistic_cards">
-                    <StatisticsBlock data={defaultPieData} centerLabel="баллов" />
-                    <StatisticsBlock data={defaultPieTimeData} centerLabel="часов" />
-                </div>}
-                {hasRole(["admin", "department", "ministry"]) && <ClassCardMain title="Лучшие школы" linkText="Полный список" linkHref="/">
-                    <SchoolsTable data={SchoolsMockData} />
-                </ClassCardMain>}
-                <MainChart data={barChartMockData} title="Суммарная успеваемость" />
-                <div className="Main__result_cards">
+        <main className="SchoolDashboard">
+            <div className="SchoolDashboard__inner">
+                <MainChart data={barChartMockData} title="Успеваемость школы" />
+                <div className="SchoolDashboard__result_cards">
                     <ResultsCard
                         id={1}
                         percent={25}
@@ -95,7 +61,7 @@ export const Main = () => {
                     />
 
                 </div>
-                <ClassCardMain title="Лучшие ученики класса" linkText="Полный список" linkHref="/">
+                <ClassCardMain title="Лучшие ученики школы" linkText="Полный список" linkHref="/">
                     <ClassTable data={TEST_CLASSMATES} type='classmates' />
                 </ClassCardMain>
             </div>

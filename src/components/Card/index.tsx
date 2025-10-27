@@ -26,10 +26,10 @@ interface CardProps {
     valueFirst?: string;
     valueSecond?: string;
     children: ReactNode;
-    type?: "student" | string;
     isParallel?: boolean;
     activeTab: number;
     setActiveTab: React.Dispatch<React.SetStateAction<number>>;
+    onClickBackButton?: () => void;
 }
 
 const FilterIcon = () => (
@@ -48,7 +48,7 @@ export const Card = ({
     valueFirst,
     valueSecond,
     children,
-    type,
+    onClickBackButton,
     activeTab,
     setActiveTab,
     isParallel
@@ -64,7 +64,7 @@ export const Card = ({
                 <div className="Card__header">
                     <div className="Card__header-top">
                         <div className="Card__header-top_title-wrapper">
-                            {type === "student" && <button className="btn-reset Card__back">
+                            {onClickBackButton && <button className="btn-reset Card__back" onClick={onClickBackButton}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.9497 12.9492C19.502 12.9492 19.9497 12.5015 19.9497 11.9492C19.9497 11.3969 19.502 10.9492 18.9497 10.9492L18.9497 12.9492ZM4.2426 11.2421C3.85208 11.6326 3.85208 12.2658 4.2426 12.6563L10.6066 19.0203C10.9971 19.4108 11.6302 19.4108 12.0208 19.0203C12.4113 18.6298 12.4113 17.9966 12.0208 17.6061L6.36392 11.9492L12.0208 6.29236C12.4113 5.90184 12.4113 5.26867 12.0208 4.87815C11.6303 4.48763 10.9971 4.48763 10.6066 4.87815L4.2426 11.2421ZM18.9497 10.9492L4.94971 10.9492L4.94971 12.9492L18.9497 12.9492L18.9497 10.9492Z" fill="#303030" />
                                 </svg>
