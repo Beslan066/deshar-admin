@@ -5,12 +5,11 @@ import { Stage, Layer, Rect, Text, Group, Label, Tag } from 'react-konva'
 
 
 import { useMediaQuery } from '../../shared/hooks/useMediaQuery'
-import { barChartMockData } from '../../mocks/data'
+import type { BarChartDataItem } from '../MainChart'
 
-
-export const BarChart = () => {
+export const BarChart = ({ data }: { data: BarChartDataItem[] }) => {
 	const [size, setSize] = useState({ width: 1024, height: 225 })
-	const [displayedData, setDisplayedData] = useState(barChartMockData)
+	const [displayedData, setDisplayedData] = useState(data)
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 	const [touchTimeout, setTouchTimeout] = useState<any | null>(null)
 	const isSmallMobile = useMediaQuery('(max-width: 450px)')
@@ -26,16 +25,16 @@ export const BarChart = () => {
 
 	useEffect(() => {
 		if (isSmallMobile) {
-			setDisplayedData(barChartMockData.slice(0, 6))
+			setDisplayedData(data.slice(0, 6))
 			setSize({ width: 350, height: 225 })
 		} else if (isMobile) {
-			setDisplayedData(barChartMockData.slice(0, 6))
+			setDisplayedData(data.slice(0, 6))
 			setSize({ width: 500, height: 225 })
 		} else if (isTablet) {
-			setDisplayedData(barChartMockData.slice(0, 11))
+			setDisplayedData(data.slice(0, 11))
 			setSize({ width: 700, height: 225 })
 		} else {
-			setDisplayedData(barChartMockData.slice(0, 17))
+			setDisplayedData(data.slice(0, 17))
 		}
 	}, [isTablet, isMobile, isSmallMobile])
 

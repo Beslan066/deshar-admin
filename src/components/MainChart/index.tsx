@@ -1,11 +1,15 @@
 import { Button } from "../../shared/ui/Button"
 import { BarChart } from "../BarChart"
 import './styles.scss';
-export const MainChart = () => {
+export interface BarChartDataItem {
+    date: Date
+    value: number
+}
+export const MainChart = ({ data, title = "TITLE" }: { data: BarChartDataItem[]; title: string; }) => {
     return (
         <div className="MainChart">
             <div className="MainChart__top">
-                <span className="MainChart__title">Успеваемость класса</span>
+                <span className="MainChart__title">{title}</span>
                 <div className="MainChart__navigation">
                     <Button variant="iconThird" size="iconSmall">
                         <svg
@@ -29,7 +33,7 @@ export const MainChart = () => {
                     </Button>
                 </div>
             </div>
-            <BarChart />
+            <BarChart data={data} />
         </div>
     )
 }

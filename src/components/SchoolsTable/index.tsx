@@ -37,7 +37,7 @@ export const SchoolsTable = ({ data }: { data: SchoolItem[] }) => {
     })
     const redirectOnStudentItemClick = (id: number) => {
         console.log(id);
-        navigate(`student/${id}`)
+        navigate(`/${id}`)
     }
     return (
         <div className="SchoolsTable__scroll-container">

@@ -16,14 +16,17 @@ export const ProtectedRoute = ({
     fallbackPath = '/',
     showLoader = false
 }: ProtectedRouteProps) => {
-    const { role } = useRole();
+    // const { role } = useRole();
+    const role = "admin";
     const location = useLocation();
 
     if (role === undefined && showLoader) {
         return <div>Loading...</div>;
     }
+    console.log(role);
     const hasAccess = role && allowedRoles.includes(role);
-
+    console.log(role);
+    console.log("access", hasAccess);
     if (!hasAccess) {
 
         return <Navigate to={fallbackPath} state={{ from: location }} replace />;

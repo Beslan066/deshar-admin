@@ -6,6 +6,7 @@ import { Class } from "../pages/Class/Class";
 import { StudentPage } from "../pages/Student/Student";
 import { Attestations } from "../pages/Attestations/Attestations";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { School } from "../pages/School/School";
 
 export const router = createBrowserRouter([
     {
@@ -18,22 +19,34 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Main />
+                element: <ProtectedRoute allowedRoles={["admin", "teacher", "department"]} fallbackPath="/sign-in">
+                    <Main />
+                </ProtectedRoute>
+            },
+            {
+                path: '/:schoolId',
+                element: <ProtectedRoute allowedRoles={["admin", "teacher", "department"]} fallbackPath="/sign-in">
+                    <School />
+                </ProtectedRoute>
             },
             {
                 path: '/class/:classId',
-                element: <Class />
+                element: <ProtectedRoute allowedRoles={["admin", "teacher", "department"]} fallbackPath="/sign-in">
+                    <Class />
+                </ProtectedRoute>
             },
             {
                 path: '/class/:classId/student/:studentId',
-                element: <StudentPage />
+                element: <ProtectedRoute allowedRoles={["admin", "teacher", "department"]} fallbackPath="/sign-in">
+                    <StudentPage />
+                </ProtectedRoute>
             },
             {
                 path: '/attestations',
-                element: <ProtectedRoute allowedRoles={["vicePrincipal", "admin"]} fallbackPath="/sign-in">
+                element: <ProtectedRoute allowedRoles={["admin", "teacher", "department"]} fallbackPath="/sign-in">
                     <Attestations />
                 </ProtectedRoute>
-            }
+            },
         ]
     },
 ])

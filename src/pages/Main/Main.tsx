@@ -10,6 +10,7 @@ import { TEST_CLASSMATES } from '../../mocks/data';
 import './Main.scss';
 import { ClassTable } from "../../components/ClassTable";
 import { SchoolsTable } from "../../components/SchoolsTable";
+import { barChartMockData } from '../../mocks/data'
 
 export const Main = () => {
     const { hasRole } = useRole();
@@ -21,14 +22,14 @@ export const Main = () => {
                     <h1 className="Main__title">Общая статистика</h1>
                     <Selector className="Main__selector" options={options} />
                 </div>
-                <div className="Main__statistic_cards">
+                {hasRole(["admin", "department", "ministry"]) && <div className="Main__statistic_cards">
                     <StatisticsBlock data={defaultPieData} centerLabel="баллов" />
                     <StatisticsBlock data={defaultPieTimeData} centerLabel="часов" />
-                </div>
-                <ClassCardMain title="Лучшие школы" linkText="Полный список" linkHref="/">
+                </div>}
+                {hasRole(["admin", "department", "ministry"]) && <ClassCardMain title="Лучшие школы" linkText="Полный список" linkHref="/">
                     <SchoolsTable data={SchoolsMockData} />
-                </ClassCardMain>
-                <MainChart />
+                </ClassCardMain>}
+                <MainChart data={barChartMockData} title="Суммарная успеваемость" />
                 <div className="Main__result_cards">
                     <ResultsCard
                         id={1}
