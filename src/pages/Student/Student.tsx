@@ -52,14 +52,14 @@ export const StudentPage = () => {
             }
             ]}
                 resetFilters={resetFilters}
-                title='Класс 5 “А”'
+                title='Аспиев Лорс'
                 tabs={TABS}
                 key={"testCard123"}
-                valueFirst='28 чуваков'
-                valueSecond='1 384 баллов'
-                type="student"
+                valueFirst='17 модулей'
+                valueSecond='964 баллов'
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
+                onClickBackButton={() => console.log('backBtn')}
             >
                 <StudentTable data={studentTableMockData} />
             </Card>

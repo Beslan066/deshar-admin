@@ -31,11 +31,14 @@ export const StatisticLayout = () => {
             break;
     }
     const handleSelectChange = (id: string) => {
-        if (+id === 0) {
-            navigate("/")
-        } else {
+        if (role === "department") {
 
-            navigate(`/${id}`)
+            if (+id === 0) {
+                navigate("/")
+            } else {
+
+                navigate(`/${id}`)
+            }
         }
     }
     return (
