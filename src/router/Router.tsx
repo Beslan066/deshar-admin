@@ -8,6 +8,7 @@ import { Attestations } from "../pages/Attestations/Attestations";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { Schools } from "../pages/Schools/Schools";
 import { SchoolStat } from "../pages/SchoolStat/SchoolStat";
+import { Teachers } from "../pages/Teachers/Teachers";
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +59,12 @@ export const router = createBrowserRouter([
                 path: '/schools/:schoolID',
                 element: <ProtectedRoute allowedRoles={["admin", "department"]} fallbackPath="/sign-in" showLoader={true}>
                     <SchoolStat />
+                </ProtectedRoute>
+            },
+            {
+                path: '/teachers',
+                element: <ProtectedRoute allowedRoles={["admin", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                    <Teachers />
                 </ProtectedRoute>
             },
         ]

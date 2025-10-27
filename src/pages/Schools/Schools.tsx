@@ -51,7 +51,7 @@ export const Schools = () => {
             }
             ]}
             resetFilters={resetFilters}
-            classTitle='Школы'
+            title='Школы'
             tabs={TABS}
             key={"testCard123"}
             valueFirst='45 школ'

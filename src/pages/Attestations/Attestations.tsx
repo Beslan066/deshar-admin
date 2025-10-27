@@ -52,7 +52,7 @@ export const Attestations = () => {
             }
             ]}
             resetFilters={resetFilters}
-            classTitle='Аттестации учеников'
+            title='Аттестации учеников'
             tabs={TABS}
             key={"testCard123"}
             valueFirst='147 аттестаций'

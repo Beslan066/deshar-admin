@@ -58,7 +58,7 @@ export const Class = () => {
                 }
                 ]}
                 resetFilters={resetFilters}
-                classTitle='Класс 5 “А”'
+                title='Класс 5 “А”'
                 tabs={TABS}
                 key={"testCard123"}
                 valueFirst='28 чуваков'
