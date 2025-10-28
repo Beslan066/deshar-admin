@@ -1,0 +1,48 @@
+import { createColumnHelper } from '@tanstack/react-table'
+import { minutesToHoursAndMinutes } from '../../shared/utils'
+import cn from 'classnames'
+import { SortableHeader } from '../SortableHeader/sortableHeader'
+import type { TeacherStudentListItem } from '.'
+
+const columnHelper = createColumnHelper<TeacherStudentListItem>()
+
+export const getColumns = () => [
+  columnHelper.accessor('place', {
+    header: ({ column }) => <SortableHeader title="Место" column={column} />,
+    enableSorting: true,
+    sortingFn: 'basic',
+    cell: info => {
+      const placeNumber = info.getValue()
+
+      return (
+        <div className={cn("TeacherStudentsListItem__place")}>
+          <span>{placeNumber}</span>
+        </div>
+      )
+    }
+  }),
+  columnHelper.accessor('name', {
+    header: ({ column }) => <SortableHeader<TeacherStudentListItem, string> title="Ученик" column={column} />,
+    enableSorting: true,
+    sortingFn: 'alphanumeric',
+    cell: info => <span title={info.getValue()} className='TeacherStudentsListItem__name'>{info.getValue()}</span>
+  }),
+  columnHelper.accessor('learningTime', {
+    header: ({ column }) => <SortableHeader title="Время обучения" column={column} />,
+    enableSorting: true,
+    sortingFn: 'basic',
+    cell: info => <span title={minutesToHoursAndMinutes(info.getValue())} className='TeacherStudentsListItem__time'>{minutesToHoursAndMinutes(info.getValue())}</span>
+  }),
+  columnHelper.accessor('doneModules', {
+    header: ({ column }) => <SortableHeader title="Выполнено модулей" column={column} />,
+    enableSorting: true,
+    sortingFn: 'basic',
+    cell: info => <span title={String(info.getValue())} className='TeacherStudentsListItem__modules'>{info.getValue()}</span>
+  }),
+  columnHelper.accessor('points', {
+    header: ({ column }) => <SortableHeader title="Баллы" column={column} />,
+    enableSorting: true,
+    sortingFn: 'basic',
+    cell: info => <span title={String(info.getValue())} className='TeacherStudentsListItem__points'>{info.getValue()}</span>
+  }),
+]

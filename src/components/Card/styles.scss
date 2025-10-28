@@ -37,6 +37,14 @@
 		align-items: center;
 		justify-content: space-between;
 		padding-top: 28px;
+		&-csv {
+			border-radius: 12px;
+			padding: 8px;
+			transition: background 0.1s ease-in-out;
+			&:hover {
+				background: var(--neutral-light);
+			}
+		}
 	}
 	&__title {
 		font-family: var(--font-family);

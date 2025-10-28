@@ -31,7 +31,7 @@ export const StatisticLayout = () => {
             break;
     }
     const handleSelectChange = (id: string) => {
-        if (role === "department") {
+        if (role === "department" || role === "vicePrincipal") {
 
             if (+id === 0) {
                 navigate("/")

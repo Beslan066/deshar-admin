@@ -1,19 +1,17 @@
-import { useParams } from 'react-router-dom';
-import { Card } from '../../components/Card';
+import './styles.scss';
+import { Card } from '../Card';
 import { useState } from 'react';
 
-import { SchoolClassesList } from '../../components/SchoolClassesList';
-import { SchoolStatMockData } from '../../mocks/data';
+import { mockTeacherStudentsList } from '../../mocks/data';
+import { TeacherStudentsList } from '../TeacherStudentsList';
 const TABS = [
     { id: 0, title: 'Все классы' },
-    { id: 1, title: '5-ые' },
-    { id: 2, title: '6-ые' },
-    { id: 3, title: '7-ые' },
-    { id: 4, title: '8-ые' },
-    { id: 5, title: '9-ые' },
+    { id: 1, title: '5 “А”' },
+    { id: 2, title: '5 ”Б”' },
+    { id: 3, title: '6 “Б”' },
+    { id: 4, title: '6 “В”' },
 ]
-export const SchoolStat = () => {
-    const { schoolID } = useParams();
+export const TeacherStudents = () => {
     const [timeFrom, setTimeFrom] = useState<string>('')
     const [timeTo, setTimeTo] = useState<string>('')
 
@@ -31,7 +29,7 @@ export const SchoolStat = () => {
         setPointsTo('');
     }
 
-    return <main className="SchoolStat">
+    return <main className="TeacherStudents">
 
         <Card
             filters={[{
@@ -57,16 +55,17 @@ export const SchoolStat = () => {
             }
             ]}
             resetFilters={resetFilters}
-            title='ГБОУ СОШ Детский сад № 1 г. Магас'
+            title='Татриева Зина'
             tabs={TABS}
             key={"testCard123"}
-            valueFirst='38 классов'
-            valueSecond='64 585 баллов'
+            valueFirst='85 учителей'
+            valueSecond='12 585 баллов'
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             onClickBackButton={() => console.log('back')}
+            csv={true}
         >
-            <SchoolClassesList data={SchoolStatMockData} link="/class/" />
+            <TeacherStudentsList data={mockTeacherStudentsList} />
         </Card>
     </main>
 }

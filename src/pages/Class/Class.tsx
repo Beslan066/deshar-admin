@@ -66,6 +66,7 @@ export const Class = () => {
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
                 isParallel={isParallel}
+                type="class"
             >
                 {activeTab === 0 ? <ClassTable data={TEST_CLASSMATES} type='classmates' /> : <ClassTable data={TEST_FLOW} type='parallel' />}
             </Card>

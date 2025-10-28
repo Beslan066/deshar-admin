@@ -11,6 +11,7 @@ import { Teachers } from "../pages/Teachers/Teachers";
 import { SchoolDashboard } from "../pages/SchoolDashboard/SchoolDashboard";
 import { StatisticLayout } from "./StatisticLayout/StatisticLayout";
 import { MainStatisticPageContent } from "../pages/MainStatistic/MainStatistic";
+import { TeacherStudents } from "../components/TeacherStudents/TeacherStudents";
 
 export const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <ProtectedRoute allowedRoles={["admin", "teacher", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "teacher", "vicePrincipal", "department"]} fallbackPath="/sign-in" showLoader={true}>
                     <StatisticLayout />
                 </ProtectedRoute>,
                 children: [
@@ -38,19 +39,19 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/class/:classId',
-                element: <ProtectedRoute allowedRoles={["admin", "teacher", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "teacher", "vicePrincipal", "department"]} fallbackPath="/sign-in" showLoader={true}>
                     <Class />
                 </ProtectedRoute>
             },
             {
                 path: '/class/:classId/student/:studentId',
-                element: <ProtectedRoute allowedRoles={["admin", "teacher", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "teacher", "vicePrincipal", "department"]} fallbackPath="/sign-in" showLoader={true}>
                     <StudentPage />
                 </ProtectedRoute>
             },
             {
                 path: '/attestations',
-                element: <ProtectedRoute allowedRoles={["admin", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "vicePrincipal", "department"]} fallbackPath="/sign-in" showLoader={true}>
                     <Attestations />
                 </ProtectedRoute>
             },
@@ -70,6 +71,12 @@ export const router = createBrowserRouter([
                 path: '/teachers',
                 element: <ProtectedRoute allowedRoles={["admin", "department"]} fallbackPath="/sign-in" showLoader={true}>
                     <Teachers />
+                </ProtectedRoute>
+            },
+            {
+                path: '/teachers/:teacherID/students',
+                element: <ProtectedRoute allowedRoles={["admin", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                    <TeacherStudents />
                 </ProtectedRoute>
             },
         ]

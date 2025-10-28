@@ -1,6 +1,7 @@
 import type { AttestationsTableItemType } from '../components/AttestationTable/columns'
 import { type PieDataItem, LegendMarkItem } from '../components/StatisticsBlock'
 import type { StudentTableItemType } from '../components/StudentTable'
+import type { TeacherItem } from '../components/TeachersTable'
 
 export const barChartMockData = [
 	{ date: new Date(2023, 9, 1), value: 150 },
@@ -676,5 +677,136 @@ export const SchoolStatMockData = [
 		learningTime: 2187,
 		doneModules: 136,
 		points: 842,
+	},
+]
+export const mockTeachers: TeacherItem[] = [
+	{
+		id: 1,
+		place: 1,
+		teacherName: 'Иванова Анна Сергеевна',
+		schoolName: 'Гимназия №1',
+		studentsCount: 75,
+		doneModules: 12,
+		points: 2450,
+		classes: [
+			{
+				id: 101,
+				className: '5А',
+				classLetter: 'А',
+				classLevel: 5,
+			},
+			{
+				id: 102,
+				className: '6Б',
+				classLetter: 'Б',
+				classLevel: 6,
+			},
+		],
+	},
+	{
+		id: 2,
+		place: 2,
+		teacherName: 'Петров Владимир Николаевич',
+		schoolName: 'Лицей №153',
+		studentsCount: 68,
+		doneModules: 10,
+		points: 2100,
+		classes: [
+			{
+				id: 201,
+				className: '7В',
+				classLetter: 'В',
+				classLevel: 7,
+			},
+		],
+	},
+	{
+		id: 3,
+		place: 3,
+		teacherName: 'Сидорова Екатерина Викторовна',
+		schoolName: 'Школа №45',
+		studentsCount: 91,
+		doneModules: 8,
+		points: 1850,
+		classes: [
+			{
+				id: 301,
+				className: '8А',
+				classLetter: 'А',
+				classLevel: 8,
+			},
+			{
+				id: 302,
+				className: '8Б',
+				classLetter: 'Б',
+				classLevel: 8,
+			},
+			{
+				id: 303,
+				className: '9А',
+				classLetter: 'А',
+				classLevel: 9,
+			},
+			{
+				id: 304,
+				className: '9А',
+				classLetter: 'А',
+				classLevel: 9,
+			},
+			{
+				id: 305,
+				className: '9А',
+				classLetter: 'А',
+				classLevel: 9,
+			},
+			{
+				id: 306,
+				className: '9А',
+				classLetter: 'А',
+				classLevel: 9,
+			},
+		],
+	},
+]
+export const mockTeacherStudentsList = [
+	{
+		id: 1,
+		place: 1,
+		name: 'Иванов Алексей Петрович',
+		learningTime: 150,
+		doneModules: 12,
+		points: 110,
+	},
+	{
+		id: 2,
+		place: 2,
+		name: 'Петрова Мария Сергеевна',
+		learningTime: 195,
+		doneModules: 15,
+		points: 125,
+	},
+	{
+		id: 3,
+		place: 3,
+		name: 'Сидоров Дмитрий Иванович',
+		learningTime: 105,
+		doneModules: 10,
+		points: 95,
+	},
+	{
+		id: 4,
+		place: 4,
+		name: 'Козлова Анна Владимировна',
+		learningTime: 245,
+		doneModules: 18,
+		points: 140,
+	},
+	{
+		id: 5,
+		place: 5,
+		name: 'Николаева Екатерина Олеговна',
+		learningTime: 170,
+		doneModules: 13,
+		points: 115,
 	},
 ]
