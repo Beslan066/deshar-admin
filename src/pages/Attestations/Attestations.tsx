@@ -7,6 +7,17 @@ const TABS = [
     { id: 0, title: 'На проверку' },
     { id: 1, title: 'Принятые' },
     { id: 2, title: 'Отклоненные' },
+    { id: 3, title: 'Отклоненные' },
+    { id: 4, title: 'Отклоненные' },
+    { id: 5, title: 'Отклоненные' },
+    { id: 6, title: 'Отклоненные' },
+    { id: 7, title: 'Отклоненные' },
+    { id: 8, title: 'Отклоненные' },
+    { id: 9, title: 'Отклоненные' },
+    { id: 10, title: 'Отклоненные' },
+    { id: 11, title: 'Отклоненные' },
+    { id: 12, title: 'Отклоненные' },
+    { id: 13, title: 'Отклоненные' },
 ]
 export const Attestations = () => {
     const [timeFrom, setTimeFrom] = useState<string>('')
