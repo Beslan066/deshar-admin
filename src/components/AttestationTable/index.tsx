@@ -8,15 +8,14 @@ import {
 } from '@tanstack/react-table'
 import { getColumns, type AttestationsTableItemType } from './columns'
 import './styles.scss';
-import { useNavigate } from 'react-router-dom';
 import { StudentTableItem } from '../StudentTable/StudentTableItem';
+import useRole from '../../shared/hooks/useRole';
 interface AttestationsTableProps {
     data: AttestationsTableItemType[];
 }
 export const AttestationsTable = ({ data }: AttestationsTableProps) => {
-    const columns = useMemo(() => getColumns(), [])
-    const navigate = useNavigate();
-    // const { classId } = useParams();
+    const { role } = useRole();
+    const columns = useMemo(() => getColumns({role}), [])
     // Состояние для сортировки
     const [sorting, setSorting] = useState<SortingState>([])
 
@@ -30,10 +29,6 @@ export const AttestationsTable = ({ data }: AttestationsTableProps) => {
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(), // Модель для сортировки
     })
-    const redirectOnStudentItemClick = (id: number) => {
-        console.log(id);
-        navigate(`student/${id}`)
-    }
     return (
         <div className="AttestationsTable__scroll-container">
 

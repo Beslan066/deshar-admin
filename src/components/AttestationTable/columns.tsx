@@ -2,6 +2,7 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { type AttestationStatus } from '../../types/types'
 import { SortableHeader } from '../SortableHeader/sortableHeader'
 import { StateChip } from '../StateChip';
+import type { Role } from '../../types/auth';
 
 
 export type AttestationsTableItemType = {
@@ -13,15 +14,30 @@ export type AttestationsTableItemType = {
     mistakes: number;
     points: number;
     attestationStatus: AttestationStatus;
+    schoolName: string;
 }
 const columnHelper = createColumnHelper<AttestationsTableItemType>()
-export const getColumns = () => [
+export const getColumns = ({role}:{role:Role}) => [
     columnHelper.accessor('date', {
         header: ({ column }) => <SortableHeader<AttestationsTableItemType, Date> title="Дата" column={column} />,
         enableSorting: true,
         sortingFn: 'datetime',
         cell: info => <span title={info.getValue().toISOString()} className='AttestationsTableItem__date'>{info.getValue().toLocaleDateString()}</span>
     }),
+    //  ...(type === 'parallel'
+    //     ? [columnHelper.accessor('class', {
+    //       header: ({ column }: { column: Column<Student, string> }) => <SortableHeader<Student, string> title="Класс" column={column} />,
+    //       enableSorting: true,
+    //       sortingFn: 'alphanumeric',
+    //       cell: info => <span title={info.getValue()} className='tableItem__class'>{info.getValue() || '—'}</span>
+    //     })]
+    //     : []),
+    ...(role==="department" ? [columnHelper.accessor('schoolName', {
+        header: ({ column }) => <SortableHeader<AttestationsTableItemType, string> title="Школа" column={column} />,
+        enableSorting: true,
+        sortingFn: 'text',
+        cell: info => <span title={info.getValue()} className='AttestationsTableItem__schoolName'>{info.getValue()}</span>
+    })] : []),
     columnHelper.accessor('studentName', {
         header: ({ column }) => <SortableHeader<AttestationsTableItemType, string> title="Ученик" column={column} />,
         enableSorting: true,

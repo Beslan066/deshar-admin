@@ -287,6 +287,7 @@ export const mockAttestationData: {
 			mistakes: 2,
 			points: 88,
 			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ Центр образования г. Магас',
 		},
 		{
 			id: 2,
@@ -297,6 +298,7 @@ export const mockAttestationData: {
 			mistakes: 2,
 			points: 88,
 			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ Лицей – детский сад г. Магас',
 		},
 		{
 			id: 2,
@@ -307,6 +309,7 @@ export const mockAttestationData: {
 			mistakes: 5,
 			points: 75,
 			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
 		},
 		{
 			id: 4,
@@ -317,6 +320,7 @@ export const mockAttestationData: {
 			mistakes: 1,
 			points: 95,
 			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
 		},
 		{
 			id: 8,
@@ -327,6 +331,7 @@ export const mockAttestationData: {
 			mistakes: 6,
 			points: 74,
 			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
 		},
 		{
 			id: 10,
@@ -337,6 +342,7 @@ export const mockAttestationData: {
 			mistakes: 4,
 			points: 82,
 			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
 		},
 	],
 	rejected: [
@@ -349,6 +355,7 @@ export const mockAttestationData: {
 			mistakes: 8,
 			points: 62,
 			attestationStatus: 'rejected',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
 		},
 		{
 			id: 6,
@@ -359,6 +366,7 @@ export const mockAttestationData: {
 			mistakes: 12,
 			points: 48,
 			attestationStatus: 'rejected',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
 		},
 	],
 	checking: [
@@ -371,6 +379,7 @@ export const mockAttestationData: {
 			mistakes: 0,
 			points: 100,
 			attestationStatus: 'checking',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
 		},
 		{
 			id: 7,
@@ -381,6 +390,7 @@ export const mockAttestationData: {
 			mistakes: 3,
 			points: 85,
 			attestationStatus: 'checking',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
 		},
 	],
 	notCompleted: [
@@ -393,6 +403,7 @@ export const mockAttestationData: {
 			mistakes: 15,
 			points: 35,
 			attestationStatus: 'notCompleted',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
 		},
 	],
 }

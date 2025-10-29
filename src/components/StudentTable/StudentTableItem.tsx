@@ -101,6 +101,7 @@ const AttestationResultsTable = () => {
 };
 
 const AttestationResultsHeader = () => {
+    const { hasRole } = useRole();
     return <div className='AttestationResultsHeader'>
         <div className="AttestationResultsHeader__inner">
             <div className="AttestationResultsHeader__col">
@@ -120,6 +121,14 @@ const AttestationResultsHeader = () => {
                         24.04.25 16:35
                     </time>
                 </div>
+                {hasRole(["department", "admin"]) && <div className="AttestationResultsHeader__item">
+                    <span className="AttestationResultsHeader__item_title">
+                        Модуль
+                    </span>
+                    <span className='AttestationResultsHeader__item_content'>
+                        Произведения 20 века
+                    </span>
+                </div>}
             </div>
             <div className="AttestationResultsHeader__col">
                 <div className="AttestationResultsHeader__item">
@@ -138,7 +147,14 @@ const AttestationResultsHeader = () => {
                         4
                     </span>
                 </div>
-
+                {hasRole(["department", "admin"]) && <div className="AttestationResultsHeader__item">
+                    <span className="AttestationResultsHeader__item_title">
+                        Предмет
+                    </span>
+                    <span className='AttestationResultsHeader__item_content'>
+                        Литература
+                    </span>
+                </div>}
             </div>
             <div className="AttestationResultsHeader__col">
                 <div className="AttestationResultsHeader__item">
@@ -230,7 +246,7 @@ export const StudentTableItem = <TData,>({ row, status }: StudentTableItemProps<
             <tr>
                 <td colSpan={8}>
                     <div className='attestationResults__wrapper'>
-                        {hasRole(["vicePrincipal", "admin"]) && <AttestationResultsHeader />}
+                        {hasRole(["vicePrincipal", "department", "admin"]) && <AttestationResultsHeader />}
                         <div className="attestationResults__container">
                             <AttestationResultsTable />
                         </div>
