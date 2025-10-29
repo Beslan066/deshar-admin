@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <ProtectedRoute allowedRoles={["admin", "teacher", "vicePrincipal", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "teacher", "vicePrincipal", "department", "ministry"]} fallbackPath="/sign-in" showLoader={true}>
                     <StatisticLayout />
                 </ProtectedRoute>,
                 children: [
@@ -57,13 +57,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/schools',
-                element: <ProtectedRoute allowedRoles={["admin", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "department", "ministry"]} fallbackPath="/sign-in" showLoader={true}>
                     <Schools />
                 </ProtectedRoute>
             },
             {
                 path: '/schools/:schoolID',
-                element: <ProtectedRoute allowedRoles={["admin", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "department", "ministry"]} fallbackPath="/sign-in" showLoader={true}>
                     <SchoolStat />
                 </ProtectedRoute>
             },

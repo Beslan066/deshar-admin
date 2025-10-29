@@ -3,6 +3,7 @@ import { useState } from "react"
 import { AttestationsTable } from "../../components/AttestationTable"
 import { Card } from "../../components/Card"
 import { mockAttestationData } from "../../mocks/data"
+import useRole from "../../shared/hooks/useRole"
 const TABS = [
     { id: 0, title: 'На проверку' },
     { id: 1, title: 'Принятые' },
@@ -20,6 +21,7 @@ const TABS = [
     { id: 13, title: 'Отклоненные' },
 ]
 export const Attestations = () => {
+    const { role } = useRole();
     const [timeFrom, setTimeFrom] = useState<string>('')
     const [timeTo, setTimeTo] = useState<string>('')
     const [activeTab, setActiveTab] = useState(0);
@@ -69,7 +71,7 @@ export const Attestations = () => {
             valueFirst='147 аттестаций'
             activeTab={activeTab}
             setActiveTab={setActiveTab}
-
+            csv={role === "department" && true}
         >
 
             <AttestationsTable data={data} />

@@ -1,6 +1,6 @@
 @use './../../scss/breakpoint' as breakpoint;
 .Tabs {
-	width: 100%;
+	max-width: 90%;
 	position: relative;
 	display: flex;
 	align-items: center;

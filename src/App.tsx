@@ -8,7 +8,7 @@ import useRole from './shared/hooks/useRole';
 function App() {
   const { setRole } = useRole();
   useEffect(() => {
-    setRole("department");
+    setRole("ministry");
   }, []);
 
   return <RouterProvider router={router} />
