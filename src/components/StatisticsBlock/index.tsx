@@ -3,6 +3,7 @@ import { Selector } from '../../shared/ui/Selector'
 import { useDrawingArea } from '@mui/x-charts/hooks'
 import type { JSX } from 'react'
 import './styles.scss'
+import { Tooltip } from '../../shared/ui/Tooltip'
 export interface PieDataItem {
     value: number
     color: string
@@ -48,7 +49,9 @@ function PieCenterLabel({ label, value }: { label: string; value: string }) {
         </>
     )
 }
-
+const Test = ({ label, value }: { label: string; value: string; }) => (
+    <div>d{label}{value}</div>
+)
 // Selector options
 const selectorOptions = [
     { id: '1', label: 'Неделя' },
@@ -88,15 +91,21 @@ export const StatisticsBlock = ({
                                 endAngle: 360,
                                 cx: 100,
                                 cy: 100,
+                                valueFormatter: (v) => `${v.value} баллов`
                             },
                         ]}
+                        slots={{
+                            tooltip: Tooltip
+                        }}
                         slotProps={{
                             legend: { hidden: true }, // Hide default legend if using custom one
-                        }}>
+                            tooltip: Tooltip
+                        }}
+                    >
                         <PieCenterLabel value={String(centerValue)} label={centerLabel} />
                     </PieChart>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

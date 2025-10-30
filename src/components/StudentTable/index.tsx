@@ -86,24 +86,3 @@ export const StudentTable = ({ data }: { data: StudentTableItemType[] }) => {
         </div>
     );
 };
-
-{/* <table className='StudentTableItem__attestationTable AttestationTable'>
-<thead className="AttestationTable__head">
-    <tr>
-        <th>Задание</th>
-        <th>Время (мм:сс)</th>
-        <th>Ошибки</th>
-        <th>Баллы</th>
-    </tr>
-</thead>
-<tbody className='AttestationTable__body'>
-    <tr className='AttestationTable__item'>
-        <th>
-            1
-        </th>
-        <th>0:21</th>
-        <th>0</th>
-        <th>11</th>
-    </tr>
-</tbody>
-</table> */}

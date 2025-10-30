@@ -45,3 +45,39 @@
 		color: var(--neutral-medium);
 	}
 }
+.MuiChartsTooltip {
+	&-root {
+		border-radius: 8px !important;
+	}
+	&-paper {
+		border-radius: 8px !important;
+		background-color: var(--neutral-dark) !important;
+	}
+	&-valueCell {
+		font-family: var(--font-family) !important;
+		font-weight: 700 !important;
+		font-size: 12px !important;
+		line-height: 167% !important;
+		text-align: center !important;
+		color: var(--neutral-white) !important;
+	}
+	&-labelCell {
+		font-family: var(--font-family) !important;
+		font-weight: 400 !important;
+		font-size: 12px !important;
+		line-height: 167% !important;
+		text-align: center !important;
+		color: var(--neutral-white) !important;
+	}
+	&-markContainer {
+		display: none !important;
+	}
+	&-row {
+		display: flex;
+		flex-direction: column;
+		padding: 5px;
+	}
+	&-root {
+		padding: 0 !important;
+	}
+}
