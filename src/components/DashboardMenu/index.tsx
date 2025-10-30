@@ -46,6 +46,15 @@ export const DashboardMenu = () => {
                                 <rect x="13" y="12" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-7-inside-6_4463_19629)" />
                             </svg>
                         } />}
+                        {hasRole(['admin', 'ministry']) && <DashboardMenuItem title="Упр. образования" href="/education-department" icon={
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.5 5H13C15.2091 5 17 6.79086 17 9V13C17 15.2091 15.2091 17 13 17H7C4.79086 17 3 15.2091 3 13V9C3 6.79086 4.79086 5 7 5H12.5Z" stroke="#7D7979" stroke-width="1.5" />
+                                <path d="M3 9H17" stroke="#7D7979" stroke-width="1.5" />
+                                <path d="M7 5V4C7 2.89543 7.89543 2 9 2H11C12.1046 2 13 2.89543 13 4V5" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M6.25 11V11.75H7.75V11H6.25ZM6.25 9V11H7.75V9H6.25Z" fill="#7D7979" />
+                                <path d="M12.25 11V11.75H13.75V11H12.25ZM12.25 9V11H13.75V9H12.25Z" fill="#7D7979" />
+                            </svg>
+                        } />}
                         {hasRole(['admin', 'department', 'ministry']) && <DashboardMenuItem title="Учителя" href="/teachers" icon={
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10 4H14C15.6569 4 17 5.34315 17 7V11C17 12.6569 15.6569 14 14 14H10" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" />
@@ -54,15 +63,7 @@ export const DashboardMenu = () => {
                                 <path d="M14 7L12 9" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         } />}
-                        {hasRole(['admin', 'department', 'ministry']) && <DashboardMenuItem title="Аттестации" href="/attestations" icon={
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.5 17H8C5.23858 17 3 14.7614 3 12V8C3 5.23858 5.23858 3 8 3H12C14.7614 3 17 5.23858 17 8V9.5" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" />
-                                <path d="M7 8L13 8" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" />
-                                <path d="M7 12H10" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" />
-                                <path d="M13 14.5L14.5 16L17.5 13" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        } />}
-                        {hasRole(['vicePrincipal', 'admin']) && (
+                        {hasRole(['vicePrincipal', 'admin', 'ministry']) && (
                             <DashboardMenuItem
                                 title="Аттестации"
                                 href="/attestations"

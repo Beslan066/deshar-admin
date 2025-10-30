@@ -12,6 +12,7 @@ import { SchoolDashboard } from "../pages/SchoolDashboard/SchoolDashboard";
 import { StatisticLayout } from "./StatisticLayout/StatisticLayout";
 import { MainStatisticPageContent } from "../pages/MainStatistic/MainStatistic";
 import { TeacherStudents } from "../components/TeacherStudents/TeacherStudents";
+import { EducationDepartment } from "../pages/EducationDepartment";
 
 export const router = createBrowserRouter([
     {
@@ -51,7 +52,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/attestations',
-                element: <ProtectedRoute allowedRoles={["admin", "vicePrincipal", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "vicePrincipal", "department", "ministry"]} fallbackPath="/sign-in" showLoader={true}>
                     <Attestations />
                 </ProtectedRoute>
             },
@@ -69,14 +70,28 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/teachers',
-                element: <ProtectedRoute allowedRoles={["admin", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "department", "ministry"]} fallbackPath="/sign-in" showLoader={true}>
                     <Teachers />
                 </ProtectedRoute>
             },
             {
                 path: '/teachers/:teacherID/students',
-                element: <ProtectedRoute allowedRoles={["admin", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "department", "ministry"]} fallbackPath="/sign-in" showLoader={true}>
                     <TeacherStudents />
+                </ProtectedRoute>
+            },
+            {
+                path: '/education-department',
+                element: <ProtectedRoute allowedRoles={["admin", "ministry"]} fallbackPath="/sign-in" showLoader={true}>
+                    <EducationDepartment />
+                </ProtectedRoute>
+            },
+            {
+                path: '/education-department/:departmentID',
+                element: <ProtectedRoute allowedRoles={["admin", "ministry"]} fallbackPath="/sign-in" showLoader={true}>
+                    <div>
+                        /education-departmentID
+                    </div>
                 </ProtectedRoute>
             },
         ]
