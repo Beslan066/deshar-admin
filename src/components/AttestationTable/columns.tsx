@@ -22,7 +22,7 @@ export const getColumns = ({role}:{role:Role}) => [
         header: ({ column }) => <SortableHeader<AttestationsTableItemType, Date> title="Дата" column={column} />,
         enableSorting: true,
         sortingFn: 'datetime',
-        cell: info => <span title={info.getValue().toISOString()} className='AttestationsTableItem__date'>{info.getValue().toLocaleDateString()}</span>
+        cell: info => <span title={info.getValue().toISOString()} className='TableItem__date'>{info.getValue().toLocaleDateString()}</span>
     }),
     //  ...(type === 'parallel'
     //     ? [columnHelper.accessor('class', {
@@ -36,37 +36,37 @@ export const getColumns = ({role}:{role:Role}) => [
         header: ({ column }) => <SortableHeader<AttestationsTableItemType, string> title="Школа" column={column} />,
         enableSorting: true,
         sortingFn: 'text',
-        cell: info => <span title={info.getValue()} className='AttestationsTableItem__schoolName'>{info.getValue()}</span>
+        cell: info => <span title={info.getValue()} className='TableItem__schoolName'>{info.getValue()}</span>
     })] : []),
     columnHelper.accessor('studentName', {
         header: ({ column }) => <SortableHeader<AttestationsTableItemType, string> title="Ученик" column={column} />,
         enableSorting: true,
         sortingFn: 'text',
-        cell: info => <span title={info.getValue()} className='AttestationsTableItem__name'>{info.getValue()}</span>
+        cell: info => <span title={info.getValue()} className='TableItem__name'>{info.getValue()}</span>
     }),
     columnHelper.accessor('subjectName', {
         header: ({ column }) => <SortableHeader<AttestationsTableItemType, string> title="Предмет" column={column} />,
         enableSorting: true,
         sortingFn: 'text',
-        cell: info => <span title={info.getValue()} className='AttestationsTableItem__subject'>{info.getValue()}</span>
+        cell: info => <span title={info.getValue()} className='TableItem__subject'>{info.getValue()}</span>
     }),
     columnHelper.accessor('module', {
         header: ({ column }) => <SortableHeader<AttestationsTableItemType, string> title="Модуль" column={column} />,
         enableSorting: true,
         sortingFn: 'text',
-        cell: info => <span title={info.getValue()} className='AttestationsTableItem__module'>{info.getValue()}</span>
+        cell: info => <span title={info.getValue()} className='TableItem__module'>{info.getValue()}</span>
     }),
     columnHelper.accessor('mistakes', {
         header: ({ column }) => <SortableHeader<AttestationsTableItemType, number> title="Ошибки" column={column} />,
         enableSorting: true,
         sortingFn: 'alphanumeric',
-        cell: info => <span title={String(info.getValue())} className='AttestationsTableItem__mistakes'>{info.getValue()}</span>
+        cell: info => <span title={String(info.getValue())} className='TableItem__mistakes'>{info.getValue()}</span>
     }),
     columnHelper.accessor('points', {
         header: ({ column }) => <SortableHeader<AttestationsTableItemType, number> title="Баллы" column={column} />,
         enableSorting: true,
         sortingFn: 'alphanumeric',
-        cell: info => <span title={String(info.getValue())} className='AttestationsTableItem__points'>{info.getValue()}</span>
+        cell: info => <span title={String(info.getValue())} className='TableItem__points'>{info.getValue()}</span>
     }),
     columnHelper.accessor('attestationStatus', {
         header: ({ column }) => <SortableHeader title="Аттестация" column={column} />,

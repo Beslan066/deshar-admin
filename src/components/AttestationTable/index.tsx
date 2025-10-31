@@ -7,7 +7,6 @@ import {
     type SortingState
 } from '@tanstack/react-table'
 import { getColumns, type AttestationsTableItemType } from './columns'
-import './styles.scss';
 import { StudentTableItem } from '../StudentTable/StudentTableItem';
 import useRole from '../../shared/hooks/useRole';
 interface AttestationsTableProps {
@@ -15,7 +14,7 @@ interface AttestationsTableProps {
 }
 export const AttestationsTable = ({ data }: AttestationsTableProps) => {
     const { role } = useRole();
-    const columns = useMemo(() => getColumns({role}), [])
+    const columns = useMemo(() => getColumns({ role }), [])
     // Состояние для сортировки
     const [sorting, setSorting] = useState<SortingState>([])
 
@@ -30,16 +29,16 @@ export const AttestationsTable = ({ data }: AttestationsTableProps) => {
         getSortedRowModel: getSortedRowModel(), // Модель для сортировки
     })
     return (
-        <div className="AttestationsTable__scroll-container">
+        <div className="Table__scroll-container">
 
-            <table className="AttestationsTable">
+            <table className="Table">
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id} className="AttestationsTable__tr">
+                        <tr key={headerGroup.id} className="Table__tr">
                             {headerGroup.headers.map(header => (
                                 <th
                                     key={header.id}
-                                    className='AttestationsTable__th'
+                                    className='Table__th'
                                     colSpan={header.colSpan}
                                 >
                                     {header.isPlaceholder ? null : (

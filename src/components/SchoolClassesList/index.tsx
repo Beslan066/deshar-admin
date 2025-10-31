@@ -43,16 +43,16 @@ export const SchoolClassesList = ({ data, link = '/' }: { data: SchoolItem[]; li
         navigate(`${link}${id}`)
     }
     return (
-        <div className="SchoolClassesList__scroll-container">
+        <div className="Table__scroll-container">
 
-            <table className="SchoolClassesList">
+            <table className="Table">
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id} className="SchoolClassesList__tr">
+                        <tr key={headerGroup.id} className="Table__tr">
                             {headerGroup.headers.map(header => (
                                 <th
                                     key={header.id}
-                                    className='SchoolClassesList__th'
+                                    className='Table__th'
                                     colSpan={header.colSpan}
                                 >
                                     {header.isPlaceholder ? null : (

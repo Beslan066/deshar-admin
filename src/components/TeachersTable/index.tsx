@@ -7,7 +7,6 @@ import {
     type SortingState
 } from '@tanstack/react-table'
 import { getColumns } from './columns'
-import './styles.scss';
 import { useNavigate } from 'react-router-dom';
 interface ClassItem {
     id: number;
@@ -48,16 +47,16 @@ export const TeachersTable = ({ data, link = '/' }: { data: TeacherItem[]; link?
         navigate(`/teachers/${id}/students`)
     }
     return (
-        <div className="TeachersTable__scroll-container">
+        <div className="Table__scroll-container">
 
-            <table className="TeachersTable">
+            <table className="Table">
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id} className="TeachersTable__tr">
+                        <tr key={headerGroup.id} className="Table__tr">
                             {headerGroup.headers.map(header => (
                                 <th
                                     key={header.id}
-                                    className='TeachersTable__th'
+                                    className='Table__th'
                                     colSpan={header.colSpan}
                                 >
                                     {header.isPlaceholder ? null : (
@@ -95,9 +94,9 @@ export const TeachersTable = ({ data, link = '/' }: { data: TeacherItem[]; link?
 
                 <tbody>
                     {table.getRowModel().rows.map(row => (
-                        <tr key={row.id} className={"TeachersTableItem"} onClick={() => redirectOnStudentItemClick(row.original.id)}>
+                        <tr key={row.id} className={"TableItem"} onClick={() => redirectOnStudentItemClick(row.original.id)}>
                             {row.getVisibleCells().map(cell => (
-                                <td key={cell.id} className={`TeachersTableItem__td_${cell.id.slice(1)}`}>
+                                <td key={cell.id} className={`TableItem__td_${cell.id.slice(1)}`}>
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </td>
                             ))}

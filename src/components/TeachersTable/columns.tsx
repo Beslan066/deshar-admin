@@ -15,7 +15,7 @@ export const getColumns = () => [
       const placeNumber = info.getValue()
 
       return (
-        <div className={cn("TeachersTableItem__place")}>
+        <div className={cn("TableItem__place")}>
           <span>{placeNumber}</span>
         </div>
       )
@@ -25,13 +25,13 @@ export const getColumns = () => [
     header: ({ column }) => <SortableHeader<TeacherItem, string> title="Учитель" column={column} />,
     enableSorting: true,
     sortingFn: 'alphanumeric',
-    cell: info => <span title={info.getValue()} className='TeachersTableItem__name'>{info.getValue()}</span>
+    cell: info => <span title={info.getValue()} className='TableItem__name'>{info.getValue()}</span>
   }),
   columnHelper.accessor('schoolName', {
     header: ({ column }) => <SortableHeader<TeacherItem, string> title="Школа" column={column} />,
     enableSorting: true,
     sortingFn: 'alphanumeric',
-    cell: info => <span title={info.getValue()} className='TeachersTableItem__name'>{info.getValue()}</span>
+    cell: info => <span title={info.getValue()} className='TableItem__name'>{info.getValue()}</span>
   }),
 
   columnHelper.accessor('classes', {
@@ -47,25 +47,25 @@ export const getColumns = () => [
         }
       }
       )
-      return <span title={value} className='TeachersTableItem__classes'>{value}</span>
+      return <span title={value} className='TableItem__classes'>{value}</span>
     }
   }),
   columnHelper.accessor('studentsCount', {
     header: ({ column }) => <SortableHeader title="Кол. учеников" column={column} />,
     enableSorting: true,
     sortingFn: 'basic',
-    cell: info => <span title={String(info.getValue())} className='TeachersTableItem__studentsCount'>{info.getValue()}</span>
+    cell: info => <span title={String(info.getValue())} className='TableItem__studentsCount'>{info.getValue()}</span>
   }),
   columnHelper.accessor('doneModules', {
     header: ({ column }) => <SortableHeader title="Вып. модулей" column={column} />,
     enableSorting: true,
     sortingFn: 'basic',
-    cell: info => <span title={String(info.getValue())} className='TeachersTableItem__doneModules'>{info.getValue()}</span>
+    cell: info => <span title={String(info.getValue())} className='TableItem__modules'>{info.getValue()}</span>
   }),
   columnHelper.accessor('points', {
     header: ({ column }) => <SortableHeader title="Баллы" column={column} />,
     enableSorting: true,
     sortingFn: 'basic',
-    cell: info => <span title={String(info.getValue())} className='TeachersTableItem__points'>{info.getValue()}</span>
+    cell: info => <span title={String(info.getValue())} className='TableItem__points'>{info.getValue()}</span>
   }),
 ]

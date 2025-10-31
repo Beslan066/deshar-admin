@@ -37,18 +37,18 @@ export const StudentTable = ({ data }: { data: StudentTableItemType[] }) => {
     });
 
     return (
-        <div className="StudentTable__container">
-            <table className="StudentTable">
-                <thead className="StudentTable__head">
+        <div className="Table__scroll-container">
+            <table className="Table">
+                <thead className="Table__head">
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id}>
+                        <tr key={headerGroup.id} className="Table__tr">
                             {headerGroup.headers.map(header => (
-                                <th key={header.id} className={`StudentTable__head_${header.id}`}>
+                                <th key={header.id} className={`Table__th Table__head_${header.id}`}>
                                     {header.isPlaceholder ? null : (
                                         <div
                                             {...{
                                                 className: header.column.getCanSort()
-                                                    ? 'cursor-pointer select-none StudentTable__head_inner'
+                                                    ? 'cursor-pointer select-none Table__head_inner'
                                                     : '',
                                                 onClick: header.column.getToggleSortingHandler(),
                                             }}

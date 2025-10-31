@@ -7,7 +7,6 @@ import {
     type SortingState
 } from '@tanstack/react-table'
 import { getColumns } from './columns'
-import './styles.scss';
 import { useNavigate } from 'react-router-dom';
 export interface TeacherStudentListItem {
     id: number;
@@ -40,16 +39,16 @@ export const TeacherStudentsList = ({ data, link = '/' }: { data: TeacherStudent
         navigate(`${link}${id}`)
     }
     return (
-        <div className="TeacherStudentsList__scroll-container">
+        <div className="Table__scroll-container">
 
-            <table className="TeacherStudentsList">
+            <table className="Table">
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id} className="TeacherStudentsList__tr">
+                        <tr key={headerGroup.id} className="Table__tr">
                             {headerGroup.headers.map(header => (
                                 <th
                                     key={header.id}
-                                    className='TeacherStudentsList__th'
+                                    className='Table__th'
                                     colSpan={header.colSpan}
                                 >
                                     {header.isPlaceholder ? null : (
@@ -87,7 +86,7 @@ export const TeacherStudentsList = ({ data, link = '/' }: { data: TeacherStudent
 
                 <tbody>
                     {table.getRowModel().rows.map(row => (
-                        <tr key={row.id} className={"TeacherStudentsListItem"} onClick={() => redirectOnStudentItemClick(row.original.id)}>
+                        <tr key={row.id} className={"TableItem"} onClick={() => redirectOnStudentItemClick(row.original.id)}>
                             {row.getVisibleCells().map(cell => (
                                 <td key={cell.id}>
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

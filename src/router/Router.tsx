@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/class/:classId/student/:studentId',
-                element: <ProtectedRoute allowedRoles={["admin", "teacher", "vicePrincipal", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "teacher", "vicePrincipal", "department", "ministry"]} fallbackPath="/sign-in" showLoader={true}>
                     <StudentPage />
                 </ProtectedRoute>
             },

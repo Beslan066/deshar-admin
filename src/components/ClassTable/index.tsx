@@ -8,7 +8,6 @@ import {
 } from '@tanstack/react-table'
 import type { StudentTableProps } from '../../types/types'
 import { getColumns } from './columns'
-import './styles.scss';
 import { useNavigate } from 'react-router-dom';
 import { teacherMyClasses } from '../../mocks/data';
 export const ClassTable = ({ data, type }: StudentTableProps) => {
@@ -34,16 +33,16 @@ export const ClassTable = ({ data, type }: StudentTableProps) => {
         navigate(`student/${id}`)
     }
     return (
-        <div className="ClassTable__scroll-container">
+        <div className="Table__scroll-container">
 
-            <table className="ClassCard__table ClassTable">
+            <table className="ClassCard__table Table">
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id} className="ClassTable__tr">
+                        <tr key={headerGroup.id} className="Table__tr">
                             {headerGroup.headers.map(header => (
                                 <th
                                     key={header.id}
-                                    className='ClassTable__th'
+                                    className='Table__th'
                                     colSpan={header.colSpan}
                                 >
                                     {header.isPlaceholder ? null : (
@@ -81,7 +80,7 @@ export const ClassTable = ({ data, type }: StudentTableProps) => {
 
                 <tbody>
                     {table.getRowModel().rows.map(row => (
-                        <tr key={row.id} className={`tableItem ${teacherMyClasses.find(item => item.title === row.original.class) ? "tableItem--myStudent" : ""}`} onClick={() => redirectOnStudentItemClick(row.original.id)}>
+                        <tr key={row.id} className={`TableItem ${teacherMyClasses.find(item => item.title === row.original.class) ? "TableItem--myStudent" : ""}`} onClick={() => redirectOnStudentItemClick(row.original.id)}>
                             {row.getVisibleCells().map(cell => (
                                 <td key={cell.id}>
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
