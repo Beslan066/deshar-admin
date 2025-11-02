@@ -13,6 +13,7 @@ import { StatisticLayout } from "./StatisticLayout/StatisticLayout";
 import { MainStatisticPageContent } from "../pages/MainStatistic/MainStatistic";
 import { TeacherStudents } from "../components/TeacherStudents/TeacherStudents";
 import { EducationDepartment } from "../pages/EducationDepartment";
+import { DepartmentSchools } from "../pages/DepartmentSchools";
 
 export const router = createBrowserRouter([
     {
@@ -40,7 +41,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/class/:classId',
-                element: <ProtectedRoute allowedRoles={["admin", "teacher", "vicePrincipal", "department"]} fallbackPath="/sign-in" showLoader={true}>
+                element: <ProtectedRoute allowedRoles={["admin", "teacher", "vicePrincipal", "department", "ministry"]} fallbackPath="/sign-in" showLoader={true}>
                     <Class />
                 </ProtectedRoute>
             },
@@ -89,9 +90,7 @@ export const router = createBrowserRouter([
             {
                 path: '/education-department/:departmentID',
                 element: <ProtectedRoute allowedRoles={["admin", "ministry"]} fallbackPath="/sign-in" showLoader={true}>
-                    <div>
-                        /education-departmentID
-                    </div>
+                    <DepartmentSchools />
                 </ProtectedRoute>
             },
         ]

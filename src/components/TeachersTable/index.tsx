@@ -43,7 +43,7 @@ export const TeachersTable = ({ data, link = '/' }: { data: TeacherItem[]; link?
 
     })
     const redirectOnStudentItemClick = (id: number) => {
-        console.log(id);
+        console.log(link, id);
         navigate(`/teachers/${id}/students`)
     }
     return (

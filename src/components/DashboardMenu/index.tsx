@@ -63,7 +63,7 @@ export const DashboardMenu = () => {
                                 <path d="M14 7L12 9" stroke="#7D7979" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         } />}
-                        {hasRole(['vicePrincipal', 'admin', 'ministry']) && (
+                        {hasRole(['vicePrincipal', 'admin', "department", 'ministry']) && (
                             <DashboardMenuItem
                                 title="Аттестации"
                                 href="/attestations"

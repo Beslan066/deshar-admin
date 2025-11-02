@@ -2,11 +2,11 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { minutesToHoursAndMinutes } from '../../shared/utils'
 import cn from 'classnames'
 import { SortableHeader } from '../SortableHeader/sortableHeader'
-import type { IEducationDepartment } from '.'
+import type { IEducationDepartment } from '../../types/types'
 
 const columnHelper = createColumnHelper<IEducationDepartment>()
 
-export const getColumns = () => [
+export const getEducationDepartmentColumns = () => [
   columnHelper.accessor('place', {
     header: ({ column }) => <SortableHeader title="Место" column={column} />,
     enableSorting: true,

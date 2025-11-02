@@ -1,12 +1,15 @@
+
 import { createColumnHelper } from '@tanstack/react-table'
 import { minutesToHoursAndMinutes } from '../../shared/utils'
 import cn from 'classnames'
 import { SortableHeader } from '../SortableHeader/sortableHeader'
-import type { SchoolItem } from '.'
 
-const columnHelper = createColumnHelper<SchoolItem>()
+import type { Role } from '../../types/auth'
+import type { SchoolDepItem } from '../../types/types'
 
-export const getColumns = () => [
+const columnHelper = createColumnHelper<SchoolDepItem>()
+
+export const getColumnsSchool = ({ role }: { role?: Role }) => [
   columnHelper.accessor('place', {
     header: ({ column }) => <SortableHeader title="Место" column={column} />,
     enableSorting: true,
@@ -22,11 +25,26 @@ export const getColumns = () => [
     }
   }),
   columnHelper.accessor('schoolName', {
-    header: ({ column }) => <SortableHeader<SchoolItem, string> title="Школа" column={column} />,
+    header: ({ column }) => <SortableHeader<SchoolDepItem, string> title="Школа" column={column} />,
     enableSorting: true,
     sortingFn: 'alphanumeric',
     cell: info => <span title={info.getValue()} className='TableItem__name'>{info.getValue()}</span>
   }),
+  // columnHelper.accessor("department", {
+  //   header: ({ column }) => <SortableHeader<SchoolDepItem, string> title="Управление" column={column} />,
+  //   enableSorting: true,
+  //   sortingFn: 'text',
+  //   cell: info => {
+  //     const value = info.getValue();
+  //     // Пустая строка означает, что исходное значение было null/undefined
+  //     if (value === '') {
+  //       console.log(role);
+  //       return null
+  //     };
+
+  //     return <span title={value} className='TableItem__schoolName'>{value}</span>;
+  //   }
+  // }),
 
   columnHelper.accessor('learningTime', {
     header: ({ column }) => <SortableHeader title="Время обучения" column={column} />,

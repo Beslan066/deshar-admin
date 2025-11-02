@@ -4,6 +4,7 @@ import { Card } from '../../components/Card';
 import { studentTableMockData } from '../../mocks/data';
 import './styles.scss';
 import { StudentTable } from '../../components/StudentTable';
+import { useNavigate } from 'react-router-dom';
 const TABS = [
     { id: 0, title: 'Ингушский язык' },
     { id: 1, title: 'Математика' },
@@ -18,6 +19,7 @@ export const StudentPage = () => {
     const [modulesTo, setModulesTo] = useState<string>('')
     const [pointsFrom, setPointsFrom] = useState<string>('')
     const [pointsTo, setPointsTo] = useState<string>('');
+    const navigate = useNavigate();
     const resetFilters = () => {
         setTimeFrom('');
         setTimeTo('');
@@ -26,6 +28,10 @@ export const StudentPage = () => {
         setPointsFrom('');
         setPointsTo('');
     }
+    // const redirectOnStudentItemClick = (item: Student) => {
+    //     console.log(item.id);
+    //     navigate(`student/${item.id}`, { relative: "route" })
+    // }
     return (
         <main className="StudentPage">
             {/* <StudentCard /> */}
@@ -59,9 +65,10 @@ export const StudentPage = () => {
                 valueSecond='964 баллов'
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
-                onClickBackButton={() => console.log('backBtn')}
+                onClickBackButton={() => navigate(-1)}
             >
                 <StudentTable data={studentTableMockData} />
+                {/* <Table<StudentTableItemType, any> data={studentTableMockData} getColumns={() => getStudentTableColumns()} /> */}
             </Card>
         </main>
     )

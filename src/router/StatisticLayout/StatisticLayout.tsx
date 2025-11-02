@@ -2,9 +2,9 @@
 // import { MainChart } from "../../components/MainChart"
 // import { ResultsCard } from "../../components/ResultsCard"
 // import { StatisticsBlock } from "../../components/StatisticsBlock";
-import { testOptionsTeacher, testOptionsVicePrincipal, testOptionsDepartment } from "../../mocks/data";
+import { testOptionsTeacher, testOptionsVicePrincipal, testOptionsDepartment, testOptionsMinistry } from "../../mocks/data";
 import useRole from "../../shared/hooks/useRole";
-import { Selector } from "../../shared/ui/Selector"
+import { Selector, type Option } from "../../shared/ui/Selector"
 
 // import { TEST_CLASSMATES } from '../../mocks/data';
 import './StatisticLayout.scss';
@@ -26,18 +26,21 @@ export const StatisticLayout = () => {
         case "department":
             options = testOptionsDepartment;
             break;
+        case "ministry":
+            options = testOptionsMinistry;
+            break;
         default:
             options = testOptionsTeacher;
             break;
     }
-    const handleSelectChange = (id: string) => {
-        if (role === "department" || role === "vicePrincipal") {
+    const handleSelectChange = (item: Option) => {
+        if (role === "department" || role === "vicePrincipal" || role === "ministry") {
 
-            if (+id === 0) {
+            if (item.default) {
                 navigate("/")
             } else {
 
-                navigate(`/${id}`)
+                navigate(`/${item.id}`)
             }
         }
     }

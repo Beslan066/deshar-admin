@@ -1,8 +1,10 @@
 import type { AttestationsTableItemType } from '../components/AttestationTable/columns'
-import { type PieDataItem, LegendMarkItem } from '../components/StatisticsBlock'
+import { LegendMarkItem } from '../components/StatisticsBlock'
 import type { StudentTableItemType } from '../components/StudentTable'
 import type { TeacherItem } from '../components/TeachersTable'
-
+import { type Option } from '../shared/ui/Selector'
+import type { PieValueType } from '@mui/x-charts'
+import type { DepartamentItem, SchoolDepItem } from '../types/types'
 export const barChartMockData = [
 	{ date: new Date(2023, 9, 1), value: 150 },
 	{ date: new Date(2023, 9, 2), value: 85 },
@@ -47,6 +49,7 @@ export const TEST_CLASSMATES = [
 		points: 120,
 		time: 157,
 	},
+
 	{
 		id: 77,
 		type: 'classmates',
@@ -439,6 +442,219 @@ export const teacherMyClasses = [
 		classLevel: 6,
 		classLetter: 'Е',
 	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
+	{
+		id: 5,
+		title: '6 “Е”',
+		classLevel: 6,
+		classLetter: 'Е',
+	},
 ]
 export const teacherParallelClasses = [
 	{
@@ -479,23 +695,31 @@ export const teacherParallelClasses = [
 	},
 ]
 
-export const testOptionsTeacher = [
+export const testOptionsTeacher: Option[] = [
 	{ id: '0', label: 'Класс 5-А' },
 	{ id: '1', label: 'Класс 6-В' },
 	{ id: '2', label: 'Класс 6-Д' },
 	{ id: '3', label: 'Класс 7-Б' },
 	{ id: '4', label: 'Класс 7-Г' },
 ]
-export const testOptionsVicePrincipal = [
-	{ id: '0', label: 'Все классы' },
+export const testOptionsVicePrincipal: Option[] = [
+	{ id: '0', label: 'Все классы', default: true },
 	{ id: '1', label: 'Класс 5-А' },
 	{ id: '2', label: 'Класс 6-В' },
 	{ id: '3', label: 'Класс 6-Д' },
 	{ id: '4', label: 'Класс 7-Б' },
 	{ id: '5', label: 'Класс 7-Г' },
 ]
-export const testOptionsDepartment = [
-	{ id: '0', label: 'Все школы' },
+export const testOptionsDepartment: Option[] = [
+	{ id: '0', label: 'Все школы', default: true },
+	{ id: '1', label: 'ГБОУ Центр образования г. Магас' },
+	{ id: '2', label: 'ГБОУ Лицей – детский сад г. Магас' },
+	{ id: '3', label: 'ГБОУ гимназия Марем г. Магас' },
+	{ id: '4', label: 'ГБОУ СОШ №2 г. Магас' },
+	{ id: '5', label: 'ГБОУ СОШ – Детский сад № 1 г. Магас' },
+]
+export const testOptionsMinistry: Option[] = [
+	{ id: '0', label: 'Все УО', default: true },
 	{ id: '1', label: 'ГБОУ Центр образования г. Магас' },
 	{ id: '2', label: 'ГБОУ Лицей – детский сад г. Магас' },
 	{ id: '3', label: 'ГБОУ гимназия Марем г. Магас' },
@@ -503,7 +727,7 @@ export const testOptionsDepartment = [
 	{ id: '5', label: 'ГБОУ СОШ – Детский сад № 1 г. Магас' },
 ]
 // Default data fallback
-export const defaultPieData: PieDataItem[] = [
+export const defaultPieData: PieValueType[] = [
 	{
 		value: 3533,
 		color: '#1baa7d',
@@ -547,7 +771,7 @@ export const defaultPieData: PieDataItem[] = [
 		labelMarkType: data => LegendMarkItem({ color: data.color }),
 	},
 ]
-export const defaultPieTimeData: PieDataItem[] = [
+export const defaultPieTimeData: PieValueType[] = [
 	{
 		value: 11,
 		color: '#1baa7d',
@@ -599,7 +823,9 @@ export const SchoolsMockData = [
 		learningTime: 20187,
 		doneModules: 857,
 		points: 12580,
+		department: 'УО по г. Магас и г. Назрань',
 	},
+
 	{
 		id: 2,
 		place: 2,
@@ -607,6 +833,7 @@ export const SchoolsMockData = [
 		learningTime: 20187,
 		doneModules: 579,
 		points: 12175,
+		department: 'УО по г. Магас и г. Назрань',
 	},
 	{
 		id: 3,
@@ -615,6 +842,7 @@ export const SchoolsMockData = [
 		learningTime: 20187,
 		doneModules: 683,
 		points: 12144,
+		department: 'УО по г. Магас и г. Назрань',
 	},
 	{
 		id: 4,
@@ -623,6 +851,7 @@ export const SchoolsMockData = [
 		learningTime: 20187,
 		doneModules: 742,
 		points: 12078,
+		department: 'УО по г. Магас и г. Назрань',
 	},
 	{
 		id: 5,
@@ -631,6 +860,55 @@ export const SchoolsMockData = [
 		learningTime: 20187,
 		doneModules: 891,
 		points: 11951,
+		department: 'УО по г. Магас и г. Назрань',
+	},
+]
+export const SchoolsMockDataDEP: SchoolDepItem[] = [
+	{
+		id: 1,
+		place: 1,
+		schoolName: 'ГБОУ Центр образования г. Магас',
+		learningTime: 20187,
+		doneModules: 857,
+		points: 12580,
+		department: 'test',
+	},
+
+	{
+		id: 2,
+		place: 2,
+		schoolName: 'ГБОУ Лицей – детский сад г. Магас',
+		learningTime: 20187,
+		doneModules: 579,
+		points: 12175,
+		department: 'test',
+	},
+	{
+		id: 3,
+		place: 3,
+		schoolName: 'ГБОУ гимназия Марем г. Магас',
+		learningTime: 20187,
+		doneModules: 683,
+		points: 12144,
+		department: 'test',
+	},
+	{
+		id: 4,
+		place: 4,
+		schoolName: 'ГБОУ СОШ №2 г. Магас',
+		learningTime: 20187,
+		doneModules: 742,
+		points: 12078,
+		department: 'test',
+	},
+	{
+		id: 5,
+		place: 5,
+		schoolName: 'ГБОУ СОШ – Детский сад № 1 г. Магас',
+		learningTime: 20187,
+		doneModules: 891,
+		points: 11951,
+		department: 'test',
 	},
 ]
 export const SchoolStatMockData = [
@@ -645,6 +923,130 @@ export const SchoolStatMockData = [
 		doneModules: 184,
 		points: 1384,
 	},
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+	{
+		id: 1,
+		place: 1,
+		className: '5 “А”',
+		classLetter: 'А',
+		classLevel: 5,
+		classTeacher: 'Татриева Зина',
+		learningTime: 2187,
+		doneModules: 184,
+		points: 1384,
+	},
+
 	{
 		id: 2,
 		place: 2,
@@ -861,5 +1263,115 @@ export const educationDepMockData = [
 		learningTime: 13414,
 		doneModules: 841,
 		points: 93398,
+	},
+]
+export const eductationAreaSchoolsData = [
+	{
+		id: 1,
+		place: 1,
+		schoolName: 'ГБОУ Центр образования г. Магас',
+		learningTime: 20187,
+		doneModules: 895,
+		points: 12380,
+	},
+	{
+		id: 2,
+		place: 2,
+		schoolName: 'ГБОУ Лицей – детский сад г. Магас',
+		learningTime: 20187,
+		doneModules: 684,
+		points: 12175,
+	},
+	{
+		id: 3,
+		place: 3,
+		schoolName: 'ГБОУ гимназия Марем г. Магас',
+		learningTime: 20187,
+		doneModules: 636,
+		points: 12144,
+	},
+	{
+		id: 4,
+		place: 4,
+		schoolName: 'ГБОУ СОШ №2 г. Магас',
+		learningTime: 20187,
+		doneModules: 743,
+		points: 12078,
+	},
+	{
+		id: 5,
+		place: 5,
+		schoolName: 'ГБОУ СОШ – Детский сад № 1 г. Магас',
+		learningTime: 20187,
+		doneModules: 563,
+		points: 11951,
+	},
+	{
+		id: 6,
+		place: 6,
+		schoolName: 'ГБОУ СОШ №5 г. Магас',
+		learningTime: 20187,
+		doneModules: 489,
+		points: 12947,
+	},
+	{
+		id: 7,
+		place: 7,
+		schoolName: 'ГБОУ СОШ №7 г. Магас',
+		learningTime: 20187,
+		doneModules: 772,
+		points: 11896,
+	},
+]
+export const departmentMockData: DepartamentItem[] = [
+	{
+		id: 1,
+		placeNumber: 1,
+		departmentName: 'УО по г. Магас и г. Назрань',
+		doneModules: 1499,
+		learningTime: 12000,
+		points: 123380,
+		schoolsCount: 32,
+		studentsCount: 12485,
+	},
+	{
+		id: 2,
+		placeNumber: 2,
+		departmentName: 'УО по Назрановскому району',
+		doneModules: 1358,
+		learningTime: 11000,
+		points: 113482,
+		schoolsCount: 43,
+		studentsCount: 17874,
+	},
+	{
+		id: 3,
+		placeNumber: 3,
+		departmentName: 'УО по г. Сунжа и Карабулак',
+		doneModules: 928,
+		learningTime: 9834,
+		points: 98482,
+		schoolsCount: 23,
+		studentsCount: 8942,
+	},
+	{
+		id: 4,
+		placeNumber: 4,
+		departmentName: 'УО по Сунженскому району',
+		doneModules: 841,
+		learningTime: 7893,
+		points: 93398,
+		schoolsCount: 15,
+		studentsCount: 3470,
+	},
+	{
+		id: 5,
+		placeNumber: 5,
+		departmentName: 'УО по г. Малгобек',
+		doneModules: 564,
+		learningTime: 6210,
+		points: 85384,
+		schoolsCount: 37,
+		studentsCount: 14393,
 	},
 ]

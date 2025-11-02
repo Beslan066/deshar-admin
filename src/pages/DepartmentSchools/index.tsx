@@ -1,17 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react"
 import { Card } from "../../components/Card"
-import { educationDepMockData } from "../../mocks/data"
-// import { EducationDepartmentTable, type IEducationDepartment } from "../../components/EducationDepartmentTable"
+import { SchoolsMockDataDEP } from "../../mocks/data"
+
 import { Table } from "../../components/Table"
-import { getEducationDepartmentColumns } from "../../components/EducationDepartmentTable/columns"
+// import { getEducationDepartmentColumns } from "../../components/EducationDepartmentTable/columns"
 import { useNavigate } from "react-router-dom"
-import type { IEducationDepartment } from "../../types/types"
+// import { getColumnsSchool } from "../../components/SchoolsTable/columns"
+import type { SchoolDepItem } from "../../types/types"
+import { getColumnsSchool } from "../../components/SchoolsTable/columns"
+import useRole from "../../shared/hooks/useRole"
 
 const TABS = [
-    { id: 0, title: 'Все упр. образования' },
+    { id: 0, title: 'Все районы' },
+    { id: 1, title: 'Магас' },
+    { id: 2, title: 'Назрань' },
+    { id: 3, title: 'Малгобек' },
+    { id: 4, title: 'Насыр-Корт' },
+
 ]
-export const EducationDepartment = () => {
+export const DepartmentSchools = () => {
+    const navigate = useNavigate();
+    const { role } = useRole();
     const [timeFrom, setTimeFrom] = useState<string>('')
     const [timeTo, setTimeTo] = useState<string>('')
 
@@ -19,8 +29,7 @@ export const EducationDepartment = () => {
     const [modulesTo, setModulesTo] = useState<string>('')
     const [pointsFrom, setPointsFrom] = useState<string>('')
     const [pointsTo, setPointsTo] = useState<string>('');
-    const [activeTab, setActiveTab] = useState(0);
-    const navigate = useNavigate();
+    const [activeTab, setActiveTab] = useState(0)
     const resetFilters = () => {
         setTimeFrom('');
         setTimeTo('');
@@ -29,11 +38,11 @@ export const EducationDepartment = () => {
         setPointsFrom('');
         setPointsTo('');
     }
-    const redirectOnStudentItemClick = (item: IEducationDepartment) => {
+    const redirectOnSchoolClick = (item: SchoolDepItem) => {
         console.log(item.id);
-        navigate(`/education-department/${item.id}`)
+        navigate(`/schools/${item.id}`)
     }
-    return <main className="EducationDepartment">
+    return <main className="DepartmentSchools">
         <Card
             filters={[{
                 type: "time",
@@ -58,17 +67,19 @@ export const EducationDepartment = () => {
             }
             ]}
             resetFilters={resetFilters}
-            title='Упр. образования'
+            title='УО по г. Магас и г. Назрань'
             tabs={TABS}
             key={"testCard123"}
-            valueFirst='7 управлений образования'
+            valueFirst='489 школ'
             valueSecond='584 958 баллов'
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             csv={true}
+            onClickBackButton={() => navigate(-1)}
         >
             {/* <EducationDepartmentTable data={educationDepMockData} link="/education-department/" /> */}
-            <Table<IEducationDepartment, any> data={educationDepMockData} getColumns={() => getEducationDepartmentColumns()} handleRowClick={redirectOnStudentItemClick} />
+            <Table<SchoolDepItem, any> data={SchoolsMockDataDEP} getColumns={() => getColumnsSchool({ role })} handleRowClick={redirectOnSchoolClick} />
+            {/* <Table<IEducationDepartment, any> data={educationDepMockData} getColumns={() => getEducationDepartmentColumns()} handleRowClick={redirectOnStudentItemClick} /> */}
         </Card>
     </main>
 }

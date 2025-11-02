@@ -1,9 +1,12 @@
-import { useParams } from 'react-router-dom';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useNavigate } from 'react-router-dom';
 import { Card } from '../../components/Card';
 import { useState } from 'react';
 
-import { SchoolClassesList } from '../../components/SchoolClassesList';
+import { type SchoolItem } from '../../components/SchoolClassesList';
 import { SchoolStatMockData } from '../../mocks/data';
+import { Table } from '../../components/Table';
+import { getColumns } from '../../components/SchoolClassesList/columns';
 const TABS = [
     { id: 0, title: 'Все классы' },
     { id: 1, title: '5-ые' },
@@ -13,7 +16,6 @@ const TABS = [
     { id: 5, title: '9-ые' },
 ]
 export const SchoolStat = () => {
-    const { schoolID } = useParams();
     const [timeFrom, setTimeFrom] = useState<string>('')
     const [timeTo, setTimeTo] = useState<string>('')
 
@@ -21,7 +23,8 @@ export const SchoolStat = () => {
     const [modulesTo, setModulesTo] = useState<string>('')
     const [pointsFrom, setPointsFrom] = useState<string>('')
     const [pointsTo, setPointsTo] = useState<string>('');
-    const [activeTab, setActiveTab] = useState(0)
+    const [activeTab, setActiveTab] = useState(0);
+    const navigate = useNavigate();
     const resetFilters = () => {
         setTimeFrom('');
         setTimeTo('');
@@ -30,7 +33,14 @@ export const SchoolStat = () => {
         setPointsFrom('');
         setPointsTo('');
     }
+    const redirectOnStudentItemClick = (item: SchoolItem) => {
+        console.log(item.id);
+        navigate(`/class/${item.id}`)
+    }
+    const onClickBackButton = () => {
 
+        navigate(-1);
+    }
     return <main className="SchoolStat">
 
         <Card
@@ -64,9 +74,10 @@ export const SchoolStat = () => {
             valueSecond='64 585 баллов'
             activeTab={activeTab}
             setActiveTab={setActiveTab}
-            onClickBackButton={() => console.log('back')}
+            onClickBackButton={onClickBackButton}
         >
-            <SchoolClassesList data={SchoolStatMockData} link="/class/" />
+            {/* <SchoolClassesList data={SchoolStatMockData} link="/class/" /> */}
+            <Table<SchoolItem, any> data={SchoolStatMockData} getColumns={() => getColumns()} handleRowClick={redirectOnStudentItemClick} />
         </Card>
     </main>
 }

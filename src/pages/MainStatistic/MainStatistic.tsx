@@ -1,22 +1,45 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useNavigate } from "react-router-dom"
 import { ClassCardMain } from "../../components/ClassCardMain"
-import { ClassTable } from "../../components/ClassTable"
+import { getColumns } from "../../components/ClassTable/columns"
 import { MainChart } from "../../components/MainChart"
 import { ResultsCard } from "../../components/ResultsCard"
-import { SchoolsTable } from "../../components/SchoolsTable"
+import { getColumnsSchool } from "../../components/SchoolsTable/columns"
 import { StatisticsBlock } from "../../components/StatisticsBlock"
-import { defaultPieData, defaultPieTimeData, SchoolsMockData, barChartMockData, TEST_CLASSMATES } from "../../mocks/data"
+import { Table } from "../../components/Table"
+import { defaultPieData, defaultPieTimeData, SchoolsMockData, barChartMockData, TEST_CLASSMATES, departmentMockData } from "../../mocks/data"
 import useRole from "../../shared/hooks/useRole"
+import type { DepartamentItem, SchoolDepItem, SchoolItem, Student } from "../../types/types"
 import './MainStatistic.scss';
+import { getDepartmentColumns } from "../../components/Department/columns"
 export const MainStatisticPageContent = () => {
-    const { hasRole } = useRole();
+    const { hasRole, role } = useRole();
+    const navigate = useNavigate();
+    const redirectOnBestStudentsClick = (item: Student) => {
+        console.log(item.id);
+        navigate(`class/2/student/${item.id}`, { relative: "route" })
+    }
+    const redirectOnBestSchoolsClick = (item: SchoolDepItem) => {
+        console.log(item.id);
+        navigate(`schools/${item.id}`, { relative: "route" })
+    }
+    const redirectOnBestDepartmentClick = (item: DepartamentItem) => {
+        console.log(item.id);
+        navigate(`schools/${item.id}`, { relative: "route" })
+    }
     return (
         <>
             {hasRole(["admin", "department", "ministry"]) && <div className="MainStatisticPageContent__cards">
                 <StatisticsBlock data={defaultPieData} centerLabel="баллов" />
                 <StatisticsBlock data={defaultPieTimeData} centerLabel="часов" />
             </div>}
-            {hasRole(["admin", "department", "ministry"]) && <ClassCardMain title="Лучшие школы" linkText="Полный список" linkHref="/">
-                <SchoolsTable data={SchoolsMockData} />
+            {hasRole(["admin", "department"]) && <ClassCardMain title="Лучшие школы" linkText="Полный список" linkHref="/">
+                {/* <SchoolsTable data={SchoolsMockData} /> */}
+                <Table<SchoolDepItem, any> data={SchoolsMockData} getColumns={() => getColumnsSchool({ role })} handleRowClick={redirectOnBestSchoolsClick} />
+            </ClassCardMain>}
+            {hasRole(["admin", "ministry"]) && <ClassCardMain title="Лучшие управления образования" linkText="Полный список" linkHref="/">
+                {/* <SchoolsTable data={SchoolsMockData} /> */}
+                <Table<DepartamentItem, any> data={departmentMockData} getColumns={() => getDepartmentColumns()} handleRowClick={redirectOnBestDepartmentClick} />
             </ClassCardMain>}
             <MainChart data={barChartMockData} title="Суммарная успеваемость" />
             <div className="MainStatisticPageContent__result_cards">
@@ -70,8 +93,9 @@ export const MainStatisticPageContent = () => {
                 />
 
             </div>
-            <ClassCardMain title="Лучшие ученики класса" linkText="Полный список" linkHref="/">
-                <ClassTable data={TEST_CLASSMATES} type='classmates' />
+            <ClassCardMain title={role === "ministry" ? "Лучшие ученики среди школ" : "Лучшие ученики класса"} linkText="Полный список" linkHref="/">
+                {/* <ClassTable data={TEST_CLASSMATES} type='classmates' /> */}
+                <Table<Student, any> data={TEST_CLASSMATES} getColumns={() => getColumns("classmates")} handleRowClick={redirectOnBestStudentsClick} />
             </ClassCardMain>
         </>
 

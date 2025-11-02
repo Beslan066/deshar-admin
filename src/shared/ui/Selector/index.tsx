@@ -5,15 +5,16 @@ import { motion, AnimatePresence, easeInOut } from 'framer-motion'
 
 import './styles.scss'
 
-interface Option {
+export interface Option {
     id: string
     label: string
+    default?:boolean;
 }
 
 interface SelectorProps {
     options?: Option[]
     defaultValue?: string
-    onChange?: (value: string) => void
+    onChange?: (item: Option) => void
     className?: string;
     mini?: boolean;
 }
@@ -50,10 +51,10 @@ export const Selector = ({
         return options.find(option => option.id === selectedValue)?.label || options[0]?.label
     }
 
-    const handleSelect = (id: string) => {
-        setSelectedValue(id)
+    const handleSelect = (item:Option) => {
+        setSelectedValue(item.id)
         setIsOpen(false)
-        if (onChange) onChange(id) // Опциональный вызов колбэка
+        if (onChange) onChange(item) // Опциональный вызов колбэка
     }
 
     // Анимация иконки стрелки
@@ -130,7 +131,7 @@ export const Selector = ({
                                         className={cn('Selector__list_item', {
                                             selected: option.id === selectedValue,
                                         })}
-                                        onClick={() => handleSelect(option.id)}>
+                                        onClick={() => handleSelect(option)}>
                                         <span>{option.label}</span>
                                     </li>
                                 ))}

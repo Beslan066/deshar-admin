@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Table } from "../../components/Table"
+import { getColumns } from "../../components/ClassTable/columns"
 import { ClassCardMain } from "../../components/ClassCardMain"
-import { ClassTable } from "../../components/ClassTable"
+// import { ClassTable } from "../../components/ClassTable"
 import { MainChart } from "../../components/MainChart"
 import { ResultsCard } from "../../components/ResultsCard"
 import { barChartMockData, TEST_CLASSMATES } from "../../mocks/data"
+import type { Student } from "../../types/types"
 import './SchoolDashboard.scss';
 
 export const SchoolDashboard = () => {
@@ -62,7 +66,7 @@ export const SchoolDashboard = () => {
 
                 </div>
                 <ClassCardMain title="Лучшие ученики школы" linkText="Полный список" linkHref="/">
-                    <ClassTable data={TEST_CLASSMATES} type='classmates' />
+                  <Table<Student, any> data={TEST_CLASSMATES} getColumns={() => getColumns("classmates")} />
                 </ClassCardMain>
             </div>
         </main >

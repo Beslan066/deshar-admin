@@ -6,20 +6,12 @@ import {
     getSortedRowModel,
     type SortingState
 } from '@tanstack/react-table'
-import { getColumns } from './columns'
+import { getEducationDepartmentColumns } from './columns'
 import { useNavigate } from 'react-router-dom';
-export interface IEducationDepartment {
-    id: number;
-    place: number;
-    educationDepartmentName: string;
-    schoolsCount: number;
-    studentsCount: number;
-    learningTime: number;
-    doneModules: number;
-    points: number;
-}
+import type { IEducationDepartment } from '../../types/types';
+
 export const EducationDepartmentTable = ({ data, link = '/' }: { data: IEducationDepartment[]; link?: string; }) => {
-    const columns = useMemo(() => getColumns(), [])
+    const columns = useMemo(() => getEducationDepartmentColumns(), [])
     const navigate = useNavigate();
     // const { classId } = useParams();
     // Состояние для сортировки

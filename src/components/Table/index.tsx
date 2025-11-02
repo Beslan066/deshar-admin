@@ -4,22 +4,18 @@ import {
     getCoreRowModel,
     flexRender,
     getSortedRowModel,
-    type SortingState
+    type SortingState,
+    type AccessorKeyColumnDefBase,
+    type IdIdentifier
 } from '@tanstack/react-table'
-import { getColumns } from './columns'
-import { useNavigate } from 'react-router-dom';
-export interface SchoolItem {
-    id: number;
-    place: number;
-    schoolName: string;
-    learningTime: number;
-    doneModules: number;
-    points: number;
+import './styles.scss';
+interface TableProps<TableItemType, T> {
+    data: TableItemType[];
+    getColumns: () => (AccessorKeyColumnDefBase<TableItemType, T> & Partial<IdIdentifier<TableItemType, T>>)[];
+    handleRowClick?: (item: TableItemType) => void;
 }
-export const SchoolsTable = ({ data, link = '/' }: { data: SchoolItem[]; link?: string; }) => {
+export const Table = <TData, TValue>({ data, getColumns, handleRowClick }: TableProps<TData, TValue>) => {
     const columns = useMemo(() => getColumns(), [])
-    const navigate = useNavigate();
-    // const { classId } = useParams();
     // Состояние для сортировки
     const [sorting, setSorting] = useState<SortingState>([])
 
@@ -32,12 +28,7 @@ export const SchoolsTable = ({ data, link = '/' }: { data: SchoolItem[]; link?: 
         onSortingChange: setSorting, // Функция для обновления сортировки
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(), // Модель для сортировки
-
     })
-    const redirectOnStudentItemClick = (id: number) => {
-        console.log(id);
-        navigate(`${link}${id}`)
-    }
     return (
         <div className="Table__scroll-container">
 
@@ -86,7 +77,7 @@ export const SchoolsTable = ({ data, link = '/' }: { data: SchoolItem[]; link?: 
 
                 <tbody>
                     {table.getRowModel().rows.map(row => (
-                        <tr key={row.id} className={"TableItem"} onClick={() => redirectOnStudentItemClick(row.original.id)}>
+                        <tr key={row.id} className={`TableItem`} onClick={() => handleRowClick?.(row.original)}>
                             {row.getVisibleCells().map(cell => (
                                 <td key={cell.id}>
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

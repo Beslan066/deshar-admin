@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react"
 import { Card } from "../../components/Card"
-import { SchoolsTable } from "../../components/SchoolsTable"
 import { SchoolsMockData } from "../../mocks/data"
+import { Table } from "../../components/Table"
+import { getColumnsSchool } from "../../components/SchoolsTable/columns"
+import { useNavigate } from "react-router-dom"
+import type { SchoolDepItem, SchoolItem } from "../../types/types"
+import useRole from "../../shared/hooks/useRole"
 const TABS = [
     { id: 0, title: 'Все районы' },
     { id: 1, title: 'Магас' },
@@ -9,6 +14,8 @@ const TABS = [
     { id: 3, title: 'Насыр-Корт' },
 ]
 export const Schools = () => {
+    const navigate = useNavigate();
+    const { role } = useRole();
     const [timeFrom, setTimeFrom] = useState<string>('')
     const [timeTo, setTimeTo] = useState<string>('')
 
@@ -25,7 +32,9 @@ export const Schools = () => {
         setPointsFrom('');
         setPointsTo('');
     }
-
+    const redirectOnSchoolClick = (item: SchoolItem) => {
+        navigate(`${item.id}`)
+    }
     return <main className="Schools">
         <Card
             filters={[{
@@ -58,8 +67,10 @@ export const Schools = () => {
             valueSecond='487 585 баллов'
             activeTab={activeTab}
             setActiveTab={setActiveTab}
+            csv={role === "ministry"}
         >
-            <SchoolsTable data={SchoolsMockData} link="/schools/" />
+            {/* <SchoolsTable data={SchoolsMockData} link="/schools/" /> */}
+            <Table<SchoolDepItem, any> data={SchoolsMockData} getColumns={() => getColumnsSchool({ role })} handleRowClick={redirectOnSchoolClick} />
         </Card>
     </main>
 }

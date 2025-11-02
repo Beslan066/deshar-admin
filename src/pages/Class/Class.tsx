@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import './styles.scss';
 import { Card } from '../../components/Card';
 import { useState } from 'react';
-import { ClassTable } from '../../components/ClassTable';
 import { TEST_CLASSMATES, TEST_FLOW } from '../../mocks/data';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Table } from '../../components/Table';
+import { getColumns } from '../../components/ClassTable/columns';
+import type { Student } from '../../types/types';
 
 const TABS = [
     { id: 0, title: 'Успеваемость класса' },
@@ -21,7 +24,8 @@ export const Class = () => {
     const [modulesTo, setModulesTo] = useState<string>('')
     const [pointsFrom, setPointsFrom] = useState<string>('')
     const [pointsTo, setPointsTo] = useState<string>('');
-    const [activeTab, setActiveTab] = useState(0)
+    const [activeTab, setActiveTab] = useState(0);
+    const navigate = useNavigate();
     const resetFilters = () => {
         setTimeFrom('');
         setTimeTo('');
@@ -31,6 +35,10 @@ export const Class = () => {
         setPointsTo('');
     }
     const isParallel = params.classId ? !myClassesIDs.includes(+params.classId) : true;
+    const redirectOnStudentItemClick = (item: Student) => {
+        console.log(item.id);
+        navigate(`student/${item.id}`, { relative: "route" })
+    }
     return (
         <main className="ClassPage">
             {/* <ClassCardClass /> */}
@@ -68,7 +76,9 @@ export const Class = () => {
                 isParallel={isParallel}
                 type="class"
             >
-                {activeTab === 0 ? <ClassTable data={TEST_CLASSMATES} type='classmates' /> : <ClassTable data={TEST_FLOW} type='parallel' />}
+                {activeTab === 0 ?
+                    <Table<Student, any> data={TEST_CLASSMATES} getColumns={() => getColumns("classmates")} handleRowClick={redirectOnStudentItemClick} /> :
+                    <Table<Student, any> data={TEST_FLOW} getColumns={() => getColumns("parallel")} handleRowClick={redirectOnStudentItemClick} />}
             </Card>
         </main>
     )

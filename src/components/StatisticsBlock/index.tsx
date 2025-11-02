@@ -3,6 +3,7 @@ import { Selector } from '../../shared/ui/Selector'
 import { useDrawingArea } from '@mui/x-charts/hooks'
 import type { JSX } from 'react'
 import './styles.scss'
+import type { PieValueType } from '@mui/x-charts'
 export interface PieDataItem {
     value: number
     color: string
@@ -11,11 +12,11 @@ export interface PieDataItem {
 }
 
 interface StatisticsBlockProps {
-    data: PieDataItem[];
+    data: PieValueType[];
     centerLabel?: string;
 }
 // Simple SVG mark component
-export const LegendMarkItem = ({ color }: { color: string }) => {
+export const LegendMarkItem = ({ color }: { color: string | undefined }) => {
     return (
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="15" height="8" rx="4" fill={color} />
@@ -48,9 +49,6 @@ function PieCenterLabel({ label, value }: { label: string; value: string }) {
         </>
     )
 }
-const Test = ({ label, value }: { label: string; value: string; }) => (
-    <div>d{label}{value}</div>
-)
 // Selector options
 const selectorOptions = [
     { id: '1', label: 'Неделя' },
