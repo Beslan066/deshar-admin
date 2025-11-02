@@ -28,6 +28,7 @@
 	--font-family: 'Zona Pro', sans-serif;
 	--second-family: 'Unbounded', sans-serif;
 	--third-family: 'Roboto', sans-serif;
+	--dashboardMenu-width: 228px;
 }
 
 * {
@@ -104,6 +105,7 @@ a {
 		overflow-y: auto;
 		max-width: 1000px;
 		width: 100%;
+		scrollbar-width: thin;
 	}
 	&__tr {
 		font-family: var(--font-family);
