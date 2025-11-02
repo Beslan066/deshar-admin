@@ -81,3 +81,21 @@
 		padding: 0 !important;
 	}
 }
+.MuiChartsLegend {
+	&-item {
+		width: 100%;
+	}
+	&-root {
+		max-width: 228px;
+	}
+	&-label {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 167%;
+		color: var(--neutral-darkest);
+		text-wrap: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+}

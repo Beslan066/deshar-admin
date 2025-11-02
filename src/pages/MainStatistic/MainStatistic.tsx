@@ -9,7 +9,7 @@ import { StatisticsBlock } from "../../components/StatisticsBlock"
 import { Table } from "../../components/Table"
 import { defaultPieData, defaultPieTimeData, SchoolsMockData, barChartMockData, TEST_CLASSMATES, departmentMockData } from "../../mocks/data"
 import useRole from "../../shared/hooks/useRole"
-import type { DepartamentItem, SchoolDepItem, SchoolItem, Student } from "../../types/types"
+import type { DepartamentItem, SchoolDepItem, Student } from "../../types/types"
 import './MainStatistic.scss';
 import { getDepartmentColumns } from "../../components/Department/columns"
 export const MainStatisticPageContent = () => {
