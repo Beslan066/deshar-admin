@@ -91,7 +91,8 @@ export const StatisticsBlock = ({
                                 valueFormatter: (v) => `${v.value} баллов`
                             },
                         ]}
-
+                        slotProps={{ pieArc: { onClick: () => console.log('test') } }}
+                        className='StatisticsBlock__pie'
                     >
                         <PieCenterLabel value={String(centerValue)} label={centerLabel} />
                     </PieChart>

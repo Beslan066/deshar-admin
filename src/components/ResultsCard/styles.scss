@@ -6,18 +6,18 @@
 	align-items: start;
 	border-radius: 32px;
 	padding: 32px;
-	width: 341px;
+	// width: 341px;
 	height: 212px;
 	background-color: var(--neutral-white);
 	justify-content: space-between;
 
 	&__title {
 		font-family: var(--font-family);
-font-weight: 600;
-font-size: 20px;
-line-height: 140%;
-text-align: center;
-color: var(--neutral-darkest);
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 140%;
+		text-align: center;
+		color: var(--neutral-darkest);
 		display: flex;
 		align-items: center;
 		justify-content: center;

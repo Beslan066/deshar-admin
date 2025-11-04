@@ -30,6 +30,21 @@ export const getColumnsSchool = ({ role }: { role?: Role }) => [
     sortingFn: 'alphanumeric',
     cell: info => <span title={info.getValue()} className='TableItem__name'>{info.getValue()}</span>
   }),
+  ...(role === "ministry" ? [
+    columnHelper.accessor('department', {
+      header: ({ column }) => <SortableHeader<SchoolDepItem, string> title="Управление" column={column} />,
+      enableSorting: true,
+      sortingFn: 'alphanumeric',
+      cell: info => <span title={info.getValue()} className='TableItem__name'>{info.getValue()}</span>
+    })] : []),
+  // ...(type === 'parallel'
+  //   ? [columnHelper.accessor('class', {
+  //     header: ({ column }: { column: Column<Student, string> }) => <SortableHeader<Student, string> title="Класс" column={column} />,
+  //     enableSorting: true,
+  //     sortingFn: 'alphanumeric',
+  //     cell: info => <span title={info.getValue()} className='TableItem__class'>{info.getValue() || '—'}</span>
+  //   })]
+  //   : []),
   // columnHelper.accessor("department", {
   //   header: ({ column }) => <SortableHeader<SchoolDepItem, string> title="Управление" column={column} />,
   //   enableSorting: true,

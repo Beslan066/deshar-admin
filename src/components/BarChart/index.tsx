@@ -34,7 +34,8 @@ export const BarChart = ({ data }: { data: BarChartDataItem[] }) => {
 			setDisplayedData(data.slice(0, 11))
 			setSize({ width: 700, height: 225 })
 		} else {
-			setDisplayedData(data.slice(0, 17))
+			setDisplayedData(data)
+			setSize({ width: 1435, height: 225 })
 		}
 	}, [isTablet, isMobile, isSmallMobile])
 

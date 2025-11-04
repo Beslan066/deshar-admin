@@ -1,7 +1,8 @@
 .StatisticsBlock {
 	border-radius: 32px;
 	padding: 32px 32px 40px;
-	width: 528px;
+	// width: 728px;
+	flex-grow: 1;
 	height: 336px;
 	background: var(--neutral-white);
 	&__header {
@@ -20,7 +21,7 @@
 	&__body {
 		width: 100%;
 		height: 100%;
-		max-width: 464px;
+		// max-width: 464px;
 		max-height: 212px;
 	}
 	&__pie_text_value {
@@ -85,9 +86,9 @@
 	&-item {
 		width: 100%;
 	}
-	&-root {
-		max-width: 228px;
-	}
+	// &-root {
+	// 	max-width: 228px;
+	// }
 	&-label {
 		font-family: var(--font-family);
 		font-weight: 400;
@@ -98,4 +99,16 @@
 		text-overflow: ellipsis;
 		overflow: hidden;
 	}
+	&-mark {
+		flex-shrink: 0;
+	}
+}
+.MuiPieArc-root {
+	transition: filter 0.2s ease-in-out;
+	&:hover {
+		filter: brightness(90%);
+	}
+}
+.css-32sa41-MuiChartsWrapper-root {
+	justify-content: space-between !important;
 }
