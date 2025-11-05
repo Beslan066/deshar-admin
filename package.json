@@ -25,7 +25,8 @@
     "react-input-mask": "^2.0.4",
     "react-konva": "^19.0.10",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.9.1"
+    "react-router-dom": "^7.9.1",
+    "recharts": "^3.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

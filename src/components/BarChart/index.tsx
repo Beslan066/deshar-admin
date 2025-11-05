@@ -1,170 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from 'react'
-
-import { Stage, Layer, Rect, Text, Group, Label, Tag } from 'react-konva'
-
-
-import { useMediaQuery } from '../../shared/hooks/useMediaQuery'
-import type { BarChartDataItem } from '../MainChart'
-
+import { BarChart as RechartsBar, Bar, Rectangle, XAxis, YAxis, Tooltip } from 'recharts';
+import type { BarChartDataItem } from '../MainChart';
+const T = () => {
+	return <div>test</div>
+}
+const ticks = [0, 50, 100, 150].map(value => Math.round(value * 10) / 10);
 export const BarChart = ({ data }: { data: BarChartDataItem[] }) => {
-	const [size, setSize] = useState({ width: 1024, height: 225 })
-	const [displayedData, setDisplayedData] = useState(data)
-	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-	const [touchTimeout, setTouchTimeout] = useState<any | null>(null)
-	const isSmallMobile = useMediaQuery('(max-width: 450px)')
-	const isMobile = useMediaQuery('(max-width: 567px)')
-	const isTablet = useMediaQuery('(max-width: 768px)')
-
-	// Динамические значения для разных устройств
-	const padding = 40
-	const barGap = isMobile ? 15 : isTablet ? 13 : 12
-	const barWidth = isMobile ? 50 : isTablet ? 40 : 56
-	const barViewSize = barWidth - barGap
-	const maxValue = 200
-
-	useEffect(() => {
-		if (isSmallMobile) {
-			setDisplayedData(data.slice(0, 6))
-			setSize({ width: 350, height: 225 })
-		} else if (isMobile) {
-			setDisplayedData(data.slice(0, 6))
-			setSize({ width: 500, height: 225 })
-		} else if (isTablet) {
-			setDisplayedData(data.slice(0, 11))
-			setSize({ width: 700, height: 225 })
-		} else {
-			setDisplayedData(data)
-			setSize({ width: 1435, height: 225 })
-		}
-	}, [isTablet, isMobile, isSmallMobile])
-
-	// Очистка таймера при размонтировании
-	useEffect(() => {
-		return () => {
-			if (touchTimeout) {
-				clearTimeout(touchTimeout)
-			}
-		}
-	}, [touchTimeout])
-
-	const handleTouchStart = (index: number) => {
-		// Сразу показываем тултип для сенсорного устройства
-		setHoveredIndex(index)
-
-		// Очищаем предыдущий таймер
-		if (touchTimeout) {
-			clearTimeout(touchTimeout)
-		}
-
-		// Устанавливаем таймер для автоматического скрытия тултипа через 3 секунды
-		const timeout = setTimeout(() => {
-			setHoveredIndex(null)
-		}, 3000)
-
-		setTouchTimeout(timeout)
-	}
-
-	const handleTouchEnd = () => {
-		// Не скрываем сразу, ждем таймер или повторное касание
-	}
-
-	const renderYAxis = () => {
-		const labels = []
-
-		for (let i = 50; i <= maxValue; i += 50) {
-			const y = padding + ((maxValue - i) / maxValue) * (size.height - padding * 2)
-
-			labels.push(
-				<Text
-					key={`y-label-${i}`}
-					x={padding - 40}
-					fill="#7d7979"
-					y={y}
-					text={String(i)}
-					fontSize={14}
-					fontFamily="Arial"
-					lineHeight={0.143}
-					width={30}
-					align="right"
-					verticalAlign="bottom"
-				/>,
-			)
-		}
-
-		return labels
-	}
-
-	const renderBars = () =>
-		displayedData.map((item, index) => {
-			const x = isMobile ? padding + index * barWidth + 3 : padding + index * barWidth + 7
-			const TooltipX = x + barWidth / barGap + padding / 2
-			const barHeight =
-				item.value > maxValue
-					? size.height - padding * 2
-					: (item.value / maxValue) * (size.height - padding * 2)
-			const y = size.height - padding - barHeight
-			const dateStr = `${item.date.getDate()} ${item.date.toLocaleString('default', { month: 'short' })}`
-			const isHovered = hoveredIndex === index
-
-			return (
-				<Group key={`bar-${index}`}>
-					{isHovered && (
-						<Label x={TooltipX} y={y} key="tooltip">
-							<Tag
-								fill="black"
-								pointerDirection="down"
-								pointerWidth={10}
-								pointerHeight={10}
-								lineJoin="round"
-								cornerRadius={5}
-							/>
-							<Text
-								text={`${item.value} баллов`}
-								fontFamily="Arial"
-								fontSize={14}
-								padding={5}
-								fill="white"
-							/>
-						</Label>
-					)}
-					<Rect
-						x={x}
-						y={y}
-						width={barViewSize}
-						height={barHeight}
-						fill={isHovered ? '#0f8a5e' : '#1baa7d'}
-						cornerRadius={[12, 12, 12, 12]}
-						// События для мыши
-						onMouseEnter={() => setHoveredIndex(index)}
-						onMouseLeave={() => setHoveredIndex(null)}
-						// События для сенсорных устройств
-						onTouchStart={() => handleTouchStart(index)}
-						onTouchEnd={handleTouchEnd}
-						// Важно: отключаем предупреждение Konva о событиях касаний
-						onTap={() => handleTouchStart(index)}
-					/>
-					{/* Подпись даты */}
-					<Text
-						x={x}
-						align="center"
-						y={y + barHeight + 15}
-						text={dateStr}
-						fontSize={14}
-						fontFamily="Arial"
-						lineHeight={0.143}
-						fill="#7d7979"
-					/>
-				</Group>
-			)
-		})
-
-	return (
-		<Stage width={size.width} height={size.height}>
-			<Layer>
-				{renderYAxis()}
-				{renderBars()}
-			</Layer>
-		</Stage>
-	)
+	return <RechartsBar
+		style={{ width: '100%', height: '100%', aspectRatio: 1.618 }}
+		responsive
+		data={data}
+	>
+		<XAxis dataKey="key" tickFormatter={(t) => `${t.getDate()} ${t.toLocaleString('default', { month: 'short' })}`} axisLine={false} />
+		<YAxis width={70} dataKey="value" tickFormatter={(value) => `${value} бал`} axisLine={false} ticks={ticks} />
+		<Tooltip shared={false} />
+		{/* <Legend /> */}
+		<Bar radius={12} dataKey="value" fill="#1baa7d" />
+	</RechartsBar>
 }
