@@ -721,92 +721,78 @@ export const testOptionsMinistry: Option[] = [
 	{ id: '5', label: 'ГБОУ СОШ – Детский сад № 1 г. Магас' },
 ]
 // Default data fallback
-export const defaultPieData: PieValueType[] = [
+export const defaultPieData = [
 	{
 		value: 3533,
-		color: '#1baa7d',
-		label: 'ГБОУ Центр образования г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#1baa7d',
+		name: 'ГБОУ Центр образования г. Магас',
 	},
 	{
 		value: 2125,
-		color: '#f1c515',
-		label: 'ГБОУ Лицей – детский сад г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#f1c515',
+		name: 'ГБОУ Лицей – детский сад г. Магас',
 	},
 	{
 		value: 202,
-		color: '#ed6f09',
-		label: 'ГБОУ гимназия Марем г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#ed6f09',
+		name: 'ГБОУ гимназия Марем г. Магас',
 	},
 	{
 		value: 153,
-		color: '#f82754',
-		label: 'ГБОУ СОШ №2 г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#f82754',
+		name: 'ГБОУ СОШ №2 г. Магас',
 	},
 	{
 		value: 544,
-		color: '#ea20fd',
-		label: 'ГБОУ СОШ – Детский сад № 1 г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#ea20fd',
+		name: 'ГБОУ СОШ – Детский сад № 1 г. Магас',
 	},
 	{
 		value: 5231,
-		color: '#1b8deb',
-		label: 'ГБОУ СОШ №5 г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#1b8deb',
+		name: 'ГБОУ СОШ №5 г. Магас',
 	},
 	{
 		value: 5033,
-		color: '#3fc8fa',
-		label: 'ГБОУ СОШ №8 г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#3fc8fa',
+		name: 'ГБОУ СОШ №8 г. Магас',
 	},
 ]
-export const defaultPieTimeData: PieValueType[] = [
+export const defaultPieTimeData = [
 	{
 		value: 11,
-		color: '#1baa7d',
-		label: 'ГБОУ Центр образования г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#1baa7d',
+		name: 'ГБОУ Центр образования г. Магас',
 	},
 	{
 		value: 12,
-		color: '#f1c515',
-		label: 'ГБОУ Лицей – детский сад г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#f1c515',
+		name: 'ГБОУ Лицей – детский сад г. Магас',
 	},
 	{
 		value: 20,
-		color: '#ed6f09',
-		label: 'ГБОУ гимназия Марем г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#ed6f09',
+		name: 'ГБОУ гимназия Марем г. Магас',
 	},
 	{
 		value: 33,
-		color: '#f82754',
-		label: 'ГБОУ СОШ №2 г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#f82754',
+		name: 'ГБОУ СОШ №2 г. Магас',
 	},
 	{
 		value: 51,
-		color: '#ea20fd',
-		label: 'ГБОУ СОШ – Детский сад № 1 г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#ea20fd',
+		name: 'ГБОУ СОШ – Детский сад № 1 г. Магас',
 	},
 	{
 		value: 55,
-		color: '#1b8deb',
-		label: 'ГБОУ СОШ №5 г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#1b8deb',
+		name: 'ГБОУ СОШ №5 г. Магас',
 	},
 	{
 		value: 111,
-		color: '#3fc8fa',
-		label: 'ГБОУ СОШ №8 г. Магас',
-		labelMarkType: data => LegendMarkItem({ color: data.color }),
+		fill: '#3fc8fa',
+		name: 'ГБОУ СОШ №8 г. Магас',
 	},
 ]
 export const SchoolsMockData = [

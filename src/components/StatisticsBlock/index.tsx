@@ -1,20 +1,22 @@
-import { PieChart } from '@mui/x-charts/PieChart'
+import { Pie, PieChart, Tooltip, Label, Legend, Cell, type TooltipProps, type TooltipContentProps } from 'recharts';
 import { Selector } from '../../shared/ui/Selector'
-import { useDrawingArea } from '@mui/x-charts/hooks'
-import type { JSX } from 'react'
+// import { type TooltipProps } from 'recharts';
+// import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 import './styles.scss'
-import type { PieValueType } from '@mui/x-charts'
+import { Tooltip as CustomTooltipp } from './../../shared/ui/Tooltip'
+import type { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
+import { useState, useRef, useEffect } from 'react';
 export interface PieDataItem {
     value: number
-    color: string
-    label: string
-    labelMarkType: (data: PieDataItem) => JSX.Element
+    fill: string
+    name: string
 }
 
 interface StatisticsBlockProps {
-    data: PieValueType[];
+    data: PieDataItem[];
     centerLabel?: string;
 }
+
 // Simple SVG mark component
 export const LegendMarkItem = ({ color }: { color: string | undefined }) => {
     return (
@@ -24,31 +26,6 @@ export const LegendMarkItem = ({ color }: { color: string | undefined }) => {
     )
 }
 
-// Center label component
-function PieCenterLabel({ label, value }: { label: string; value: string }) {
-    const { width, height, left, top } = useDrawingArea()
-
-    return (
-        <>
-            <text
-                x={left + width / 2}
-                y={top + height / 2 - 10}
-                className="StatisticsBlock__pie_text_value"
-                textAnchor="middle"
-                dominantBaseline="middle">
-                {value}
-            </text>
-            <text
-                x={left + width / 2}
-                y={top + height / 2 + 10}
-                className="StatisticsBlock__pie_text_label"
-                textAnchor="middle"
-                dominantBaseline="middle">
-                {label}
-            </text>
-        </>
-    )
-}
 // Selector options
 const selectorOptions = [
     { id: '1', label: 'Неделя' },
@@ -56,11 +33,65 @@ const selectorOptions = [
     { id: '3', label: 'Год' },
 ]
 
+const CustomLeg = ({ data }: { data: PieDataItem[] }) => {
+    return (
+        <div className="custom-legend">
+            {data.map((entry, index) => (
+                <div key={index} className="legend-item">
+                    <LegendMarkItem color={entry.fill} />
+                    <span style={{ marginLeft: '8px', fontSize: '12px' }}>{entry.name}</span>
+                </div>
+            ))}
+        </div>
+    )
+}
+const CustomTooltip = ({ data }: { data: TooltipContentProps<ValueType, NameType> }) => {
+    if (data && data.payload && data.payload[0] && data.payload[0].name && data.payload[0].value) {
+        return (
+            <div className="custom-tooltip">
+                {/* <p className="label">{`${data.payload[0].name} : ${data.payload[0].value} `}</p> */}
+                <span className='custom-tooltip__label'>{data.payload[0].name}</span>
+                <span className='custom-tooltip__value'>{data.payload[0].value + " баллов"}</span>
+            </div>
+        );
+    }
+
+    return null;
+};
+
 export const StatisticsBlock = ({
     data,
     centerLabel = 'баллов',
 }: StatisticsBlockProps) => {
-    const centerValue = data.reduce((acc, current) => acc + current.value, 0);
+    const reducedValue = data.reduce((acc, curr) => acc + +curr.value, 0);
+    const [elementMousePosition, setElementMousePosition] = useState({ x: 0, y: 0 });
+    const elementRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const handleMouseMove = (event: any) => {
+            if (elementRef.current) {
+                const { left, top } = elementRef.current.getBoundingClientRect();
+                setElementMousePosition({
+                    x: event.clientX - left,
+                    y: event.clientY - top,
+                });
+                console.log(elementMousePosition);
+            }
+        };
+
+        const currentElement = elementRef.current; // Capture current ref value
+
+        if (currentElement) {
+            currentElement.addEventListener('mousemove', handleMouseMove);
+        }
+
+        return () => {
+            if (currentElement) {
+                currentElement.removeEventListener('mousemove', handleMouseMove);
+            }
+        };
+    }, []); // Empty dependency array
+    console.log(elementMousePosition.x, elementMousePosition.y);
     return (
         <div className="StatisticsBlock">
             <div className="StatisticsBlock__inner">
@@ -73,31 +104,61 @@ export const StatisticsBlock = ({
                         mini={true}
                     />
                 </div>
-                <div className="StatisticsBlock__body">
+                <div className="StatisticsBlock__body" ref={elementRef}>
                     <PieChart
-                        width={212}
-                        height={212}
-                        series={[
-                            {
-                                data: data,
-                                innerRadius: 55,
-                                outerRadius: 100,
-                                paddingAngle: 1,
-                                cornerRadius: 12,
-                                startAngle: 0,
-                                endAngle: 360,
-                                cx: 100,
-                                cy: 100,
-                                valueFormatter: (v) => `${v.value} баллов`
-                            },
-                        ]}
-                        slotProps={{ pieArc: { onClick: () => console.log('test') } }}
-                        className='StatisticsBlock__pie'
+                        style={{
+                            width: '100%',
+                            height: '212px',
+                            aspectRatio: 1,
+                        }}
+                        responsive
                     >
-                        <PieCenterLabel value={String(centerValue)} label={centerLabel} />
+                        <Pie
+                            width="252px"
+                            height="252px"
+                            data={data}
+                            innerRadius="60%"
+                            outerRadius="100%"
+                            cornerRadius="20%"
+                            fill="#8884d8"
+                            paddingAngle={5}
+                            dataKey="value"
+                            isAnimationActive={true}
+                        >
+                            {data.map((entry, index) => (
+                                <Cell
+                                    key={`cell - ${index} `}
+                                    fill={entry.fill}
+                                    style={{
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s'
+                                    }}
+                                />
+                            ))}
+
+                        </Pie>
+
+                        {/* Custom positioned tooltips for each segment */}
+                        <Legend content={<CustomLeg data={data} />} align="right" layout="vertical" verticalAlign='middle' />
+                        <Tooltip content={(data) => {
+                            console.log(data.payload);
+                            return <CustomTooltip data={data} />
+                        }
+                        }
+                            position={{ x: elementMousePosition.x - 120, y: elementMousePosition.y - 55 }} />
+                        {/* if (data && data.payload) { 
+
+                                return <CustomTooltip name={data.payload[0].name} value={data.payload[0].value} />
+                             } */}
+                        <Label position="center" fill="#000" style={{ transform: "translateY(-5px)", fontSize: 24, fontWeight: 700 }}>
+                            {reducedValue}
+                        </Label>
+                        <Label position="center" fill="#666" style={{ transform: "translateY(15px)", fontSize: 12, fontWeight: 400 }}>
+                            {centerLabel}
+                        </Label>
                     </PieChart>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
