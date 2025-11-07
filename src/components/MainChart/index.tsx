@@ -2,7 +2,7 @@ import { Button } from "../../shared/ui/Button"
 import { BarChart } from "../BarChart"
 import './styles.scss';
 export interface BarChartDataItem {
-    key: Date
+    name: Date
     value: number
 }
 export const MainChart = ({ data, title = "TITLE" }: { data: BarChartDataItem[]; title: string; }) => {

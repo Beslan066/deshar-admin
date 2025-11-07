@@ -64,34 +64,6 @@ export const StatisticsBlock = ({
     centerLabel = 'баллов',
 }: StatisticsBlockProps) => {
     const reducedValue = data.reduce((acc, curr) => acc + +curr.value, 0);
-    const [elementMousePosition, setElementMousePosition] = useState({ x: 0, y: 0 });
-    const elementRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        const handleMouseMove = (event: any) => {
-            if (elementRef.current) {
-                const { left, top } = elementRef.current.getBoundingClientRect();
-                setElementMousePosition({
-                    x: event.clientX - left,
-                    y: event.clientY - top,
-                });
-                console.log(elementMousePosition);
-            }
-        };
-
-        const currentElement = elementRef.current; // Capture current ref value
-
-        if (currentElement) {
-            currentElement.addEventListener('mousemove', handleMouseMove);
-        }
-
-        return () => {
-            if (currentElement) {
-                currentElement.removeEventListener('mousemove', handleMouseMove);
-            }
-        };
-    }, []); // Empty dependency array
-    console.log(elementMousePosition.x, elementMousePosition.y);
     return (
         <div className="StatisticsBlock">
             <div className="StatisticsBlock__inner">
@@ -104,7 +76,7 @@ export const StatisticsBlock = ({
                         mini={true}
                     />
                 </div>
-                <div className="StatisticsBlock__body" ref={elementRef}>
+                <div className="StatisticsBlock__body">
                     <PieChart
                         style={{
                             width: '100%',
@@ -140,12 +112,13 @@ export const StatisticsBlock = ({
 
                         {/* Custom positioned tooltips for each segment */}
                         <Legend content={<CustomLeg data={data} />} align="right" layout="vertical" verticalAlign='middle' />
-                        <Tooltip content={(data) => {
+                        {/* <Tooltip content={(data) => {
                             console.log(data.payload);
                             return <CustomTooltip data={data} />
                         }
                         }
-                            position={{ x: elementMousePosition.x - 120, y: elementMousePosition.y - 55 }} />
+                        /> */}
+                        <Tooltip content={(data) => { console.log(data.payload); return <CustomTooltip data={data} /> }} />
                         {/* if (data && data.payload) { 
 
                                 return <CustomTooltip name={data.payload[0].name} value={data.payload[0].value} />
