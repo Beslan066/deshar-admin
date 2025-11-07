@@ -13,6 +13,7 @@ const CustomTooltip = ({ value }: { value: number; }) => {
 };
 
 const ticks = [0, 50, 100, 150].map(value => Math.round(value * 10) / 10);
+
 export const BarChart = ({ data }: { data: BarChartDataItem[] }) => {
 	return <RechartsBar
 		style={{ width: '100%', height: '100%', aspectRatio: 1.618 }}
@@ -28,7 +29,9 @@ export const BarChart = ({ data }: { data: BarChartDataItem[] }) => {
 					value={data.payload[0].payload.value} />
 			}
 			return <>error</>
-		}} />
+		}}
+			isAnimationActive={false}
+			offset={-30} />
 		{/* <Legend /> */}
 		<Bar radius={12} dataKey="value" fill="#1baa7d" />
 	</RechartsBar>

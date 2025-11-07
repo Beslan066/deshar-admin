@@ -118,7 +118,7 @@ export const StatisticsBlock = ({
                         }
                         }
                         /> */}
-                        <Tooltip content={(data) => { console.log(data.payload); return <CustomTooltip data={data} /> }} />
+                        <Tooltip isAnimationActive={false} content={(data) => { console.log(data); return <CustomTooltip data={data} /> }} />
                         {/* if (data && data.payload) { 
 
                                 return <CustomTooltip name={data.payload[0].name} value={data.payload[0].value} />
