@@ -1,15 +1,13 @@
-import { Pie, PieChart, Tooltip, Label, Legend, Cell, type TooltipProps, type TooltipContentProps } from 'recharts';
+import { Pie, PieChart, Tooltip, Label, Legend, Cell, type TooltipContentProps } from 'recharts';
 import { Selector } from '../../shared/ui/Selector'
-// import { type TooltipProps } from 'recharts';
-// import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 import './styles.scss'
-import { Tooltip as CustomTooltipp } from './../../shared/ui/Tooltip'
 import type { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
-import { useState, useRef, useEffect } from 'react';
 export interface PieDataItem {
     value: number
     fill: string
     name: string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: any
 }
 
 interface StatisticsBlockProps {
@@ -105,6 +103,7 @@ export const StatisticsBlock = ({
                                         cursor: 'pointer',
                                         transition: 'all 0.3s'
                                     }}
+
                                 />
                             ))}
 

@@ -1,9 +1,7 @@
 import type { AttestationsTableItemType } from '../components/AttestationTable/columns'
-import { LegendMarkItem } from '../components/StatisticsBlock'
 import type { StudentTableItemType } from '../components/StudentTable'
 import type { TeacherItem } from '../components/TeachersTable'
 import { type Option } from '../shared/ui/Selector'
-import type { PieValueType } from '@mui/x-charts'
 import type { DepartamentItem, SchoolDepItem } from '../types/types'
 export const barChartMockData = [
 	{ name: new Date(2023, 9, 1), value: 135 },
