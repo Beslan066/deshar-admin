@@ -34,7 +34,6 @@
 			svg {
 				rect {
 					stroke: var(--neutral-darkest);
-					fill: var(--neutral-darkest);
 				}
 				path {
 					stroke: var(--neutral-darkest);
@@ -49,13 +48,13 @@
 			span {
 				color: var(--neutral-darkest);
 			}
-		}
-		svg {
-			rect {
-				stroke: var(--neutral-darkest);
-			}
-			path {
-				fill: var(--neutral-darkest);
+			svg {
+				rect {
+					stroke: var(--neutral-darkest);
+				}
+				path {
+					stroke: var(--neutral-darkest);
+				}
 			}
 		}
 	}

@@ -12,6 +12,7 @@ import useRole from "../../shared/hooks/useRole"
 import type { DepartamentItem, SchoolDepItem, Student } from "../../types/types"
 import './MainStatistic.scss';
 import { getDepartmentColumns } from "../../components/Department/columns"
+import { Loading } from "../../shared/ui/Loading"
 export const MainStatisticPageContent = () => {
     const { hasRole, role } = useRole();
     const navigate = useNavigate();
@@ -30,8 +31,14 @@ export const MainStatisticPageContent = () => {
     return (
         <>
             {hasRole(["admin", "department", "ministry"]) && <div className="MainStatisticPageContent__cards">
-                <StatisticsBlock data={defaultPieData} centerLabel="баллов" />
-                <StatisticsBlock data={defaultPieTimeData} centerLabel="часов" />
+                <Loading type="component" content="loading...." isLoading={false}>
+
+                    <StatisticsBlock data={defaultPieData} centerLabel="баллов" />
+                </Loading>
+                <Loading type="component" content="loading...." isLoading={false}>
+
+                    <StatisticsBlock data={defaultPieTimeData} centerLabel="часов" />
+                </Loading>
             </div>}
             {hasRole(["admin", "department"]) && <ClassCardMain title="Лучшие школы" linkText="Полный список" linkHref="/">
                 {/* <SchoolsTable data={SchoolsMockData} /> */}

@@ -93,7 +93,7 @@ export const StatisticsBlock = ({
                             fill="#8884d8"
                             paddingAngle={5}
                             dataKey="value"
-                            isAnimationActive={true}
+                            isAnimationActive={false}
                         >
                             {data.map((entry, index) => (
                                 <Cell

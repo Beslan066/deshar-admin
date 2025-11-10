@@ -1,11 +1,11 @@
 import { Avatar } from '../../shared/ui/Avatar'
 import { Logo } from '../../shared/ui/Logo'
 import { NavLink } from 'react-router-dom'
-import { MenuAccordion } from '../MenuAccordion'
-import { DashboardMenuItem } from '../MenuItem'
 import './styles.scss'
 import useRole from '../../shared/hooks/useRole'
 import { teacherMyClasses, teacherParallelClasses } from './../../mocks/data'
+import { MenuAccordion } from '../../components/MenuAccordion'
+import { DashboardMenuItem } from '../../components/MenuItem'
 export const DashboardMenu = () => {
     const { role, hasRole } = useRole()
     return (

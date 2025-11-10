@@ -1,7 +1,7 @@
 
 import { Outlet } from 'react-router-dom'
-import { DashboardMenu } from '../components/DashboardMenu'
 import './Layout.styles.scss';
+import { DashboardMenu } from '../widgets/DashboardMenu';
 
 const Layout = () => {
     return (
